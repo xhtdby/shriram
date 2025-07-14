@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "patients",
+  "info": {
+    "singularName": "patient",
+    "pluralName": "patients",
+    "displayName": "Patient",
+    "description": "Patient information"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "unique": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "dateOfBirth": {
+      "type": "date"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": ["male", "female", "other"]
+    },
+    "address": {
+      "type": "text"
+    },
+    "emergencyContact": {
+      "type": "string"
+    },
+    "emergencyPhone": {
+      "type": "string"
+    },
+    "medicalHistory": {
+      "type": "text"
+    },
+    "appointments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::appointment.appointment",
+      "mappedBy": "patient"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://backend:1337/api
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    ports:
+      - "1337:1337"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_CLIENT=postgres
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=shriram
+      - DATABASE_USERNAME=strapi
+      - DATABASE_PASSWORD=strapi
+      - APP_KEYS=your-app-key1,your-app-key2,your-app-key3,your-app-key4
+      - API_TOKEN_SALT=your-api-token-salt
+      - ADMIN_JWT_SECRET=your-admin-jwt-secret
+      - TRANSFER_TOKEN_SALT=your-transfer-token-salt
+      - JWT_SECRET=your-jwt-secret
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=shriram
+      - POSTGRES_USER=strapi
+      - POSTGRES_PASSWORD=strapi
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
