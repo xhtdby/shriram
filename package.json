@@ -1,0 +1,15 @@
+{
+  "name": "shriram-hospital",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend develop",
+    "dev": "concurrently -k \"pnpm dev:frontend\" \"pnpm dev:backend\""
+  },
+  "devDependencies": {
+    "concurrently": "latest",
+    "eslint": "latest",
+    "prettier": "latest"
+  }
+}
