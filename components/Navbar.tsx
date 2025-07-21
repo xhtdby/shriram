@@ -1,0 +1,134 @@
+'use client'
+
+import { useState } from 'react'
+import { Phone, Mail, MapPin, ChevronDown, Menu, X } from 'lucide-react'
+import Logo from './icons/Logo'
+import { getDepartments } from '@/app/data'
+
+const NavLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
+  <a href={href} className="text-white uppercase font-semibold text-sm tracking-wider pb-2 border-b-2 border-transparent hover:border-gold-accent hover:text-white transition-all">
+    {children}
+  </a>
+)
+
+const DropdownLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
+  <a href={href} role="menuitem" className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-hospital-green hover:border-l-2 hover:border-hospital-green hover:pl-3.5 transition-all">
+    {children}
+  </a>
+)
+
+export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const departments = getDepartments()
+
+  const patientPortalLinks = [
+    { href: "/portal", name: "Patient Login" },
+    { href: "/feedback", name: "Feedback Form" },
+    { href: "/book-appointment", name: "Make An Appointment" },
+  ]
+
+  const contactLinks = [
+    { href: "#", name: "Enquiry" },
+    { href: "#", name: "Media" },
+    { href: "#", name: "Career" },
+  ]
+
+  return (
+    <header className="sticky top-0 z-50 shadow-md">
+      {/* Utility Strip */}
+      <div className="bg-white h-8 hidden md:flex items-center justify-center text-xs text-gray-600">
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <div className="flex items-center gap-x-6">
+            <a href="tel:0761-4004200" className="flex items-center gap-x-1.5 hover:text-hospital-green">
+              <Phone size={14} className="text-hospital-green" /> 0761-4004200
+            </a>
+            <a href="mailto:info@shriramhospital.com" className="flex items-center gap-x-1.5 hover:text-hospital-green">
+              <Mail size={14} className="text-hospital-green" /> info@shriramhospital.com
+            </a>
+            <div className="flex items-center gap-x-1.5">
+              <MapPin size={14} className="text-hospital-green" /> Damoh Naka, Jabalpur
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navbar */}
+      <nav className="bg-nav-gradient h-20 flex items-center">
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <a href="/"><Logo /></a>
+
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center gap-x-8">
+            <NavLink href="/">Home</NavLink>
+            
+            {/* Speciality Mega Menu */}
+            <div className="group relative">
+              <button className="text-white uppercase font-semibold text-sm tracking-wider pb-2 flex items-center gap-x-1">
+                Speciality <ChevronDown size={16} />
+              </button>
+              <div role="menu" className="absolute -left-1/2 mt-2 w-[600px] transform -translate-x-1/4 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out pt-4">
+                <div className="grid grid-cols-2 gap-4 p-4">
+                  {departments.map(dept => (
+                    <a key={dept.id} href={`/departments/${dept.slug}`} role="menuitem" className="block p-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md">{dept.name}</a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <NavLink href="/doctors">Doctors</NavLink>
+            
+            {/* Patient Portal Dropdown */}
+            <div className="group relative">
+              <button className="text-white uppercase font-semibold text-sm tracking-wider pb-2 flex items-center gap-x-1">
+                Patient Portal <ChevronDown size={16} />
+              </button>
+              <div role="menu" className="absolute mt-2 w-56 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out py-1">
+                {patientPortalLinks.map(link => <DropdownLink key={link.name} href={link.href}>{link.name}</DropdownLink>)}
+              </div>
+            </div>
+
+            <NavLink href="/blog">Blogs</NavLink>
+
+            {/* Contact Dropdown */}
+            <div className="group relative">
+              <button className="text-white uppercase font-semibold text-sm tracking-wider pb-2 flex items-center gap-x-1">
+                Contact <ChevronDown size={16} />
+              </button>
+              <div role="menu" className="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out py-1">
+                {contactLinks.map(link => <DropdownLink key={link.name} href={link.href}>{link.name}</DropdownLink>)}
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden lg:block">
+            <a href="/book-appointment" className="bg-cta-gradient text-white font-bold text-sm px-6 py-3 rounded-full hover:opacity-90 transition-opacity">
+              Make an Appointment
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white">
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-white text-gray-800 absolute w-full shadow-xl">
+          <div className="container mx-auto px-4 py-4">
+            <a href="/" className="block py-2">Home</a>
+            <a href="/doctors" className="block py-2">Doctors</a>
+            <a href="/blog" className="block py-2">Blogs</a>
+            <a href="/portal" className="block py-2">Patient Portal</a>
+            <a href="/book-appointment" className="block w-full text-center mt-4 bg-cta-gradient text-white font-bold text-sm px-6 py-3 rounded-full">
+              Make an Appointment
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
+  )
+}

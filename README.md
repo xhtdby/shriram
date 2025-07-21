@@ -11,15 +11,25 @@ This project was **completely rebuilt** from a complex monorepo with multiple ap
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Option 1: Automated Setup (Recommended)
 
-- Node.js 18+
-- npm
+**Windows:**
+```batch
+# Double-click setup.bat or run in terminal:
+setup.bat
+```
 
-### Installation & Run
+**Mac/Linux:**
+```bash
+# Make executable and run:
+chmod +x setup.sh
+./setup.sh
+```
+
+### Option 2: Manual Setup
 
 ```bash
-# Clone and start in 30 seconds
+# Prerequisites: Node.js 18+
 git clone <repository-url>
 cd shriram
 npm install
@@ -37,16 +47,18 @@ npm run start  # Start production server
 npm run lint   # Run ESLint
 ```
 
-## � Clean Project Structure
+## 📁 Clean Project Structure
 
 ```
 shriram/
-├── app/
+├── app/                      # Next.js App Router
 │   ├── page.tsx              # Homepage
 │   ├── data.ts               # All hospital data (replaces database)
 │   ├── departments/
 │   │   └── [slug]/page.tsx   # Department details
 │   └── api/                  # API routes (if needed)
+├── setup.sh                  # Unix setup script
+├── setup.bat                 # Windows setup script
 ├── package.json              # Single package.json
 ├── tailwind.config.js        # Tailwind setup
 └── README.md                 # This file
@@ -70,7 +82,7 @@ All the same hospital functionality, just **much simpler**:
 - **TypeScript**: Full type safety throughout
 - **Fast Performance**: Next.js 15 with App Router
 
-## � Data Management
+## 💾 Data Management
 
 Instead of a complex database setup, all data is stored in `app/data.ts`:
 
@@ -94,7 +106,7 @@ export const departments = [
 - ✅ Perfect for demos and prototypes
 - ✅ Can easily migrate to real database later
 
-## � Deployment
+## 🚀 Deployment
 
 ### Vercel (Recommended)
 1. Push to GitHub
@@ -129,24 +141,6 @@ But for most use cases, this simple structure is perfect!
 
 MIT License - feel free to use this for your own projects!
 
-## Planned Work
-
-The original setup plan included the following tasks:
-
-1. **Workspace Setup** – Use pnpm workspaces in the root `package.json` for `apps/*` and `packages/*`, exposing scripts `dev:frontend`, `dev:backend` and `dev` via `concurrently`.
-2. **Next.js Frontend** – Scaffold a minimal Next.js 15 project in `apps/frontend` with Tailwind (shadcn preset) and a placeholder “coming soon” page.
-3. **Strapi Backend** – Create a Strapi v5 API‑only project in `apps/backend` using SQLite at `./data.db` and starting via `strapi().start()`.
-4. **Core Content Types** – Add `Doctor`, `Department` and `Appointment` schemas as described in the project prompts.
-5. **UI Package** – Provide `Button`, `Card` and `Container` components from `packages/ui`.
-6. **Doctor Directory** – `/doctors` page listing doctors from the API with a simple specialty filter.
-7. **Booking Drawer** – Slide‑over component and `/api/book` route to create appointments.
-8. **Repository Defaults** – Standard `.gitignore` and a CI workflow running `pnpm lint` and building the frontend.
-
-The repository currently implements only parts of this plan. The workspace uses npm rather than pnpm, the Strapi backend contains additional content types, the frontend landing page is not the placeholder, and the booking flow and doctor directory are missing. Future development should realign with these steps.
-
-## Current Status
-
-- Monorepo with Next.js frontend and Strapi backend present
 ## 🎯 Why This Approach?
 
 **The original complex setup was overkill** for most hospital management needs. This simplified version:
@@ -159,16 +153,5 @@ The repository currently implements only parts of this plan. The workspace uses 
 
 ---
 
-## 📚 What Was Removed
-
-The old version in `backup-complex-structure/` included:
-- Separate Strapi CMS backend
-- Multiple shared packages
-- Complex monorepo setup
-- Database configuration
-- Multiple build processes
-
-**All of this complexity has been eliminated** while keeping the same functionality.
-
-Ready to build something amazing? Run `npm run dev` and start coding! 🚀
+Ready to build something amazing? Run the setup script and start coding! 🚀
 

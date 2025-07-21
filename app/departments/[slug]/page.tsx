@@ -21,11 +21,20 @@ export default async function DepartmentPage({ params }: Props) {
       <h2 className="text-2xl font-bold mb-4">Our Doctors</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {department.doctors.map((doctor) => (
-          <div key={doctor.id} className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-bold mb-2">
-              Dr. {doctor.firstName} {doctor.lastName}
-            </h3>
-            <p className="text-gray-600">{doctor.specialization}</p>
+          <div key={doctor.id} className="bg-white rounded-lg shadow-md p-6 flex flex-col">
+            <div className="flex-grow">
+              <h3 className="text-xl font-bold mb-2">
+                Dr. {doctor.firstName} {doctor.lastName}
+              </h3>
+              <p className="text-gray-600">{doctor.specialization}</p>
+              {doctor.qualifications && <p className="text-gray-500 text-sm mt-1">{doctor.qualifications}</p>}
+            </div>
+            <a
+              href="/book-appointment"
+              className="mt-4 bg-blue-100 text-blue-700 text-center px-4 py-2 rounded-lg font-semibold hover:bg-blue-200 transition-colors"
+            >
+              Book Appointment
+            </a>
           </div>
         ))}
       </div>
