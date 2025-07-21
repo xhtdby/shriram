@@ -1,0 +1,15 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#29a063;stop-opacity:1" />
+<stop offset="100%" style="stop-color:#047c84;stop-opacity:1" />
+</linearGradient>
+</defs>
+<rect width="1200" height="600" fill="url(#gradient1)"/>
+<rect x="100" y="150" width="800" height="300" fill="#2d3a4b" rx="10"/>
+<rect x="150" y="200" width="200" height="150" fill="#34415f"/>
+<rect x="400" y="200" width="200" height="150" fill="#34415f"/>
+<rect x="650" y="200" width="200" height="150" fill="#34415f"/>
+<text x="600" y="500" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="36" font-weight="bold">Shriram Hospital Campus</text>
+<text x="600" y="540" text-anchor="middle" fill="#ffd05b" font-family="Arial, sans-serif" font-size="18">Modern Healthcare Facility in Shahdol</text>
+</svg>

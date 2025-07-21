@@ -1,3 +1,27 @@
+// Hospital Information
+export const hospitalInfo = {
+  name: 'Shriram Hospital, Shahdol',
+  tagline: 'Compassionate Care • Advanced Treatment • Trusted Since 1998',
+  beds: 105,
+  icuBeds: 20,
+  phone: '07652-248248',
+  ambulance: '07652-248248',
+  email: 'info@shriramhospital.in',
+  address: 'Pali Road, Jaistham Chowk, Shahdol – 484 001, Madhya Pradesh',
+  nabhAccredited: false, // set true once certified
+  patientsRated: 4.8,
+  yearEstablished: 1998,
+  totalStaff: 150,
+  patientsServed: 120000,
+};
+
+// Department names for carousel
+export const departmentNames = [
+  'Cardiology', 'Critical Care', 'Nephrology', 'Neurology', 'Orthopaedics',
+  'Obstetrics & Gynaecology', 'General Surgery', 'Urology', 'Dermatology',
+  'ENT', 'Pulmonology', 'Diabetology & Endocrinology',
+];
+
 export interface Department {
   id: number;
   name: string;

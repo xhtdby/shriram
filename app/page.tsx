@@ -1,9 +1,13 @@
 'use client'
 
-import { getDepartments, hospitalStats, healthPackages, testimonials, getBlogPosts, getTpaList } from '@/app/data'
+import { getDepartments, hospitalStats, healthPackages, testimonials, getBlogPosts, getTpaList, hospitalInfo, departmentNames } from '@/app/data'
 import { Calendar, Users, Stethoscope, Clock, Phone, Bed, HeartPulse, TestTube, Star, ArrowRight, Award, Shield } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import HeroCarousel from '@/components/HeroCarousel'
+import StatsCounter from '@/components/StatsCounter'
+import DepartmentCarousel from '@/components/DepartmentCarousel'
+import FloatingInfoBox from '@/components/FloatingInfoBox'
 
 export default function Home() {
   const departments = getDepartments()
@@ -12,53 +16,107 @@ export default function Home() {
 
   return (
     <div>
-      {/* Hero Section with Welcome */}
-      <section className="relative bg-gradient-to-r from-hospital-blue to-hospital-green-dark text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative container mx-auto px-4 py-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-6xl font-bold mb-6 leading-tight">
-                Welcome to<br />
-                <span className="text-gold-accent">Shriram Hospital</span>
-              </h1>
-              <p className="text-xl mb-8 leading-relaxed">
-                Your trusted partner in healthcare excellence. We provide compassionate, world-class medical care 
-                with state-of-the-art technology and a team of experienced specialists dedicated to your wellbeing.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="/book-appointment" className="bg-cta-gradient text-white px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity text-center">
-                  Book an Appointment
-                </a>
-                <a href="tel:+91-761-4004200" className="bg-white/20 backdrop-blur text-white px-8 py-4 rounded-full font-semibold hover:bg-white/30 transition-colors flex items-center justify-center">
-                  <Phone className="w-5 h-5 mr-2" />
-                  Emergency: 0761-4004200
-                </a>
+      {/* Hero Carousel */}
+      <section className="relative">
+        <HeroCarousel />
+        
+        {/* Quick-action floating box */}
+        <FloatingInfoBox>
+          <div className="text-center">
+            <p className="font-medium mb-2 text-gray-700">Emergency 24×7</p>
+            <a 
+              href={`tel:${hospitalInfo.ambulance}`} 
+              className="text-hospital-green font-bold text-lg hover:text-hospital-green-dark transition-colors"
+            >
+              Call {hospitalInfo.ambulance}
+            </a>
+            <p className="text-sm text-gray-500 mt-1">Ambulance Service</p>
+          </div>
+        </FloatingInfoBox>
+      </section>
+
+      {/* Hospital Stats Section */}
+      <section className="section py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="section-heading">Shriram Hospital at a Glance</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Serving Shahdol with excellence in healthcare since {hospitalInfo.yearEstablished}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="bg-hospital-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Bed className="w-8 h-8 text-hospital-green" />
               </div>
+              <StatsCounter 
+                value={hospitalInfo.beds} 
+                label="Total Beds" 
+                suffix="" 
+              />
             </div>
-            <div className="relative">
-              <div className="bg-white/10 backdrop-blur rounded-2xl p-8">
-                <Image 
-                  src="/images/hospital-exterior.jpg" 
-                  alt="Shriram Hospital" 
-                  width={400}
-                  height={300}
-                  className="w-full h-80 object-cover rounded-xl shadow-2xl"
-                  onError={(e) => {
-                    e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjc3Mzg5IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPkhvc3BpdGFsIEV4dGVyaW9yPC90ZXh0Pgo8L3N2Zz4='
-                  }}
-                />
+            <div className="text-center">
+              <div className="bg-hospital-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <HeartPulse className="w-8 h-8 text-hospital-green" />
               </div>
+              <StatsCounter 
+                value={hospitalInfo.icuBeds} 
+                label="ICU Beds" 
+                suffix="" 
+              />
+            </div>
+            <div className="text-center">
+              <div className="bg-hospital-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="w-8 h-8 text-hospital-green" />
+              </div>
+              <StatsCounter 
+                value={25} 
+                label="Specialists" 
+                suffix="+" 
+              />
+            </div>
+            <div className="text-center">
+              <div className="bg-hospital-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Stethoscope className="w-8 h-8 text-hospital-green" />
+              </div>
+              <StatsCounter 
+                value={15} 
+                label="Departments" 
+                suffix="" 
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Department Showcase */}
+      <section className="section py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Why Choose Shriram Hospital?</h2>
+            <h2 className="section-heading">Our Medical Specialties</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Comprehensive healthcare services across multiple specialties with expert medical professionals
+            </p>
+          </div>
+          <DepartmentCarousel />
+          
+          <div className="text-center mt-12">
+            <Link 
+              href="/departments" 
+              className="inline-flex items-center px-8 py-4 bg-hospital-green text-white rounded-full font-semibold hover:bg-hospital-green-dark transition-colors"
+            >
+              View All Departments
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="section py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="section-heading">Why Choose Shriram Hospital?</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Experience excellence in healthcare with our comprehensive medical services, 
               cutting-edge technology, and compassionate care.
@@ -93,74 +151,6 @@ export default function Home() {
               <h3 className="text-xl font-bold mb-3">Easy Appointments</h3>
               <p className="text-gray-600">Simple online appointment booking and patient portal</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 bg-hospital-green text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Our Strength in Numbers</h2>
-            <p className="text-hospital-green-light text-lg">Trusted by thousands of patients across Madhya Pradesh</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
-            <div className="bg-white/10 backdrop-blur rounded-xl p-6">
-              <Bed className="w-12 h-12 mx-auto mb-4 text-gold-accent" />
-              <p className="text-4xl font-bold mb-2">{hospitalStats.beds}+</p>
-              <p className="text-hospital-green-light">Beds</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur rounded-xl p-6">
-              <HeartPulse className="w-12 h-12 mx-auto mb-4 text-gold-accent" />
-              <p className="text-4xl font-bold mb-2">{hospitalStats.ccuBeds}</p>
-              <p className="text-hospital-green-light">CCU Beds</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur rounded-xl p-6">
-              <Stethoscope className="w-12 h-12 mx-auto mb-4 text-gold-accent" />
-              <p className="text-4xl font-bold mb-2">{hospitalStats.doctors}+</p>
-              <p className="text-hospital-green-light">Specialist Doctors</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur rounded-xl p-6">
-              <Users className="w-12 h-12 mx-auto mb-4 text-gold-accent" />
-              <p className="text-4xl font-bold mb-2">{hospitalStats.departments}</p>
-              <p className="text-hospital-green-light">Departments</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur rounded-xl p-6 col-span-2 md:col-span-1">
-              <TestTube className="w-12 h-12 mx-auto mb-4 text-gold-accent" />
-              <p className="text-4xl font-bold mb-2">{hospitalStats.ots}</p>
-              <p className="text-hospital-green-light">Operation Theaters</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Departments Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Our Medical Specialities</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Comprehensive healthcare services across multiple specialties with expert doctors and modern facilities
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {departments.map((dept) => (
-              <div key={dept.id} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden group">
-                <div className="h-48 bg-gradient-to-br from-hospital-green/10 to-hospital-blue/10 flex items-center justify-center">
-                  <div className="text-6xl text-hospital-green/30">🏥</div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-hospital-green transition-colors">{dept.name}</h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">{dept.description}</p>
-                  <a 
-                    href={`/departments/${dept.slug}`}
-                    className="inline-flex items-center text-hospital-green font-semibold hover:text-hospital-green-dark transition-colors"
-                  >
-                    Learn More <ArrowRight className="w-4 h-4 ml-2" />
-                  </a>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

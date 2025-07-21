@@ -10,3 +10,26 @@ body {
 .group {
   position: relative;
 }
+
+/* Global section styles */
+.section { 
+  @apply py-16 lg:py-24 relative; 
+}
+
+.section-heading { 
+  @apply text-3xl lg:text-4xl font-bold text-hospital-green-dark mb-8 text-center; 
+}
+
+.fade-section { 
+  @apply animate-fade-in-up; 
+}
+
+/* Hide scrollbar for carousel */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
