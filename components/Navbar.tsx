@@ -22,15 +22,29 @@ export default function Navbar() {
   const departments = getDepartments()
 
   const patientPortalLinks = [
-    { href: "/portal", name: "Patient Login" },
+    { href: "/portal/patient-rights", name: "Patient Rights" },
+    { href: "/portal/patient-responsibilities", name: "Patient Responsibilities" },
+    { href: "/portal/health-packages", name: "Health Package" },
     { href: "/feedback", name: "Feedback Form" },
+    { href: "/portal/estimate-request", name: "Estimate Request" },
+    { href: "/portal/tpas", name: "TPA's" },
     { href: "/book-appointment", name: "Make An Appointment" },
+    { href: "/portal/video-consultation", name: "Video Consultation" },
+  ]
+
+  const aboutUsLinks = [
+    { href: "/about/overview", name: "Overview" },
+    { href: "/about/leaders-message", name: "Leader's Message" },
+    { href: "/about/why-shriram", name: "Why Shriram Hospital" },
+    { href: "/about/facilities", name: "Facilities" },
+    { href: "/about/awards", name: "Awards & Accreditations" },
   ]
 
   const contactLinks = [
-    { href: "#", name: "Enquiry" },
-    { href: "#", name: "Media" },
-    { href: "#", name: "Career" },
+    { href: "https://maps.app.goo.gl/nCRpfLjSmKZ9AJ4F8", name: "Directions" },
+    { href: "/contact/enquiry", name: "Enquiry" },
+    { href: "/contact/media", name: "Media" },
+    { href: "/contact/career", name: "Career" },
   ]
 
   return (
@@ -46,7 +60,7 @@ export default function Navbar() {
               <Mail size={14} className="text-hospital-green" /> info@shriramhospital.com
             </a>
             <div className="flex items-center gap-x-1.5">
-              <MapPin size={14} className="text-hospital-green" /> Damoh Naka, Jabalpur
+              <MapPin size={14} className="text-hospital-green" />  Jaistham Chowk, Pali Rd, Beside Akashwani, Shahdol
             </div>
           </div>
         </div>
@@ -60,6 +74,16 @@ export default function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-x-8">
             <NavLink href="/">Home</NavLink>
+            
+            {/* About Us Dropdown */}
+            <div className="group relative">
+              <button className="text-white uppercase font-semibold text-sm tracking-wider pb-2 flex items-center gap-x-1">
+                About Us <ChevronDown size={16} />
+              </button>
+              <div role="menu" className="absolute mt-2 w-56 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out py-1">
+                {aboutUsLinks.map(link => <DropdownLink key={link.name} href={link.href}>{link.name}</DropdownLink>)}
+              </div>
+            </div>
             
             {/* Speciality Mega Menu */}
             <div className="group relative">

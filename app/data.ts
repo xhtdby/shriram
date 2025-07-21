@@ -13,6 +13,8 @@ export interface Doctor {
   specialization: string;
   departmentId: number;
   qualifications?: string;
+  image?: string;
+  experience?: string;
 }
 
 export interface BlogPost {
@@ -23,6 +25,15 @@ export interface BlogPost {
   publishedDate: string;
   excerpt: string;
   content: string;
+  image?: string;
+  category: string;
+}
+
+export interface TPA {
+  id: number;
+  name: string;
+  logo?: string;
+  website?: string;
 }
 
 export const departments: Department[] = [
@@ -130,6 +141,17 @@ export const testimonials = [
   { id: 3, name: 'P. Verma', quote: 'My daughter was treated in the pediatric ward, and we couldn\'t have asked for better care. The doctors were wonderful with her.' },
 ];
 
+export const tpaList: TPA[] = [
+  { id: 1, name: 'ICICI Lombard', logo: '/images/tpa/icici-lombard.png' },
+  { id: 2, name: 'Star Health Insurance', logo: '/images/tpa/star-health.png' },
+  { id: 3, name: 'HDFC ERGO', logo: '/images/tpa/hdfc-ergo.png' },
+  { id: 4, name: 'Bajaj Allianz', logo: '/images/tpa/bajaj-allianz.png' },
+  { id: 5, name: 'New India Assurance', logo: '/images/tpa/new-india.png' },
+  { id: 6, name: 'Oriental Insurance', logo: '/images/tpa/oriental.png' },
+  { id: 7, name: 'United India Insurance', logo: '/images/tpa/united-india.png' },
+  { id: 8, name: 'National Insurance', logo: '/images/tpa/national.png' },
+];
+
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
@@ -138,7 +160,9 @@ export const blogPosts: BlogPost[] = [
     author: 'Dr. Amit Kumar Verma',
     publishedDate: '2023-07-15',
     excerpt: 'The monsoon brings relief from the heat, but also a host of health issues. Here are some essential tips to stay healthy...',
-    content: 'The monsoon season, while beautiful, is also a time when infections are rampant. It is crucial to take extra precautions to safeguard your health. Firstly, ensure you drink only boiled or purified water to avoid water-borne diseases like typhoid and cholera. Secondly, boost your immunity by including Vitamin C-rich foods in your diet. Thirdly, avoid eating street food as it may be contaminated. Fourthly, keep your surroundings clean and prevent water stagnation to avoid mosquito-borne illnesses like dengue and malaria. Lastly, maintain good personal hygiene by washing your hands frequently.'
+    content: 'The monsoon season, while beautiful, is also a time when infections are rampant. It is crucial to take extra precautions to safeguard your health. Firstly, ensure you drink only boiled or purified water to avoid water-borne diseases like typhoid and cholera. Secondly, boost your immunity by including Vitamin C-rich foods in your diet. Thirdly, avoid eating street food as it may be contaminated. Fourthly, keep your surroundings clean and prevent water stagnation to avoid mosquito-borne illnesses like dengue and malaria. Lastly, maintain good personal hygiene by washing your hands frequently.',
+    category: 'Health Tips',
+    image: '/images/blog/monsoon-health.jpg'
   },
   {
     id: 2,
@@ -147,7 +171,9 @@ export const blogPosts: BlogPost[] = [
     author: 'Dr. A.A. Ansari',
     publishedDate: '2023-07-10',
     excerpt: 'Heart disease is a leading cause of mortality, but it is largely preventable. Learn about the key aspects of cardiac health.',
-    content: 'Maintaining a healthy heart is vital for overall well-being. A balanced diet low in saturated fats and sodium is fundamental. Regular physical activity, at least 30 minutes a day, strengthens the heart muscle. It is also important to manage stress through techniques like meditation or yoga. Regular health check-ups, especially for blood pressure and cholesterol levels, can help in early detection and management of potential issues. Quitting smoking and limiting alcohol consumption are also critical steps towards a healthier heart.'
+    content: 'Maintaining a healthy heart is vital for overall well-being. A balanced diet low in saturated fats and sodium is fundamental. Regular physical activity, at least 30 minutes a day, strengthens the heart muscle. It is also important to manage stress through techniques like meditation or yoga. Regular health check-ups, especially for blood pressure and cholesterol levels, can help in early detection and management of potential issues. Quitting smoking and limiting alcohol consumption are also critical steps towards a healthier heart.',
+    category: 'Cardiology',
+    image: '/images/blog/cardiac-health.jpg'
   },
   {
     id: 3,
@@ -156,7 +182,9 @@ export const blogPosts: BlogPost[] = [
     author: 'Hospital Administration',
     publishedDate: '2023-07-05',
     excerpt: 'We are thrilled to announce the opening of our new gynecology wing, equipped with the latest technology and designed for patient comfort.',
-    content: 'In our continuous effort to provide the best healthcare services, Shriram Hospital has inaugurated a new gynecology wing. This new facility features advanced diagnostic equipment, modern labor and delivery rooms, and a dedicated team of experienced gynecologists and support staff. The wing is designed to provide a comfortable and supportive environment for women through all stages of life, from adolescence to post-menopause. We are committed to setting new standards in women\'s healthcare in the Mahakaushal region.'
+    content: 'In our continuous effort to provide the best healthcare services, Shriram Hospital has inaugurated a new gynecology wing. This new facility features advanced diagnostic equipment, modern labor and delivery rooms, and a dedicated team of experienced gynecologists and support staff. The wing is designed to provide a comfortable and supportive environment for women through all stages of life, from adolescence to post-menopause. We are committed to setting new standards in women\'s healthcare in the Mahakaushal region.',
+    category: 'Hospital News',
+    image: '/images/blog/gynecology-wing.jpg'
   }
 ];
 
@@ -174,4 +202,8 @@ export function getBlogPosts() {
 
 export function getBlogPostBySlug(slug: string) {
   return blogPosts.find(post => post.slug === slug);
+}
+
+export function getTpaList() {
+  return tpaList;
 }
