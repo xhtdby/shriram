@@ -4,11 +4,12 @@ import { useState } from 'react'
 import { Phone, Mail, MapPin, ChevronDown, Menu, X } from 'lucide-react'
 import Logo from './icons/Logo'
 import { getDepartments } from '@/app/data'
+import Link from 'next/link'
 
 const NavLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
-  <a href={href} className="text-white uppercase font-semibold text-sm tracking-wider pb-2 border-b-2 border-transparent hover:border-gold-accent hover:text-white transition-all">
+  <Link href={href} className="text-white uppercase font-semibold text-sm tracking-wider pb-2 border-b-2 border-transparent hover:border-gold-accent hover:text-white transition-all">
     {children}
-  </a>
+  </Link>
 )
 
 const DropdownLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
@@ -69,7 +70,7 @@ export default function Navbar() {
       {/* Main Navbar */}
       <nav className="bg-nav-gradient h-20 flex items-center">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <a href="/"><Logo /></a>
+          <Link href="/"><Logo /></Link>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-x-8">
@@ -143,13 +144,13 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white text-gray-800 absolute w-full shadow-xl">
           <div className="container mx-auto px-4 py-4">
-            <a href="/" className="block py-2">Home</a>
-            <a href="/doctors" className="block py-2">Doctors</a>
-            <a href="/blog" className="block py-2">Blogs</a>
-            <a href="/portal" className="block py-2">Patient Portal</a>
-            <a href="/book-appointment" className="block w-full text-center mt-4 bg-cta-gradient text-white font-bold text-sm px-6 py-3 rounded-full">
+            <Link href="/" className="block py-2">Home</Link>
+            <Link href="/doctors" className="block py-2">Doctors</Link>
+            <Link href="/blog" className="block py-2">Blogs</Link>
+            <Link href="/portal" className="block py-2">Patient Portal</Link>
+            <Link href="/book-appointment" className="block w-full text-center mt-4 bg-cta-gradient text-white font-bold text-sm px-6 py-3 rounded-full">
               Make an Appointment
-            </a>
+            </Link>
           </div>
         </div>
       )}

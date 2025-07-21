@@ -2,6 +2,8 @@
 
 import { getDepartments, hospitalStats, healthPackages, testimonials, getBlogPosts, getTpaList } from '@/app/data'
 import { Calendar, Users, Stethoscope, Clock, Phone, Bed, HeartPulse, TestTube, Star, ArrowRight, Award, Shield } from 'lucide-react'
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Home() {
   const departments = getDepartments()
@@ -36,9 +38,11 @@ export default function Home() {
             </div>
             <div className="relative">
               <div className="bg-white/10 backdrop-blur rounded-2xl p-8">
-                <img 
+                <Image 
                   src="/images/hospital-exterior.jpg" 
                   alt="Shriram Hospital" 
+                  width={400}
+                  height={300}
                   className="w-full h-80 object-cover rounded-xl shadow-2xl"
                   onError={(e) => {
                     e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjc3Mzg5IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPkhvc3BpdGFsIEV4dGVyaW9yPC90ZXh0Pgo8L3N2Zz4='
@@ -191,9 +195,9 @@ export default function Home() {
             ))}
           </div>
           <div className="text-center mt-12">
-            <a href="/blog" className="bg-hospital-green text-white px-8 py-3 rounded-full font-semibold hover:bg-hospital-green-dark transition-colors">
+            <Link href="/blog" className="bg-hospital-green text-white px-8 py-3 rounded-full font-semibold hover:bg-hospital-green-dark transition-colors">
               View All Articles
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -271,7 +275,7 @@ export default function Home() {
                 <div className="flex text-gold-accent mb-6">
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
                 </div>
-                <p className="text-gray-700 italic mb-6 text-lg leading-relaxed">"{t.quote}"</p>
+                <p className="text-gray-700 italic mb-6 text-lg leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-hospital-green/10 rounded-full flex items-center justify-center mr-4">
                     <span className="text-hospital-green font-bold">{t.name[0]}</span>

@@ -2,6 +2,7 @@ import '@/app/globals.css'
 import type { Metadata } from 'next'
 import EmergencyBanner from '@/components/EmergencyBanner'
 import Navbar from '@/components/Navbar'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Shriram Hospital',
@@ -21,9 +22,9 @@ export default function RootLayout({
         <footer className="bg-gray-800 text-white py-8 mt-16">
           <div className="container mx-auto px-4 text-center">
             <div className="flex justify-center gap-x-6 mb-4">
-              <a href="/blog" className="hover:text-blue-300">Blog</a>
-              <a href="/feedback" className="hover:text-blue-300">Feedback</a>
-              <a href="/departments" className="hover:text-blue-300">Departments</a>
+              <Link href="/blog" className="hover:text-blue-300">Blog</Link>
+              <Link href="/feedback" className="hover:text-blue-300">Feedback</Link>
+              <Link href="/departments" className="hover:text-blue-300">Departments</Link>
             </div>
             <p>&copy; 2025 Shriram Hospital. All rights reserved.</p>
           </div>

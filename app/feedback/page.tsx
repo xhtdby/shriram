@@ -59,7 +59,7 @@ export default function FeedbackPage() {
                 <div className="flex text-yellow-400 mb-4">
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
                 </div>
-                <p className="text-gray-600 italic mb-4">"{t.quote}"</p>
+                <p className="text-gray-600 italic mb-4">&ldquo;{t.quote}&rdquo;</p>
                 <p className="font-bold text-right">- {t.name}</p>
               </div>
             ))}
