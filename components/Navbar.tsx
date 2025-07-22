@@ -23,14 +23,14 @@ export default function Navbar() {
   const departments = getDepartments()
 
   const patientPortalLinks = [
-    { href: "/portal/patient-rights", name: "Patient Rights" },
-    { href: "/portal/patient-responsibilities", name: "Patient Responsibilities" },
-    { href: "/portal/health-packages", name: "Health Package" },
+    { href: "/patient-rights", name: "Patient Rights" },
+    { href: "/patient-responsibilities", name: "Patient Responsibilities" },
+    { href: "/health-packages", name: "Health Package" },
     { href: "/feedback", name: "Feedback Form" },
-    { href: "/portal/estimate-request", name: "Estimate Request" },
+    { href: "/estimate-request", name: "Estimate Request" },
     { href: "/portal/tpas", name: "TPA's" },
     { href: "/book-appointment", name: "Make An Appointment" },
-    { href: "/portal/video-consultation", name: "Video Consultation" },
+    { href: "/video-consultation", name: "Video Consultation" },
   ]
 
   const aboutUsLinks = [

@@ -4,8 +4,8 @@ import Image from 'next/image'
 
 export default function AboutPage() {
   const milestones = [
-    { year: '1998', event: 'Shriram Hospital established in Shahdol' },
-    { year: '2005', event: 'Expanded to 105 beds with ICU facilities' },
+    { year: '2004', event: 'Shriram Hospital established in Shahdol' },
+    { year: '2010', event: 'Expanded to 105 beds with ICU facilities' },
     { year: '2010', event: 'Introduced advanced surgical equipment' },
     { year: '2015', event: 'Added 20-bed ICU and cardiac care unit' },
     { year: '2020', event: 'Implemented digital healthcare systems' },
