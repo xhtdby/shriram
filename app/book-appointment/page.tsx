@@ -5,6 +5,7 @@ import { useState, FormEvent, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Calendar, Clock, User, Phone, Mail, MapPin, FileText, AlertCircle, CheckCircle } from 'lucide-react'
+import PaymentInterface from '@/components/PaymentInterface'
 
 function BookingFormComponent() {
   const departments = getDepartments()
@@ -30,9 +31,12 @@ function BookingFormComponent() {
     allergies: ''
   })
   
+  const [currentStep, setCurrentStep] = useState<'form' | 'payment' | 'success'>('form')
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [paymentItems, setPaymentItems] = useState<any[]>([])
+  const [transactionId, setTransactionId] = useState('')
 
   // Available time slots
   const timeSlots = [
@@ -110,34 +114,122 @@ function BookingFormComponent() {
       return
     }
 
+    // Calculate consultation fee based on urgency and doctor
+    const selectedDoctor = availableDoctors.find(d => `${d.firstName} ${d.lastName}` === formData.doctor)
+    const baseFee = selectedDoctor?.consultationFee ? parseInt(selectedDoctor.consultationFee.replace('₹', '')) : 500
+    const consultationFee = formData.urgency === 'urgent' ? baseFee + 250 : baseFee
+
+    // Create payment item
+    const paymentItem = {
+      id: `apt_${Date.now()}`,
+      name: 'Doctor Consultation',
+      amount: consultationFee,
+      type: 'appointment' as const,
+      description: `${formData.urgency === 'urgent' ? 'Urgent ' : ''}consultation with ${formData.doctor}`,
+      doctor: formData.doctor,
+      date: formData.preferredDate,
+      time: formData.preferredTime
+    }
+
+    setPaymentItems([paymentItem])
+    setCurrentStep('payment')
+  }
+
+  const handlePaymentSuccess = async (txnId: string) => {
+    setTransactionId(txnId)
     setIsSubmitting(true)
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Simulate API call to create appointment after payment
+      await new Promise(resolve => setTimeout(resolve, 1000))
       
-      // Store appointment in localStorage (in real app, this would be sent to backend)
+      // Store appointment in localStorage
       const appointments = JSON.parse(localStorage.getItem('shriram_appointments') || '[]')
       const newAppointment = {
         id: Date.now(),
         ...formData,
-        status: 'pending',
+        status: 'confirmed',
         appointmentNumber: `SH${Date.now().toString().slice(-6)}`,
         createdAt: new Date().toISOString(),
-        estimatedFee: formData.urgency === 'urgent' ? '₹750' : '₹500'
+        paymentStatus: 'paid',
+        transactionId: txnId,
+        consultationFee: paymentItems[0]?.amount || 500
       }
       appointments.push(newAppointment)
       localStorage.setItem('shriram_appointments', JSON.stringify(appointments))
       
+      setCurrentStep('success')
       setSubmitted(true)
     } catch (error) {
-      alert('Something went wrong. Please try again.')
+      alert('Appointment booking failed. Please contact support.')
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  if (submitted) {
+  const handlePaymentCancel = () => {
+    setCurrentStep('form')
+    setPaymentItems([])
+  }
+
+  // Payment step
+  if (currentStep === 'payment') {
+    return (
+      <div className="min-h-screen bg-gray-50 py-8">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="mb-6">
+              <button
+                onClick={() => setCurrentStep('form')}
+                className="flex items-center space-x-2 text-hospital-green hover:text-hospital-green/80"
+              >
+                <span>← Back to Appointment Form</span>
+              </button>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Appointment Summary</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Patient Information</h3>
+                  <div className="space-y-1 text-sm text-gray-600">
+                    <p><strong>Name:</strong> {formData.patientName}</p>
+                    <p><strong>Email:</strong> {formData.email}</p>
+                    <p><strong>Phone:</strong> {formData.phone}</p>
+                    <p><strong>Age:</strong> {formData.age}</p>
+                    <p><strong>Gender:</strong> {formData.gender}</p>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Appointment Details</h3>
+                  <div className="space-y-1 text-sm text-gray-600">
+                    <p><strong>Department:</strong> {formData.department}</p>
+                    <p><strong>Doctor:</strong> {formData.doctor}</p>
+                    <p><strong>Date:</strong> {formData.preferredDate}</p>
+                    <p><strong>Time:</strong> {formData.preferredTime}</p>
+                    <p><strong>Type:</strong> {formData.urgency === 'urgent' ? 'Urgent Consultation' : 'Regular Consultation'}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <PaymentInterface
+              items={paymentItems}
+              onSuccess={handlePaymentSuccess}
+              onCancel={handlePaymentCancel}
+              patientInfo={{
+                name: formData.patientName,
+                email: formData.email,
+                phone: formData.phone
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (submitted && currentStep === 'success') {
     return (
       <div className="min-h-screen bg-gray-50 py-16">
         <div className="container mx-auto px-4">

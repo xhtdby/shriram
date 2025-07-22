@@ -30,11 +30,7 @@ export const hospitalInfo = {
 };
 
 // Department names for carousel
-export const departmentNames = [
-  'Cardiology', 'Critical Care', 'Nephrology', 'Neurology', 'Orthopaedics',
-  'Obstetrics & Gynaecology', 'General Surgery', 'Urology', 'Dermatology',
-  'ENT', 'Pulmonology', 'Diabetology & Endocrinology',
-];
+export const departmentNames = DEPARTMENTS.map(dept => dept.name);
 
 // Type definitions for backward compatibility
 export interface Department {
@@ -86,7 +82,7 @@ export const departments: Department[] = DEPARTMENTS.map(dept => ({
   name: dept.name,
   slug: dept.slug,
   description: dept.description,
-  doctors: DOCTORS.filter(doctor => doctor.departmentId === dept.id).map(doctor => ({
+  doctors: DOCTORS.filter(doctor => dept.doctorIds?.includes(doctor.id)).map(doctor => ({
     id: doctor.id,
     firstName: doctor.firstName,
     lastName: doctor.lastName,

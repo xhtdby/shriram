@@ -1,245 +1,201 @@
 // Department Configuration
 export const DEPARTMENTS = [
-  {
-    id: 1,
-    name: 'Cardiology',
-    slug: 'cardiology',
-    description: 'Comprehensive cardiac care with advanced diagnostic and treatment facilities for heart-related conditions.',
-    icon: '/images/dept-icons/cardiology.svg',
-    image: '/images/departments/cardiology.jpg',
-    services: [
-      'ECG & Echo Cardiography',
-      'Stress Testing',
-      'Cardiac Catheterization',
-      'Angioplasty',
-      'Pacemaker Implantation',
-      'Heart Surgery Consultation'
-    ],
-    equipment: ['ECG Machine', 'Echocardiography', 'Stress Test Equipment', 'Cardiac Monitor'],
-    doctorIds: [4], // Dr. Amit Kumar
-    isEmergency: true,
-    isActive: true
-  },
-  {
-    id: 2,
-    name: 'Critical Care',
-    slug: 'critical-care',
-    description: 'State-of-the-art ICU facilities with 24x7 monitoring and expert critical care management.',
-    icon: '/images/dept-icons/critical-care.svg',
-    image: '/images/departments/critical-care.jpg',
-    services: [
-      '24x7 ICU Care',
-      'Ventilator Support',
-      'Continuous Monitoring',
-      'Emergency Resuscitation',
-      'Post-operative Care',
-      'Trauma Care'
-    ],
-    equipment: ['Ventilators', 'Patient Monitors', 'Defibrillators', 'Infusion Pumps'],
-    doctorIds: [1], // Dr. Rohit Dubey
-    isEmergency: true,
-    isActive: true
-  },
-  {
-    id: 3,
-    name: 'Nephrology',
-    slug: 'nephrology',
-    description: 'Comprehensive kidney care including dialysis and treatment of kidney-related disorders.',
-    icon: '/images/dept-icons/nephrology.svg',
-    image: '/images/departments/nephrology.jpg',
-    services: [
-      'Hemodialysis',
-      'Peritoneal Dialysis',
-      'Kidney Stone Treatment',
-      'Hypertension Management',
-      'Chronic Kidney Disease Care',
-      'Kidney Transplant Consultation'
-    ],
-    equipment: ['Dialysis Machines', 'Water Treatment Plant', 'Ultrasound'],
-    doctorIds: [],
-    isEmergency: false,
-    isActive: true
-  },
-  {
-    id: 4,
-    name: 'Neurology',
-    slug: 'neurology',
-    description: 'Advanced neurological care for brain, spine, and nervous system disorders.',
-    icon: '/images/dept-icons/neurology.svg',
-    image: '/images/departments/neurology.jpg',
-    services: [
-      'Neurological Examination',
-      'EEG & EMG',
-      'Stroke Management',
-      'Epilepsy Treatment',
-      'Headache & Migraine Care',
-      'Movement Disorder Treatment'
-    ],
-    equipment: ['EEG Machine', 'EMG Equipment', 'Neurological Instruments'],
-    doctorIds: [],
-    isEmergency: true,
-    isActive: true
-  },
-  {
-    id: 5,
-    name: 'Orthopaedics',
-    slug: 'orthopaedics',
-    description: 'Complete bone and joint care including trauma surgery and joint replacement.',
-    icon: '/images/dept-icons/orthopaedics.svg',
-    image: '/images/departments/orthopaedics.jpg',
-    services: [
-      'Fracture Treatment',
-      'Joint Replacement',
-      'Arthroscopy',
-      'Spine Surgery',
-      'Sports Medicine',
-      'Trauma Surgery'
-    ],
-    equipment: ['X-Ray Machines', 'C-Arm', 'Arthroscopy Equipment', 'Physiotherapy Equipment'],
-    doctorIds: [],
-    isEmergency: true,
-    isActive: true
-  },
-  {
-    id: 6,
-    name: 'Obstetrics & Gynaecology',
-    slug: 'obstetrics-gynaecology',
-    description: 'Complete women\'s health services including maternity care and gynecological treatments.',
-    icon: '/images/dept-icons/obstetrics.svg',
-    image: '/images/departments/obstetrics.jpg',
-    services: [
-      'Antenatal Care',
-      'Normal & C-Section Delivery',
-      'High-Risk Pregnancy Management',
-      'Gynecological Surgery',
-      'Infertility Treatment',
-      'Family Planning'
-    ],
-    equipment: ['Ultrasound Machines', 'CTG Monitor', 'Labor Room Equipment', 'Operation Theater'],
-    doctorIds: [3], // Dr. Priya Sharma
-    isEmergency: true,
-    isActive: true
-  },
-  {
-    id: 7,
-    name: 'General Surgery',
-    slug: 'general-surgery',
-    description: 'Comprehensive surgical services including minimally invasive and laparoscopic procedures.',
-    icon: '/images/dept-icons/surgery.svg',
-    image: '/images/departments/surgery.jpg',
-    services: [
-      'General Surgery',
-      'Laparoscopic Surgery',
-      'Hernia Repair',
-      'Gallbladder Surgery',
-      'Appendectomy',
-      'Emergency Surgery'
-    ],
-    equipment: ['Operation Theaters', 'Laparoscopy Equipment', 'Surgical Instruments', 'Anesthesia Machines'],
-    doctorIds: [2], // Dr. S.C. Tripathi
-    isEmergency: true,
-    isActive: true
-  },
-  {
-    id: 8,
-    name: 'Urology',
-    slug: 'urology',
-    description: 'Specialized care for urinary tract and male reproductive system disorders.',
-    icon: '/images/dept-icons/urology.svg',
-    image: '/images/departments/urology.jpg',
-    services: [
-      'Kidney Stone Treatment',
-      'Prostate Surgery',
-      'Urinary Tract Infection Treatment',
-      'Male Infertility Treatment',
-      'Urological Cancer Care',
-      'Minimally Invasive Procedures'
-    ],
-    equipment: ['Ultrasound', 'Endoscopy Equipment', 'Lithotripsy Machine'],
-    doctorIds: [],
-    isEmergency: false,
-    isActive: true
-  },
-  {
-    id: 9,
-    name: 'Dermatology',
-    slug: 'dermatology',
-    description: 'Complete skin care services including treatment of skin disorders and cosmetic procedures.',
-    icon: '/images/dept-icons/dermatology.svg',
-    image: '/images/departments/dermatology.jpg',
-    services: [
-      'Skin Disease Treatment',
-      'Acne & Pigmentation Treatment',
-      'Hair Loss Treatment',
-      'Cosmetic Dermatology',
-      'Skin Cancer Screening',
-      'Allergy Testing'
-    ],
-    equipment: ['Dermatoscope', 'Laser Equipment', 'Phototherapy Units'],
-    doctorIds: [],
-    isEmergency: false,
-    isActive: true
-  },
-  {
-    id: 10,
-    name: 'ENT',
-    slug: 'ent',
-    description: 'Comprehensive ear, nose, and throat care with modern diagnostic and surgical facilities.',
-    icon: '/images/dept-icons/ent.svg',
-    image: '/images/departments/ent.jpg',
-    services: [
-      'Hearing Assessment',
-      'Sinus Treatment',
-      'Throat Surgery',
-      'Tonsil & Adenoid Surgery',
-      'Ear Surgery',
-      'Voice Disorder Treatment'
-    ],
-    equipment: ['ENT Endoscope', 'Audiometer', 'Microscope', 'Surgical Instruments'],
-    doctorIds: [],
-    isEmergency: false,
-    isActive: true
-  },
-  {
-    id: 11,
-    name: 'Pulmonology',
-    slug: 'pulmonology',
-    description: 'Specialized respiratory care for lung and breathing disorders.',
-    icon: '/images/dept-icons/pulmonology.svg',
-    image: '/images/departments/pulmonology.jpg',
-    services: [
-      'Pulmonary Function Tests',
-      'Bronchoscopy',
-      'Asthma Management',
-      'COPD Treatment',
-      'Sleep Study',
-      'Lung Cancer Care'
-    ],
-    equipment: ['Spirometer', 'Bronchoscope', 'Nebulizers', 'Oxygen Concentrators'],
-    doctorIds: [],
-    isEmergency: false,
-    isActive: true
-  },
-  {
-    id: 12,
-    name: 'Diabetology & Endocrinology',
-    slug: 'diabetology-endocrinology',
-    description: 'Comprehensive diabetes care and hormone-related disorder treatment.',
-    icon: '/images/dept-icons/diabetology.svg',
-    image: '/images/departments/diabetology.jpg',
-    services: [
-      'Diabetes Management',
-      'Thyroid Treatment',
-      'Hormone Therapy',
-      'Insulin Pump Therapy',
-      'Diabetic Foot Care',
-      'Nutritional Counseling'
-    ],
-    equipment: ['Glucometers', 'HbA1c Analyzer', 'Insulin Pumps'],
-    doctorIds: [],
-    isEmergency: false,
-    isActive: true
-  }
+    {
+        id: 1,
+        name: 'Cardiology',
+        slug: 'cardiology',
+        description: 'Comprehensive cardiac care with advanced diagnostic and treatment facilities for heart-related conditions.',
+        icon: '/images/dept-icons/cardiology.svg',
+        image: '/images/departments/cardiology.jpg',
+        services: [
+            'ECG & Echo Cardiography',
+            'Stress Testing',
+            'Cardiac Catheterization',
+            'Angioplasty',
+            'Pacemaker Implantation',
+            'Heart Surgery Consultation'
+        ],
+        equipment: ['ECG Machine', 'Echocardiography', 'Stress Test Equipment', 'Cardiac Monitor'],
+        doctorIds: [9], // Dr. A.A. Ansari (Visiting)
+        isEmergency: true,
+        isActive: true
+    },
+    {
+        id: 2,
+        name: 'Critical Care',
+        slug: 'critical-care',
+        description: 'State-of-the-art ICU facilities with 24x7 monitoring and expert critical care management.',
+        icon: '/images/dept-icons/critical-care.svg',
+        image: '/images/departments/critical-care.jpg',
+        services: [
+            '24x7 ICU Care',
+            'Ventilator Support',
+            'Continuous Monitoring',
+            'Emergency Resuscitation',
+            'Post-operative Care',
+            'Trauma Care'
+        ],
+        equipment: ['Ventilators', 'Patient Monitors', 'Defibrillators', 'Infusion Pumps'],
+        doctorIds: [1], // Dr. Rohit Dubey
+        isEmergency: true,
+        isActive: true
+    },
+    {
+        id: 5,
+        name: 'Orthopaedics',
+        slug: 'orthopaedics',
+        description: 'Complete bone and joint care including trauma surgery and joint replacement.',
+        icon: '/images/dept-icons/orthopaedics.svg',
+        image: '/images/departments/orthopaedics.jpg',
+        services: [
+            'Fracture Treatment',
+            'Joint Replacement',
+            'Arthroscopy',
+            'Spine Surgery',
+            'Sports Medicine',
+            'Trauma Surgery'
+        ],
+        equipment: ['X-Ray Machines', 'C-Arm', 'Arthroscopy Equipment', 'Physiotherapy Equipment'],
+        doctorIds: [5], // Dr. Amol Prabhakar Pandey
+        isEmergency: true,
+        isActive: true
+    },
+    {
+        id: 6,
+        name: 'Obstetrics & Gynaecology',
+        slug: 'obstetrics-gynaecology',
+        description: 'Complete women\'s health services including maternity care and gynecological treatments.',
+        icon: '/images/dept-icons/obstetrics.svg',
+        image: '/images/departments/obstetrics.jpg',
+        services: [
+            'Antenatal Care',
+            'Normal & C-Section Delivery',
+            'High-Risk Pregnancy Management',
+            'Gynecological Surgery',
+            'Infertility Treatment',
+            'Family Planning'
+        ],
+        equipment: ['Ultrasound Machines', 'CTG Monitor', 'Labor Room Equipment', 'Operation Theater'],
+        doctorIds: [3, 4], // Dr. S.P. Chaturvedi, Dr. Geetika Shukla
+        isEmergency: true,
+        isActive: true
+    },
+    {
+        id: 7,
+        name: 'General Surgery',
+        slug: 'general-surgery',
+        description: 'Comprehensive surgical services including minimally invasive and laparoscopic procedures.',
+        icon: '/images/dept-icons/surgery.svg',
+        image: '/images/departments/surgery.jpg',
+        services: [
+            'General Surgery',
+            'Laparoscopic Surgery',
+            'Hernia Repair',
+            'Gallbladder Surgery',
+            'Appendectomy',
+            'Emergency Surgery'
+        ],
+        equipment: ['Operation Theaters', 'Laparoscopy Equipment', 'Surgical Instruments', 'Anesthesia Machines'],
+        doctorIds: [2], // Dr. S.C. Tripathi
+        isEmergency: true,
+        isActive: true
+    },
+    {
+        id: 8,
+        name: 'Urology',
+        slug: 'urology',
+        description: 'Specialized care for urinary tract and male reproductive system disorders.',
+        icon: '/images/dept-icons/urology.svg',
+        image: '/images/departments/urology.jpg',
+        services: [
+            'Kidney Stone Treatment',
+            'Prostate Surgery',
+            'Urinary Tract Infection Treatment',
+            'Male Infertility Treatment',
+            'Urological Cancer Care',
+            'Minimally Invasive Procedures'
+        ],
+        equipment: ['Ultrasound', 'Endoscopy Equipment', 'Lithotripsy Machine'],
+        doctorIds: [8], // Dr. Amit Gaur (Visiting)
+        isEmergency: false,
+        isActive: true
+    },
+    {
+        id: 9,
+        name: 'Pediatrics',
+        slug: 'pediatrics',
+        description: 'Comprehensive care for infants, children, and adolescents.',
+        icon: '/images/dept-icons/pediatrics.svg',
+        image: '/images/departments/pediatrics.jpg',
+        services: [
+            'Well-baby Checkups',
+            'Vaccinations',
+            'Childhood Illness Treatment',
+            'Developmental Screening',
+            'Nutritional Guidance'
+        ],
+        equipment: ['Pediatric Scales', 'Incubators', 'Phototherapy Units'],
+        doctorIds: [6], // Dr. T.N. Chaturvedi
+        isEmergency: true,
+        isActive: true
+    },
+    {
+        id: 10,
+        name: 'General Medicine',
+        slug: 'general-medicine',
+        description: 'Primary care services for adults, focusing on prevention, diagnosis, and treatment of a wide range of illnesses.',
+        icon: '/images/dept-icons/general-medicine.svg',
+        image: '/images/departments/general-medicine.jpg',
+        services: [
+            'General Health Checkups',
+            'Chronic Disease Management',
+            'Infectious Disease Treatment',
+            'Preventive Care',
+            'Health Counseling'
+        ],
+        equipment: ['Stethoscope', 'Blood Pressure Monitor', 'ECG Machine'],
+        doctorIds: [7], // Dr. Amit Kumar Verma
+        isEmergency: true,
+        isActive: true
+    },
+    {
+        id: 11,
+        name: 'Anesthesiology',
+        slug: 'anesthesiology',
+        description: 'Anesthesia services for surgical procedures and pain management.',
+        icon: '/images/dept-icons/anesthesiology.svg',
+        image: '/images/departments/anesthesiology.jpg',
+        services: [
+            'Pre-operative Evaluation',
+            'General Anesthesia',
+            'Regional Anesthesia',
+            'Post-operative Pain Management',
+            'Critical Care Support'
+        ],
+        equipment: ['Anesthesia Machines', 'Patient Monitors', 'Ventilators'],
+        doctorIds: [1], // Dr. Rohit Dubey
+        isEmergency: true,
+        isActive: true
+    },
+    {
+        id: 12,
+        name: 'Maxillofacial Surgery',
+        slug: 'maxillofacial-surgery',
+        description: 'Surgical treatment of diseases, injuries, and defects in the head, neck, face, and jaws.',
+        icon: '/images/dept-icons/maxillofacial.svg',
+        image: '/images/departments/maxillofacial.jpg',
+        services: [
+            'Dental Implants',
+            'Facial Trauma Surgery',
+            'Corrective Jaw Surgery',
+            'TMJ Disorder Treatment',
+            'Oral Cancer Surgery'
+        ],
+        equipment: ['Dental Chairs', 'X-Ray Machines', 'Surgical Instruments'],
+        doctorIds: [10], // Dr. Siddharth Singh
+        isEmergency: true,
+        isActive: true
+    }
 ];
 
 // Emergency Departments
@@ -247,8 +203,8 @@ export const EMERGENCY_DEPARTMENTS = DEPARTMENTS.filter(dept => dept.isEmergency
 
 // Department categories for easier management
 export const DEPARTMENT_CATEGORIES = {
-  medical: [1, 3, 4, 11, 12], // Cardiology, Nephrology, Neurology, Pulmonology, Diabetology
-  surgical: [2, 5, 7, 8], // Critical Care, Orthopaedics, General Surgery, Urology
-  specialized: [6, 9, 10], // Obstetrics, Dermatology, ENT
-  emergency: EMERGENCY_DEPARTMENTS.map(dept => dept.id)
+    medical: [1, 9, 10], // Cardiology, Pediatrics, General Medicine
+    surgical: [2, 5, 7, 8, 11, 12], // Critical Care, Orthopaedics, General Surgery, Urology, Anesthesiology, Maxillofacial Surgery
+    specialized: [6], // Obstetrics & Gynaecology
+    emergency: EMERGENCY_DEPARTMENTS.map(dept => dept.id)
 };

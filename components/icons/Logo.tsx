@@ -1,10 +1,14 @@
-export default function Logo() {
+interface LogoProps {
+  className?: string;
+}
+
+export default function Logo({ className = "" }: LogoProps) {
   return (
-    <div className="w-40">
-      <div className="text-2xl font-bold text-white">
+    <div className={`text-white ${className}`}>
+      <div className="text-xl sm:text-2xl font-bold">
         Shriram
       </div>
-      <div className="text-xs font-light text-white -mt-1">
+      <div className="text-xs font-light -mt-1">
         Hospital
       </div>
     </div>

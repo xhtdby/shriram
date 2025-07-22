@@ -1,12 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { Clock, Users, Package, Star, Phone, Calendar, CheckCircle } from 'lucide-react';
+import { Clock, Users, Package, Star, Phone, Calendar, CheckCircle, CreditCard, ArrowLeft } from 'lucide-react';
 import { HEALTH_PACKAGES } from '@/constants/services';
+import PaymentInterface from '@/components/PaymentInterface';
 
 export default function HealthPackagePage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
+  const [showPayment, setShowPayment] = useState(false);
+  const [paymentItems, setPaymentItems] = useState<any[]>([]);
 
   const categories = [
     { id: 'all', name: 'All Packages', color: 'bg-gray-100 text-gray-800' },
@@ -21,6 +24,68 @@ export default function HealthPackagePage() {
   const filteredPackages = selectedCategory === 'all' 
     ? HEALTH_PACKAGES 
     : HEALTH_PACKAGES.filter(pkg => pkg.category === selectedCategory);
+
+  const handleBookPackage = (pkg: any) => {
+    const paymentItem = {
+      id: `pkg_${pkg.id}`,
+      name: pkg.name,
+      amount: pkg.price,
+      type: 'package' as const,
+      description: pkg.description
+    };
+    setPaymentItems([paymentItem]);
+    setShowPayment(true);
+  };
+
+  const handlePaymentSuccess = (transactionId: string) => {
+    // Handle successful payment
+    const bookings = JSON.parse(localStorage.getItem('shriram_package_bookings') || '[]');
+    const newBooking = {
+      id: Date.now(),
+      packageId: paymentItems[0]?.id,
+      packageName: paymentItems[0]?.name,
+      amount: paymentItems[0]?.amount,
+      transactionId,
+      status: 'confirmed',
+      bookedAt: new Date().toISOString(),
+      bookingNumber: `PKG${Date.now().toString().slice(-6)}`
+    };
+    bookings.push(newBooking);
+    localStorage.setItem('shriram_package_bookings', JSON.stringify(bookings));
+    
+    alert(`Package booked successfully! Booking ID: ${newBooking.bookingNumber}`);
+    setShowPayment(false);
+    setPaymentItems([]);
+  };
+
+  const handlePaymentCancel = () => {
+    setShowPayment(false);
+    setPaymentItems([]);
+  };
+
+  if (showPayment) {
+    return (
+      <div className="min-h-screen bg-gray-50 py-8">
+        <div className="container mx-auto px-4">
+          <div className="mb-6">
+            <button
+              onClick={() => setShowPayment(false)}
+              className="flex items-center space-x-2 text-hospital-green hover:text-hospital-green/80"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to Packages</span>
+            </button>
+          </div>
+          
+          <PaymentInterface
+            items={paymentItems}
+            onSuccess={handlePaymentSuccess}
+            onCancel={handlePaymentCancel}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -118,12 +183,13 @@ export default function HealthPackagePage() {
                     >
                       View Details
                     </button>
-                    <a
-                      href="/book-appointment"
-                      className="flex-1 bg-hospital-green text-white px-4 py-2 rounded-lg font-semibold hover:bg-hospital-green/90 transition-colors text-center"
+                    <button
+                      onClick={() => handleBookPackage(pkg)}
+                      className="flex-1 bg-hospital-green text-white px-4 py-2 rounded-lg font-semibold hover:bg-hospital-green/90 transition-colors flex items-center justify-center space-x-2"
                     >
-                      Book Now
-                    </a>
+                      <CreditCard className="w-4 h-4" />
+                      <span>Book & Pay</span>
+                    </button>
                   </div>
                 </div>
 

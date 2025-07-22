@@ -7,3 +7,4 @@ export * from './insurance';
 export * from './content';
 export * from './patient-rights';
 export * from './appointments';
+export * from './payments';
