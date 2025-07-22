@@ -1,0 +1,13 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#047c84;stop-opacity:1" />
+<stop offset="100%" style="stop-color:#29a063;stop-opacity:1" />
+</linearGradient>
+</defs>
+<rect width="300" height="300" fill="url(#gradient2)" rx="150"/>
+<circle cx="150" cy="110" r="40" fill="white" opacity="0.9"/>
+<path d="M75 250 Q150 180 225 250 L225 300 L75 300 Z" fill="white" opacity="0.9"/>
+<text x="150" y="280" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Dr. S.C. Tripathi</text>
+<text x="150" y="295" text-anchor="middle" fill="#ffd05b" font-family="Arial, sans-serif" font-size="10">General Surgeon</text>
+</svg>

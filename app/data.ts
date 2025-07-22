@@ -13,6 +13,13 @@ export const hospitalInfo = {
   yearEstablished: 1998,
   totalStaff: 150,
   patientsServed: 120000,
+  leadership: {
+    chiefDoctor: 'Dr. Rohit Dubey',
+    chiefTitle: 'Chief Medical Officer & Senior Anesthesiologist',
+    chiefQualifications: 'MD (Anesthesia), FIPM',
+    chiefExperience: '15+ years',
+    chiefImage: '/images/doctors/dr-rohit-dubey.jpg'
+  }
 };
 
 // Department names for carousel
@@ -39,6 +46,11 @@ export interface Doctor {
   qualifications?: string;
   image?: string;
   experience?: string;
+  consultationTime?: string;
+  isChief?: boolean;
+  availableDays?: string[];
+  consultationFee?: string;
+  bio?: string;
 }
 
 export interface BlogPost {
@@ -67,7 +79,20 @@ export const departments: Department[] = [
     slug: 'general-surgery',
     description: 'Our General Surgery department offers a wide range of surgical procedures. Our experienced surgeons are equipped to handle everything from routine operations to complex emergency cases, using the latest minimally invasive techniques to ensure faster recovery.',
     doctors: [
-      { id: 1, firstName: 'S.C.', lastName: 'Tripathi', specialization: 'General Surgeon', departmentId: 1, qualifications: 'MS (General Surgery)' }
+      { 
+        id: 1, 
+        firstName: 'S.C.', 
+        lastName: 'Tripathi', 
+        specialization: 'Senior General Surgeon', 
+        departmentId: 1, 
+        qualifications: 'MS (General Surgery)',
+        experience: '12+ years',
+        image: '/images/doctors/dr-sc-tripathi.jpg',
+        consultationTime: '10:00 AM - 5:00 PM',
+        availableDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        consultationFee: '₹400',
+        bio: 'Dr. S.C. Tripathi is a highly experienced general surgeon specializing in laparoscopic and minimally invasive surgical procedures. He has performed over 2000 successful surgeries and is known for his precision and patient care.'
+      }
     ]
   },
   {
@@ -113,7 +138,21 @@ export const departments: Department[] = [
     slug: 'anesthesia',
     description: 'Our Anesthesia team plays a crucial role in ensuring patient safety and comfort during surgical procedures. We provide expert anesthetic care before, during, and after surgery, as well as comprehensive pain management services.',
     doctors: [
-      { id: 7, firstName: 'Rohit', lastName: 'Dubey', specialization: 'Anesthesiologist', departmentId: 6, qualifications: 'MD (Anesthesia)' }
+      { 
+        id: 7, 
+        firstName: 'Rohit', 
+        lastName: 'Dubey', 
+        specialization: 'Chief Medical Officer & Senior Anesthesiologist', 
+        departmentId: 6, 
+        qualifications: 'MD (Anesthesia), FIPM',
+        experience: '15+ years',
+        image: '/images/doctors/dr-rohit-dubey.jpg',
+        consultationTime: '9:00 AM - 6:00 PM',
+        isChief: true,
+        availableDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        consultationFee: '₹500',
+        bio: 'Dr. Rohit Dubey serves as the Chief Medical Officer and Senior Anesthesiologist at Shriram Hospital. With over 15 years of experience in anesthesiology and critical care, he leads our medical team with expertise in perioperative care, pain management, and emergency medicine. He is committed to providing the highest standards of patient safety and comfort.'
+      }
     ]
   },
   {

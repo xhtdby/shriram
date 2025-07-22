@@ -25,7 +25,11 @@ const slides = [
 
 export default function HeroCarousel() {
   const [index, setIndex] = useState(0);
-  const [imageError, setImageError] = useState<{ [key: number]: boolean }>({});
+  const [imageErrors, setImageErrors] = useState<{ [key: number]: boolean }>({});
+
+  const handleImageError = (slideIndex: number) => {
+    setImageErrors(prev => ({ ...prev, [slideIndex]: true }));
+  };
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -34,10 +38,6 @@ export default function HeroCarousel() {
     return () => clearInterval(id);
   }, []);
 
-  const handleImageError = (slideIndex: number) => {
-    setImageError(prev => ({ ...prev, [slideIndex]: true }));
-  };
-
   return (
     <div className="relative h-[70vh] overflow-hidden">
       {slides.map((slide, i) => (
@@ -45,7 +45,7 @@ export default function HeroCarousel() {
           key={slide.src}
           fill
           priority={i === 0}
-          src={imageError[i] ? slide.fallback : slide.src}
+          src={imageErrors[i] ? slide.fallback : slide.src}
           alt={slide.alt}
           className={`object-cover transition-opacity duration-1000 ${
             i === index ? 'opacity-100' : 'opacity-0'

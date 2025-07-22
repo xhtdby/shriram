@@ -34,18 +34,18 @@ export default function Navbar() {
   ]
 
   const aboutUsLinks = [
-    { href: "/about/overview", name: "Overview" },
-    { href: "/about/leaders-message", name: "Leader's Message" },
-    { href: "/about/why-shriram", name: "Why Shriram Hospital" },
-    { href: "/about/facilities", name: "Facilities" },
-    { href: "/about/awards", name: "Awards & Accreditations" },
+    { href: "/about", name: "Overview" },
+    { href: "/about#leadership", name: "Leadership" },
+    { href: "/about#values", name: "Our Values" },
+    { href: "/about#journey", name: "Our Journey" },
+    { href: "/about#contact", name: "Contact Information" },
   ]
 
   const contactLinks = [
+    { href: "/contact", name: "Contact Us" },
     { href: "https://maps.app.goo.gl/nCRpfLjSmKZ9AJ4F8", name: "Directions" },
-    { href: "/contact/enquiry", name: "Enquiry" },
-    { href: "/contact/media", name: "Media" },
-    { href: "/contact/career", name: "Career" },
+    { href: "/feedback", name: "Feedback" },
+    { href: "/contact#emergency", name: "Emergency" },
   ]
 
   return (
@@ -145,6 +145,7 @@ export default function Navbar() {
         <div className="lg:hidden bg-white text-gray-800 absolute w-full shadow-xl">
           <div className="container mx-auto px-4 py-4">
             <Link href="/" className="block py-2">Home</Link>
+            <Link href="/about" className="block py-2">About Us</Link>
             <Link href="/doctors" className="block py-2">Doctors</Link>
             <Link href="/blog" className="block py-2">Blogs</Link>
             <Link href="/portal" className="block py-2">Patient Portal</Link>
