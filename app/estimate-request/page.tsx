@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Calculator, FileText, Phone, Mail, AlertCircle, CheckCircle, User, Calendar } from 'lucide-react';
 import { ESTIMATE_CONFIG } from '@/constants/appointments';
+import Link from 'next/link';
 
 interface EstimateForm {
   patientName: string;
@@ -116,12 +117,12 @@ export default function EstimateRequestPage() {
             >
               Submit Another Request
             </button>
-            <a
+            <Link
               href="/"
               className="block w-full bg-gray-100 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
             >
               Back to Home
-            </a>
+            </Link>
           </div>
         </div>
       </div>

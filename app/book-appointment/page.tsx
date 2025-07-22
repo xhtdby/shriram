@@ -1,11 +1,12 @@
 'use client'
 
 import { getDepartments, hospitalInfo } from '@/app/data'
-import { useState, FormEvent, useEffect } from 'react'
+import { useState, FormEvent, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import { Calendar, Clock, User, Phone, Mail, MapPin, FileText, AlertCircle, CheckCircle } from 'lucide-react'
 
-export default function BookAppointmentPage() {
+function BookingFormComponent() {
   const departments = getDepartments()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -181,12 +182,12 @@ export default function BookAppointmentPage() {
               >
                 Book Another Appointment
               </button>
-              <a 
+              <Link 
                 href="/" 
                 className="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors"
               >
                 Return to Home
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -564,5 +565,13 @@ export default function BookAppointmentPage() {
         </div>
       </section>
     </div>
+  )
+}
+
+export default function BookAppointmentPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <BookingFormComponent />
+    </Suspense>
   )
 }

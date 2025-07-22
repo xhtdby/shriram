@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Video, Calendar, Clock, Shield, CheckCircle, X, Wifi, Camera, Mic, Monitor, Phone, Mail } from 'lucide-react';
 import { VIDEO_CONSULTATION_CONFIG } from '@/constants/appointments';
 import { DOCTORS } from '@/constants/staff';
+import Link from 'next/link';
 
 interface BookingForm {
   patientName: string;
@@ -92,12 +93,12 @@ export default function VideoConsultationPage() {
             >
               Book Another Consultation
             </button>
-            <a
+            <Link
               href="/"
               className="block w-full bg-gray-100 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
             >
               Back to Home
-            </a>
+            </Link>
           </div>
         </div>
       </div>

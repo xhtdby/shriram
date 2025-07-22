@@ -160,7 +160,7 @@ export default function PatientRightsPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Questions About Your Rights?</h2>
           <p className="text-white/90 mb-6 max-w-2xl mx-auto">
-            If you have any questions about your rights or responsibilities, please don't hesitate to contact our Patient Relations team.
+            If you have any questions about your rights or responsibilities, please don&apos;t hesitate to contact our Patient Relations team.
           </p>
           <a
             href="/contact"

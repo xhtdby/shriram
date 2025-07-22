@@ -3,6 +3,7 @@
 import { hospitalInfo } from '@/app/data'
 import { useState, FormEvent } from 'react'
 import { MapPin, Phone, Mail, Clock, MessageSquare, User, FileText, CheckCircle } from 'lucide-react'
+import Link from 'next/link'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -93,12 +94,12 @@ export default function ContactPage() {
               >
                 Send Another Message
               </button>
-              <a 
+              <Link 
                 href="/" 
                 className="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors"
               >
                 Return to Home
-              </a>
+              </Link>
             </div>
           </div>
         </div>

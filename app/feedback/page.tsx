@@ -3,6 +3,7 @@
 import { testimonials, hospitalInfo } from '@/app/data'
 import { Star, MessageSquare, User, Mail, Phone, MapPin, CheckCircle, Calendar } from 'lucide-react'
 import { useState, FormEvent } from 'react'
+import Link from 'next/link'
 
 export default function FeedbackPage() {
   const [formData, setFormData] = useState({
@@ -122,12 +123,12 @@ export default function FeedbackPage() {
               >
                 Submit Another Feedback
               </button>
-              <a 
+              <Link 
                 href="/" 
                 className="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors"
               >
                 Return to Home
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -449,7 +450,7 @@ export default function FeedbackPage() {
                     <div className="flex text-yellow-400 mb-2">
                       {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                     </div>
-                    <p className="text-gray-700 italic text-sm mb-2">"{testimonial.quote}"</p>
+                    <p className="text-gray-700 italic text-sm mb-2">&ldquo;{testimonial.quote}&rdquo;</p>
                     <p className="text-gray-600 text-sm font-medium">- {testimonial.name}</p>
                   </div>
                 ))}
