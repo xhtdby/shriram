@@ -181,7 +181,7 @@ export default function Home() {
             </h2>
             <p className="text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
               From our experienced medical professionals to state-of-the-art facilities, 
-              we're committed to providing exceptional healthcare experiences.
+              we&apos;re committed to providing exceptional healthcare experiences.
             </p>
           </div>
           
@@ -276,7 +276,17 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
               <div key={post.id} className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100">
-                <div className="relative h-56 bg-gradient-to-br from-hospital-blue/20 to-hospital-green/20 overflow-hidden">
+                <div className="relative h-56 overflow-hidden">
+                  {post.image ? (
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-hospital-blue/20 to-hospital-green/20"></div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   <div className="absolute top-4 left-4">
                     <span className="bg-white/90 backdrop-blur text-hospital-green px-3 py-1 rounded-full text-sm font-medium">
@@ -295,7 +305,7 @@ export default function Home() {
                     <span className="text-sm text-gray-500">{new Date(post.publishedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                     <div className="flex items-center text-sm text-gray-400">
                       <Clock className="w-3 h-3 mr-1" />
-                      5 min read
+                      {post.readTime || 5} min read
                     </div>
                   </div>
                   
@@ -539,54 +549,20 @@ export default function Home() {
       {/* Section Breaker */}
       <SectionBreaker variant="curve" />
 
-      {/* Accreditations Section */}
-      <section className="py-20 bg-hospital-green text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Our Accreditations & Awards</h2>
-            <p className="text-hospital-green-light text-lg">Recognized for excellence in healthcare services</p>
-          </div>
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div className="bg-white/10 backdrop-blur rounded-xl p-8">
-              <Award className="w-16 h-16 mx-auto mb-4 text-gold-accent" />
-              <h3 className="text-xl font-bold mb-2">NABH Accredited</h3>
-              <p className="text-hospital-green-light">Quality & Patient Safety</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur rounded-xl p-8">
-              <Shield className="w-16 h-16 mx-auto mb-4 text-gold-accent" />
-              <h3 className="text-xl font-bold mb-2">NABL Certified</h3>
-              <p className="text-hospital-green-light">Laboratory Standards</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur rounded-xl p-8">
-              <Award className="w-16 h-16 mx-auto mb-4 text-gold-accent" />
-              <h3 className="text-xl font-bold mb-2">ISO Certified</h3>
-              <p className="text-hospital-green-light">Quality Management</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur rounded-xl p-8">
-              <Shield className="w-16 h-16 mx-auto mb-4 text-gold-accent" />
-              <h3 className="text-xl font-bold mb-2">JCI Standards</h3>
-              <p className="text-hospital-green-light">International Quality</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <SectionBreaker />
-
       {/* Enhanced Accreditations Section */}
-      <section className="py-section bg-gradient-to-br from-hospital-blue-dark to-hospital-blue text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/hero-tech.jpg')] bg-cover bg-center opacity-10"></div>
+      <section className="py-section bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-hospital-green/5 to-hospital-blue/5"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center bg-hospital-blue/10 text-hospital-blue px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Award className="w-4 h-4 mr-2" />
               Quality Certifications
             </div>
-            <h2 className="text-4xl lg:text-5xl font-headline mb-6">
+            <h2 className="text-4xl lg:text-5xl font-headline text-hospital-blue-dark mb-6">
               Trusted Excellence
-              <span className="block text-hospital-gold">Recognized Standards</span>
+              <span className="block text-hospital-green">Recognized Standards</span>
             </h2>
-            <p className="text-blue-100 text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
+            <p className="text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
               Our commitment to quality healthcare is validated by prestigious accreditations 
               and certifications from leading healthcare authorities.
             </p>
@@ -594,65 +570,65 @@ export default function Home() {
           
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <motion.div 
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 text-center group hover:bg-white/15 transition-all"
+              className="bg-white rounded-xl p-6 border border-gray-200 shadow-lg hover:shadow-xl text-center group transition-all duration-300"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="w-16 h-16 bg-hospital-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-hospital-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="w-8 h-8 text-hospital-gold" />
               </div>
-              <h3 className="text-lg font-bold mb-2">NABH Accredited</h3>
-              <p className="text-blue-100 text-sm">National Accreditation Board for Hospitals & Healthcare Providers</p>
+              <h3 className="text-lg font-bold mb-2 text-gray-800">NABH Accredited</h3>
+              <p className="text-gray-600 text-sm">National Accreditation Board for Hospitals & Healthcare Providers</p>
             </motion.div>
             
             <motion.div 
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 text-center group hover:bg-white/15 transition-all"
+              className="bg-white rounded-xl p-6 border border-gray-200 shadow-lg hover:shadow-xl text-center group transition-all duration-300"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="w-16 h-16 bg-hospital-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-hospital-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="w-8 h-8 text-hospital-green" />
               </div>
-              <h3 className="text-lg font-bold mb-2">ISO Certified</h3>
-              <p className="text-blue-100 text-sm">International Organization for Standardization Quality Management</p>
+              <h3 className="text-lg font-bold mb-2 text-gray-800">ISO Certified</h3>
+              <p className="text-gray-600 text-sm">International Organization for Standardization Quality Management</p>
             </motion.div>
             
             <motion.div 
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 text-center group hover:bg-white/15 transition-all"
+              className="bg-white rounded-xl p-6 border border-gray-200 shadow-lg hover:shadow-xl text-center group transition-all duration-300"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="w-16 h-16 bg-red-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-8 h-8 text-red-400" />
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Heart className="w-8 h-8 text-red-500" />
               </div>
-              <h3 className="text-lg font-bold mb-2">JCI Standards</h3>
-              <p className="text-blue-100 text-sm">Joint Commission International Healthcare Quality Standards</p>
+              <h3 className="text-lg font-bold mb-2 text-gray-800">JCI Standards</h3>
+              <p className="text-gray-600 text-sm">Joint Commission International Healthcare Quality Standards</p>
             </motion.div>
             
             <motion.div 
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 text-center group hover:bg-white/15 transition-all"
+              className="bg-white rounded-xl p-6 border border-gray-200 shadow-lg hover:shadow-xl text-center group transition-all duration-300"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="w-16 h-16 bg-purple-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-purple-400" />
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="w-8 h-8 text-purple-600" />
               </div>
-              <h3 className="text-lg font-bold mb-2">NABL Approved</h3>
-              <p className="text-blue-100 text-sm">National Accreditation Board for Testing & Calibration Laboratories</p>
+              <h3 className="text-lg font-bold mb-2 text-gray-800">NABL Approved</h3>
+              <p className="text-gray-600 text-sm">National Accreditation Board for Testing & Calibration Laboratories</p>
             </motion.div>
           </div>
           
           <div className="text-center">
-            <div className="inline-flex items-center space-x-8">
+            <div className="inline-flex items-center space-x-8 bg-gray-50 px-8 py-6 rounded-2xl">
               <div className="text-center">
                 <div className="text-3xl font-bold text-hospital-gold mb-1">25+</div>
-                <div className="text-sm text-blue-100">Years of Excellence</div>
+                <div className="text-sm text-gray-600">Years of Excellence</div>
               </div>
-              <div className="w-px h-12 bg-white/20"></div>
+              <div className="w-px h-12 bg-gray-300"></div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-hospital-green mb-1">100K+</div>
-                <div className="text-sm text-blue-100">Patients Served</div>
+                <div className="text-sm text-gray-600">Patients Served</div>
               </div>
-              <div className="w-px h-12 bg-white/20"></div>
+              <div className="w-px h-12 bg-gray-300"></div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-hospital-gold mb-1">98%</div>
-                <div className="text-sm text-blue-100">Patient Satisfaction</div>
+                <div className="text-sm text-gray-600">Patient Satisfaction</div>
               </div>
             </div>
           </div>

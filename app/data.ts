@@ -69,6 +69,8 @@ export interface BlogPost {
   content: string;
   image?: string;
   category: string;
+  tags?: string[];
+  readTime?: number;
 }
 
 export interface TPA {
@@ -167,7 +169,9 @@ export const blogPosts: BlogPost[] = BLOG_POSTS.map(post => ({
   excerpt: post.excerpt,
   content: post.content,
   image: post.image,
-  category: post.category
+  category: post.category,
+  tags: post.tags,
+  readTime: post.readTime
 }));
 
 // Legacy function exports
