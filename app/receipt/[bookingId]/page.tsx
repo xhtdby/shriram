@@ -58,7 +58,7 @@ export default function ReceiptPage() {
           </div>
           <h1 className="text-xl font-bold text-gray-900 mb-2">Receipt Not Found</h1>
           <p className="text-gray-600 mb-6">
-            The receipt you're looking for doesn't exist or may have been removed.
+            The receipt you&apos;re looking for doesn&apos;t exist or may have been removed.
           </p>
           <div className="space-y-3">
             <button
@@ -155,7 +155,7 @@ export default function ReceiptPage() {
               </div>
               <div className="flex items-start space-x-2">
                 <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                <p>Contact {booking.doctorName}'s department if you need to reschedule</p>
+                <p>Contact {booking.doctorName}&apos;s department if you need to reschedule</p>
               </div>
             </div>
           </div>
