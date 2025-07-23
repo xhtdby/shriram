@@ -1,26 +1,33 @@
 'use client'
 
-import { getDepartments, hospitalInfo } from '@/app/data'
+import { getDepartments, hospitalInfo, getDoctorBySlug } from '@/app/data'
 import { useState, FormEvent, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { Calendar, Clock, User, Phone, Mail, MapPin, FileText, AlertCircle, CheckCircle } from 'lucide-react'
+import { Calendar, Clock, User, Phone, Mail, MapPin, FileText, AlertCircle, CheckCircle, ShoppingCart, ArrowLeft } from 'lucide-react'
 import PaymentInterface from '@/components/PaymentInterface'
+import { useBasket } from '@/contexts/BasketContext'
 
 function BookingFormComponent() {
   const departments = getDepartments()
   const router = useRouter()
   const searchParams = useSearchParams()
+  const { addToBasket, basketItems, getTotalAmount } = useBasket()
   
-  // Form state
+  // Get doctor from URL parameters
+  const doctorSlug = searchParams.get('doctor')
+  const preselectedDoctor = doctorSlug ? getDoctorBySlug(doctorSlug) : null
+  
+  // Form state with auto-filled doctor information
   const [formData, setFormData] = useState({
     patientName: '',
     email: '',
     phone: '',
     age: '',
     gender: '',
-    department: searchParams.get('department') || '',
-    doctor: searchParams.get('doctor') || '',
+    department: searchParams.get('department') || preselectedDoctor?.departmentId || '',
+    doctor: searchParams.get('doctor') || preselectedDoctor?.fullName || '',
+    doctorId: preselectedDoctor?.id || '',
     preferredDate: '',
     preferredTime: '',
     reason: '',
@@ -128,11 +135,55 @@ function BookingFormComponent() {
       description: `${formData.urgency === 'urgent' ? 'Urgent ' : ''}consultation with ${formData.doctor}`,
       doctor: formData.doctor,
       date: formData.preferredDate,
-      time: formData.preferredTime
+      time: formData.preferredTime,
+      patientInfo: {
+        name: formData.patientName,
+        email: formData.email,
+        phone: formData.phone,
+        age: formData.age,
+        gender: formData.gender
+      }
     }
 
     setPaymentItems([paymentItem])
     setCurrentStep('payment')
+  }
+
+  const handleAddToBasket = () => {
+    if (!validateForm()) {
+      return
+    }
+
+    // Calculate consultation fee based on urgency and doctor
+    const selectedDoctor = availableDoctors.find(d => `${d.firstName} ${d.lastName}` === formData.doctor)
+    const baseFee = selectedDoctor?.consultationFee ? parseInt(selectedDoctor.consultationFee.replace('₹', '')) : 500
+    const consultationFee = formData.urgency === 'urgent' ? baseFee + 250 : baseFee
+
+    // Create basket item
+    const basketItem = {
+      id: `apt_${Date.now()}_${formData.patientName.replace(/\s+/g, '')}`,
+      name: `Consultation - ${formData.doctor}`,
+      amount: consultationFee,
+      type: 'appointment' as const,
+      description: `${formData.urgency === 'urgent' ? 'Urgent ' : ''}consultation with ${formData.doctor}`,
+      doctor: formData.doctor,
+      doctorId: String(formData.doctorId),
+      date: formData.preferredDate,
+      time: formData.preferredTime,
+      department: typeof formData.department === 'string' ? formData.department : departments[formData.department]?.name || '',
+      patientInfo: {
+        name: formData.patientName,
+        email: formData.email,
+        phone: formData.phone,
+        age: formData.age,
+        gender: formData.gender
+      }
+    }
+
+    addToBasket(basketItem)
+    
+    // Redirect to basket page
+    router.push('/basket')
   }
 
   const handlePaymentSuccess = async (txnId: string) => {
@@ -265,7 +316,7 @@ function BookingFormComponent() {
                   setSubmitted(false)
                   setFormData({
                     patientName: '', email: '', phone: '', age: '', gender: '',
-                    department: '', doctor: '', preferredDate: '', preferredTime: '',
+                    department: '', doctor: '', doctorId: '', preferredDate: '', preferredTime: '',
                     reason: '', urgency: 'normal', previousPatient: false,
                     medicalHistory: '', currentMedications: '', allergies: ''
                   })
@@ -597,8 +648,27 @@ function BookingFormComponent() {
                 </div>
               </div>
 
-              {/* Submit Button */}
+              {/* Submit Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  type="button"
+                  onClick={handleAddToBasket}
+                  disabled={isSubmitting}
+                  className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      Adding to Basket...
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart className="w-5 h-5 mr-2" />
+                      Add to Basket
+                    </>
+                  )}
+                </button>
+                
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -607,12 +677,12 @@ function BookingFormComponent() {
                   {isSubmitting ? (
                     <>
                       <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                      Submitting...
+                      Booking Now...
                     </>
                   ) : (
                     <>
                       <Calendar className="w-5 h-5 mr-2" />
-                      Book Appointment
+                      Book Now
                     </>
                   )}
                 </button>

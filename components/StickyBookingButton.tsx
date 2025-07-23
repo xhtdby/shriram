@@ -30,8 +30,15 @@ export default function StickyBookingButton() {
           </button>
           
           <button
-            onClick={() => router.push('/book-appointment')}
+            onClick={() => router.push('/make-appointment')}
             className="bg-white/20 backdrop-blur-sm text-white px-6 py-2 rounded-lg font-semibold hover:bg-white/30 transition-colors border border-white/30"
+          >
+            Calendar Booking
+          </button>
+          
+          <button
+            onClick={() => router.push('/book-appointment')}
+            className="bg-hospital-gold text-hospital-green px-6 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
           >
             Quick Book
           </button>

@@ -1,9 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Phone, Mail, MapPin, ChevronDown, ChevronRight, Menu, X } from 'lucide-react'
+import { Phone, Mail, MapPin, ChevronDown, ChevronRight, Menu, X, ShoppingCart } from 'lucide-react'
 import Logo from './icons/Logo'
 import { getDepartments } from '@/app/data'
+import { useBasket } from '@/contexts/BasketContext'
 import Link from 'next/link'
 
 const NavLink = ({ href, children, className = "" }: { href: string, children: React.ReactNode, className?: string }) => (
@@ -39,6 +40,7 @@ export default function Navbar() {
     contact: false
   })
   
+  const { basketItems, getTotalAmount, getItemCount } = useBasket()
   const departments = getDepartments()
 
   const patientPortalLinks = [
@@ -187,7 +189,20 @@ export default function Navbar() {
             <NavLink href="/contact" className="text-xs">Contact</NavLink>
           </div>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-x-3">
+            {/* Basket Indicator */}
+            {getItemCount() > 0 && (
+              <Link href="/basket" className="relative p-2 text-white hover:text-gold-accent transition-colors">
+                <ShoppingCart className="w-6 h-6" />
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                  {getItemCount()}
+                </span>
+                <div className="absolute top-full right-0 mt-1 bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity">
+                  ₹{getTotalAmount().toLocaleString()} • {getItemCount()} item{getItemCount() !== 1 ? 's' : ''}
+                </div>
+              </Link>
+            )}
+            
             <a href="/book-appointment" className="bg-cta-gradient text-white font-bold text-xs xl:text-sm px-3 xl:px-6 py-2 xl:py-3 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap">
               Make Appointment
             </a>
@@ -195,6 +210,16 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-x-2">
+            {/* Mobile Basket Indicator */}
+            {getItemCount() > 0 && (
+              <Link href="/basket" className="relative p-2 text-white hover:text-gold-accent transition-colors">
+                <ShoppingCart className="w-5 h-5" />
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold text-[10px]">
+                  {getItemCount()}
+                </span>
+              </Link>
+            )}
+            
             <a href="/book-appointment" className="bg-cta-gradient text-white font-bold text-xs px-3 py-2 rounded-full hover:opacity-90 transition-opacity">
               Book
             </a>

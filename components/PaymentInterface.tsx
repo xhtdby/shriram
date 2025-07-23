@@ -215,12 +215,21 @@ export default function PaymentInterface({ items, onSuccess, onCancel, patientIn
         </div>
       </div>
 
-      <button
-        onClick={() => setCurrentStep('payment')}
-        className="w-full bg-hospital-green text-white py-3 rounded-lg font-semibold hover:bg-hospital-green/90 transition-colors"
-      >
-        Proceed to Payment
-      </button>
+      <div className="flex gap-4">
+        <button
+          onClick={onCancel}
+          className="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors flex items-center justify-center"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Basket
+        </button>
+        <button
+          onClick={() => setCurrentStep('payment')}
+          className="flex-1 bg-hospital-green text-white py-3 rounded-lg font-semibold hover:bg-hospital-green/90 transition-colors"
+        >
+          Proceed to Payment
+        </button>
+      </div>
     </div>
   );
 

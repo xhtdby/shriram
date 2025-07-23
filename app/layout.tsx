@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import EmergencyBanner from '@/components/EmergencyBanner'
 import Navbar from '@/components/Navbar'
 import StickyBookingButton from '@/components/StickyBookingButton'
+import { BasketProvider } from '@/contexts/BasketContext'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
@@ -18,20 +19,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-gray-50 flex flex-col" style={{ paddingBottom: 0 }}>
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <footer className="bg-gray-800 text-white py-8 mt-auto">
-          <div className="container mx-auto px-4 text-center">
-            <div className="flex justify-center gap-x-6 mb-4">
-              <Link href="/blog" className="hover:text-blue-300">Blog</Link>
-              <Link href="/feedback" className="hover:text-blue-300">Feedback</Link>
-              <Link href="/departments" className="hover:text-blue-300">Departments</Link>
+        <BasketProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <footer className="bg-gray-800 text-white py-8 mt-auto">
+            <div className="container mx-auto px-4 text-center">
+              <div className="flex justify-center gap-x-6 mb-4">
+                <Link href="/blog" className="hover:text-blue-300">Blog</Link>
+                <Link href="/feedback" className="hover:text-blue-300">Feedback</Link>
+                <Link href="/departments" className="hover:text-blue-300">Departments</Link>
+              </div>
+              <p>&copy; 2025 Shriram Hospital. All rights reserved.</p>
             </div>
-            <p>&copy; 2025 Shriram Hospital. All rights reserved.</p>
-          </div>
-        </footer>
-        <StickyBookingButton />
-        <EmergencyBanner />
+          </footer>
+          <StickyBookingButton />
+          <EmergencyBanner />
+        </BasketProvider>
       </body>
     </html>
   )
