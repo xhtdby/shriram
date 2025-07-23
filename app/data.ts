@@ -122,6 +122,23 @@ export const hospitalStats = {
   doctors: DOCTORS.length,
 };
 
+export const allDoctors = DOCTORS.map(doctor => ({
+  id: doctor.id,
+  firstName: doctor.firstName,
+  lastName: doctor.lastName,
+  specialization: doctor.specialization,
+  departmentId: doctor.departmentId,
+  qualifications: doctor.qualifications,
+  image: doctor.image || '/images/doctors/placeholder-doctor.jpg',
+  experience: doctor.experience,
+  consultationTime: doctor.consultationTime,
+  isChief: doctor.isChief,
+  availableDays: doctor.consultationDays,
+  consultationFee: `₹${doctor.consultationFee}`,
+  bio: doctor.bio,
+  departmentName: DEPARTMENTS.find(dept => dept.id === doctor.departmentId)?.name || 'General'
+}));
+
 export const healthPackages = HEALTH_PACKAGES.map(pkg => ({
   id: pkg.id,
   name: pkg.name,
@@ -154,6 +171,10 @@ export const blogPosts: BlogPost[] = BLOG_POSTS.map(post => ({
 }));
 
 // Legacy function exports
+export function getDoctors() {
+  return allDoctors;
+}
+
 export function getDepartments() {
   return departments;
 }

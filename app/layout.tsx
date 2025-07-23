@@ -16,10 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gray-50">
+      <body className="min-h-screen bg-gray-50 flex flex-col" style={{ paddingBottom: 0 }}>
         <Navbar />
-        <main>{children}</main>
-        <footer className="bg-gray-800 text-white py-8 mt-16">
+        <main className="flex-1">{children}</main>
+        <footer className="bg-gray-800 text-white py-8 mt-auto">
           <div className="container mx-auto px-4 text-center">
             <div className="flex justify-center gap-x-6 mb-4">
               <Link href="/blog" className="hover:text-blue-300">Blog</Link>

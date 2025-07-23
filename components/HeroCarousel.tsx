@@ -1,77 +1,244 @@
 'use client';
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
 
-const slides = [
-  { 
-    src: '/images/hero-campus.svg', 
-    alt: 'Hospital exterior', 
-    caption: 'World-class Infrastructure',
-    fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjc3Mzg5IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiPkhvc3BpdGFsIENhbXB1czwvdGV4dD4KPHN2Zz4='
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import { hospitalInfo } from '@/app/data';
+
+interface HeroSlide {
+  id: number;
+  image: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  cta: {
+    text: string;
+    href: string;
+  };
+}
+
+const heroSlides: HeroSlide[] = [
+  {
+    id: 1,
+    image: '/images/hero-care.jpg',
+    title: 'Compassionate Healthcare',
+    subtitle: 'Excellence in Medical Care',
+    description: 'Providing world-class healthcare services with compassion, integrity, and cutting-edge medical technology.',
+    cta: {
+      text: 'Book Appointment',
+      href: '/book-appointment'
+    }
   },
-  { 
-    src: '/images/hero-care.svg', 
-    alt: 'Nurse with patient', 
-    caption: 'Compassionate Care',
-    fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjc3Mzg5IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiPkNvbXBhc3Npb25hdGUgQ2FyZTwvdGV4dD4KPHN2Zz4='
+  {
+    id: 2,
+    image: '/images/hero-campus.jpg', 
+    title: '24/7 Emergency Services',
+    subtitle: 'Always Here When You Need Us',
+    description: 'Round-the-clock emergency care with our expert medical team and state-of-the-art facilities.',
+    cta: {
+      text: 'Emergency Contact',
+      href: '/contact#emergency'
+    }
   },
-  { 
-    src: '/images/hero-tech.svg', 
-    alt: 'MRI machine', 
-    caption: 'Advanced Diagnostics',
-    fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjc3Mzg5IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiPkFkdmFuY2VkIERpYWdub3N0aWNzPC90ZXh0Pgo8L3N2Zz4='
-  },
+  {
+    id: 3,
+    image: '/images/hero-tech.jpg',
+    title: 'Advanced Medical Technology',
+    subtitle: 'Modern Healthcare Solutions',
+    description: 'Equipped with the latest medical equipment and technology to ensure the best possible patient outcomes.',
+    cta: {
+      text: 'Our Services',
+      href: '/departments'
+    }
+  }
 ];
 
 export default function HeroCarousel() {
-  const [index, setIndex] = useState(0);
-  const [imageErrors, setImageErrors] = useState<{ [key: number]: boolean }>({});
-
-  const handleImageError = (slideIndex: number) => {
-    setImageErrors(prev => ({ ...prev, [slideIndex]: true }));
-  };
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setIndex(i => (i + 1) % slides.length);
+    if (!isAutoPlaying) return;
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 6000);
-    return () => clearInterval(id);
-  }, []);
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  const toggleAutoPlay = () => {
+    setIsAutoPlaying(prev => !prev);
+  };
+
+  const currentSlideData = heroSlides[currentSlide];
 
   return (
-    <div className="relative h-[70vh] overflow-hidden">
-      {slides.map((slide, i) => (
-        <Image
-          key={slide.src}
-          fill
-          priority={i === 0}
-          src={imageErrors[i] ? slide.fallback : slide.src}
-          alt={slide.alt}
-          className={`object-cover transition-opacity duration-1000 ${
-            i === index ? 'opacity-100' : 'opacity-0'
-          }`}
-          onError={() => handleImageError(i)}
-        />
-      ))}
-      <div className="absolute inset-0 bg-black/50 flex items-end pb-12 px-6 lg:px-16">
-        <h1 className="text-white text-3xl lg:text-5xl font-semibold drop-shadow-lg max-w-3xl">
-          {slides[index].caption}
-        </h1>
-      </div>
-      
-      {/* Carousel Indicators */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setIndex(i)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              i === index ? 'bg-white' : 'bg-white/50'
-            }`}
-            aria-label={`Go to slide ${i + 1}`}
+    <section className="h-[70vh] lg:h-[80vh] overflow-hidden">
+      {/* Background Images */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={currentSlideData.image}
+            alt={currentSlideData.title}
+            fill
+            priority={currentSlide === 0}
+            className="object-cover"
+            sizes="100vw"
           />
-        ))}
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/30" />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Content */}
+      <div className="relative z-10 flex items-center h-full">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`content-${currentSlide}`}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-white"
+              >
+                <motion.p 
+                  className="text-hospital-gold text-lg font-semibold mb-2"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  {hospitalInfo.name}
+                </motion.p>
+                
+                <motion.h1 
+                  className="text-4xl lg:text-6xl font-bold mb-4 leading-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  {currentSlideData.title}
+                </motion.h1>
+                
+                <motion.h2 
+                  className="text-xl lg:text-2xl font-medium mb-6 text-hospital-green-light"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                  {currentSlideData.subtitle}
+                </motion.h2>
+                
+                <motion.p 
+                  className="text-lg mb-8 leading-relaxed max-w-xl"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                >
+                  {currentSlideData.description}
+                </motion.p>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                >
+                  <a
+                    href={currentSlideData.cta.href}
+                    className="inline-block bg-hospital-green hover:bg-hospital-green-dark text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 focus-visible:ring-2 focus-visible:ring-hospital-gold focus-visible:ring-opacity-70"
+                  >
+                    {currentSlideData.cta.text}
+                  </a>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
-    </div>
+
+      {/* Navigation Controls */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
+        <div className="flex items-center space-x-4">
+          {/* Slide Indicators */}
+          <div className="flex space-x-2">
+            {heroSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-hospital-gold focus-visible:ring-opacity-70 ${
+                  index === currentSlide
+                    ? 'bg-white scale-125'
+                    : 'bg-white/50 hover:bg-white/75'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Auto-play toggle */}
+          <button
+            onClick={toggleAutoPlay}
+            className="bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all focus-visible:ring-2 focus-visible:ring-hospital-gold focus-visible:ring-opacity-70"
+            aria-label={isAutoPlaying ? 'Pause slideshow' : 'Play slideshow'}
+          >
+            {isAutoPlaying ? <Pause size={16} /> : <Play size={16} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Arrow Navigation */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all focus-visible:ring-2 focus-visible:ring-hospital-gold focus-visible:ring-opacity-70"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft size={24} />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all focus-visible:ring-2 focus-visible:ring-hospital-gold focus-visible:ring-opacity-70"
+        aria-label="Next slide"
+      >
+        <ChevronRight size={24} />
+      </button>
+
+      {/* Progress bar */}
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-black/20 z-20">
+        <motion.div
+          className="h-full bg-hospital-gold"
+          initial={{ width: "0%" }}
+          animate={{ width: "100%" }}
+          transition={{ 
+            duration: isAutoPlaying ? 6 : 0, 
+            ease: "linear",
+            repeat: isAutoPlaying ? Infinity : 0 
+          }}
+          key={`progress-${currentSlide}-${isAutoPlaying}`}
+        />
+      </div>
+    </section>
   );
 }

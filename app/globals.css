@@ -7,6 +7,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Brand typography */
+h1, h2, h3 {
+  @apply font-headline tracking-tight;
+}
+
+/* Section spacing */
+section {
+  @apply py-section lg:py-[7rem];
+}
+
 body {
   @apply pb-20 sm:pb-16;
 }

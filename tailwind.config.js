@@ -28,6 +28,10 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+        headline: ['Poppins', 'Inter', 'sans-serif'],
+      },
+      spacing: {
+        'section': '5.5rem',
       },
       keyframes: {
         fadeInUp: {

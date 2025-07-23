@@ -9,7 +9,7 @@ export default function Logo({ className = "" }: LogoProps) {
         Shriram
       </div>
       <div className="text-xs font-light -mt-1">
-        Hospital
+        Health Centre
       </div>
     </div>
   );

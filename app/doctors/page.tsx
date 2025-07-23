@@ -1,13 +1,10 @@
-import { getDepartments } from '@/app/data'
+import { getDoctors } from '@/app/data'
 import { Calendar, Clock, MapPin, Phone, Star, User } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function DoctorsPage() {
-  const departments = getDepartments()
-  const allDoctors = departments.flatMap(dept => 
-    dept.doctors.map(doctor => ({ ...doctor, departmentName: dept.name }))
-  )
+  const allDoctors = getDoctors()
 
   // Sort doctors to show chief doctor first
   const sortedDoctors = allDoctors.sort((a, b) => {

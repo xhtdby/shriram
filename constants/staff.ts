@@ -14,42 +14,6 @@ export const LEADERSHIP = {
     email: 'rohit.dubey@shriramhospital.in',
     phone: '07652-248248'
   },
-  
-  // Management Team
-  management: [
-    {
-      id: 1,
-      name: 'Mr. Rajesh Shriram',
-      title: 'Chairman & Managing Director',
-      qualifications: 'MBA (Healthcare Management)',
-      experience: '20+ years',
-      image: '/images/management/chairman.jpg',
-      bio: 'Leading the hospital with a vision to provide world-class healthcare facilities in the Mahakaushal region.'
-    },
-    {
-      id: 2,
-      name: 'Mrs. Priya Shriram',
-      title: 'Director - Operations',
-      qualifications: 'MSc (Hospital Administration)',
-      experience: '15+ years',
-      image: '/images/management/director.jpg',
-      bio: 'Overseeing day-to-day operations and ensuring smooth patient care delivery.'
-    }
-  ],
-
-  // Department Heads
-  departmentHeads: [
-    {
-      departmentId: 15,
-      doctorId: 2,
-      title: 'Head of Cardiology'
-    },
-    {
-      departmentId: 2,
-      doctorId: 2,
-      title: 'Head of Critical Care'
-    }
-  ]
 };
 
 // Doctor Database
