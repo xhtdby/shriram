@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import PaymentInterface from '@/components/PaymentInterface';
 import { DOCTORS } from '@/constants/staff';
-import { HEALTH_PACKAGES } from '@/constants/services';
+import { HEALTH_PACKAGES } from '@/constants/health-packages';
 import { Calendar, Clock, User, Package, CreditCard, ArrowLeft } from 'lucide-react';
 
 export default function PaymentPage() {
