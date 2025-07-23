@@ -43,7 +43,7 @@ export default function Navbar() {
 
   const patientPortalLinks = [
     { href: "/patient-rights", name: "Patient Rights" },
-    { href: "/patient-responsibilities", name: "Patient Responsibilities" },
+    { href: "/patient-rights#responsibilities", name: "Patient Responsibilities" },
     { href: "/health-packages", name: "Health Package" },
     { href: "/feedback", name: "Feedback Form" },
     { href: "/estimate-request", name: "Estimate Request" },

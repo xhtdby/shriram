@@ -86,7 +86,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Section */}
-      <section className="py-16 bg-gray-50">
+      <section id="leadership" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Our Leadership</h2>
@@ -127,7 +127,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-16 bg-white">
+      <section id="values" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Our Core Values</h2>
@@ -151,7 +151,7 @@ export default function AboutPage() {
       </section>
 
       {/* Journey Timeline */}
-      <section className="py-16 bg-gray-50">
+      <section id="journey" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Our Journey</h2>
@@ -212,7 +212,7 @@ export default function AboutPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-white">
+      <section id="contact" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Visit Us</h2>

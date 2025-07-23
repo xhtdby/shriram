@@ -364,7 +364,60 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+      </div>
 
+      {/* Emergency Contact Section */}
+      <section id="emergency" className="py-16 bg-red-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-red-600 mb-4">Emergency Contact</h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              For medical emergencies, contact us immediately. Our emergency services are available 24/7.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="bg-white rounded-xl shadow-lg p-6 text-center border-l-4 border-red-500">
+              <Phone className="w-12 h-12 text-red-500 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Emergency Hotline</h3>
+              <a href={`tel:${hospitalInfo.ambulance}`} className="text-2xl font-bold text-red-600 hover:text-red-700">
+                {hospitalInfo.ambulance}
+              </a>
+              <p className="text-gray-600 mt-2">Available 24/7</p>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-lg p-6 text-center border-l-4 border-red-500">
+              <Clock className="w-12 h-12 text-red-500 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Response Time</h3>
+              <p className="text-lg font-semibold text-red-600">5-10 minutes</p>
+              <p className="text-gray-600 mt-2">Average ambulance response</p>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-lg p-6 text-center border-l-4 border-red-500">
+              <MapPin className="w-12 h-12 text-red-500 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Emergency Entrance</h3>
+              <p className="text-gray-700">Main Hospital Building</p>
+              <p className="text-gray-600 mt-2">Ground Floor, East Wing</p>
+            </div>
+          </div>
+          
+          <div className="text-center mt-12">
+            <div className="bg-red-600 text-white rounded-xl p-6 max-w-2xl mx-auto">
+              <h3 className="text-xl font-bold mb-3">Emergency Services Available</h3>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>• Trauma Care</div>
+                <div>• Cardiac Emergency</div>
+                <div>• Stroke Treatment</div>
+                <div>• Accident Care</div>
+                <div>• Critical Care</div>
+                <div>• Emergency Surgery</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-16">
         {/* Map Section */}
         <div className="mt-16">
           <div className="bg-white rounded-xl shadow-lg p-8">

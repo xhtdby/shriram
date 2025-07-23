@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Clock, Users, Package, Star, Phone, Calendar, CheckCircle, CreditCard, ArrowLeft } from 'lucide-react';
-import { HEALTH_PACKAGES } from '@/constants/services';
+import { HEALTH_PACKAGES } from '@/constants/health-packages';
 import PaymentInterface from '@/components/PaymentInterface';
 
 export default function HealthPackagePage() {

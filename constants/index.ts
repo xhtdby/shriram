@@ -8,3 +8,5 @@ export * from './content';
 export * from './patient-rights';
 export * from './appointments';
 export * from './payments';
+export * from './health-packages';
+export * from './testimonials';

@@ -4,6 +4,8 @@ import { DEPARTMENTS } from '../constants/departments';
 import { DOCTORS } from '../constants/staff';
 import { BLOG_POSTS } from '../constants/content';
 import { TPA_PARTNERS } from '../constants/insurance';
+import { HEALTH_PACKAGES } from '../constants/health-packages';
+import { TESTIMONIALS } from '../constants/testimonials';
 
 // Legacy hospital info export for backward compatibility
 export const hospitalInfo = {
@@ -76,6 +78,19 @@ export interface TPA {
   website?: string;
 }
 
+export interface HealthPackage {
+  id: number;
+  name: string;
+  price: string;
+  tests: string[];
+}
+
+export interface Testimonial {
+  id: number;
+  name: string;
+  quote: string;
+}
+
 // Transform new data structure to legacy format
 export const departments: Department[] = DEPARTMENTS.map(dept => ({
   id: dept.id,
@@ -107,17 +122,18 @@ export const hospitalStats = {
   doctors: DOCTORS.length,
 };
 
-export const healthPackages = [
-  { id: 1, name: 'Basic Health Checkup', price: '₹2,500', tests: ['Complete Blood Count', 'Blood Sugar', 'Urine Analysis', 'ECG'] },
-  { id: 2, name: 'Comprehensive Heart Check', price: '₹3,500', tests: ['ECHO', 'ECG', 'Lipid Profile', 'Chest X-Ray'] },
-  { id: 3, name: 'Women Wellness Package', price: '₹4,000', tests: ['Pelvic Ultrasound', 'Thyroid Profile', 'CBC', 'Gynecologist Consultation'] },
-];
+export const healthPackages = HEALTH_PACKAGES.map(pkg => ({
+  id: pkg.id,
+  name: pkg.name,
+  price: pkg.formattedPrice,
+  tests: pkg.tests
+}));
 
-export const testimonials = [
-  { id: 1, name: 'R. Sharma', quote: 'The care I received at Shriram Hospital was exceptional. The doctors and staff were professional and compassionate throughout my stay.' },
-  { id: 2, name: 'S. Gupta', quote: 'A very clean and well-maintained hospital. The orthopedic department is top-notch. Highly recommended for any surgical needs.' },
-  { id: 3, name: 'P. Verma', quote: 'My daughter was treated in the pediatric ward, and we couldn\'t have asked for better care. The doctors were wonderful with her.' },
-];
+export const testimonials = TESTIMONIALS.map(testimonial => ({
+  id: testimonial.id,
+  name: testimonial.name,
+  quote: testimonial.quote
+}));
 
 export const tpaList: TPA[] = TPA_PARTNERS.map(tpa => ({
   id: tpa.id,
