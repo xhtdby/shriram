@@ -87,32 +87,46 @@ export default function HeroCarousel() {
   const currentSlideData = heroSlides[currentSlide];
 
   return (
-    <section className="h-[70vh] lg:h-[80vh] overflow-hidden">
-      {/* Background Images */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={currentSlideData.image}
-            alt={currentSlideData.title}
-            fill
-            priority={currentSlide === 0}
-            className="object-cover"
-            sizes="100vw"
-          />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/30" />
-        </motion.div>
-      </AnimatePresence>
+    <section className="relative h-[70vh] lg:h-[80vh] overflow-hidden p-0 m-0">
+      {/* Fixed Background */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/hospital-exterior.jpg"
+          alt="Shriram Hospital"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        {/* Base overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40" />
+      </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex items-center h-full">
+      {/* Carousel Content with opacity */}
+      <div className="relative z-10 h-full">
+        {/* Background Images with reduced opacity for carousel effect */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 0.3, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            {/* <Image
+              src={currentSlideData.image}
+              alt={currentSlideData.title}
+              fill
+              priority={currentSlide === 0}
+              className="object-cover mix-blend-overlay"
+              sizes="100vw"
+            /> */}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Content */}
+        <div className="relative z-20 flex items-center h-full">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl">
             <AnimatePresence mode="wait">
@@ -176,6 +190,7 @@ export default function HeroCarousel() {
             </AnimatePresence>
           </div>
         </div>
+      </div>
       </div>
 
       {/* Navigation Controls */}

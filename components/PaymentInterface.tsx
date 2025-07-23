@@ -87,7 +87,26 @@ export default function PaymentInterface({ items, onSuccess, onCancel, patientIn
     setLoading(true);
     setCurrentStep('processing');
     
-    // Simulate payment processing
+    // Handle "Pay at Hospital" option
+    if (selectedMethod === 'pay_at_hospital') {
+      try {
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Brief delay for UX
+        
+        // Generate booking ID for pay at hospital
+        const bookingId = `PAH${Date.now()}${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+        setTransactionId(bookingId);
+        setCurrentStep('success');
+        onSuccess(bookingId);
+        return;
+      } catch (error) {
+        setCurrentStep('failed');
+      } finally {
+        setLoading(false);
+      }
+      return;
+    }
+    
+    // Regular payment processing for other methods
     try {
       await new Promise(resolve => setTimeout(resolve, 3000));
       
@@ -240,13 +259,38 @@ export default function PaymentInterface({ items, onSuccess, onCancel, patientIn
       </div>
 
       {/* Payment Form */}
-      {selectedMethod && (
+      {selectedMethod && selectedMethod !== 'pay_at_hospital' && (
         <div className="bg-white rounded-lg border p-6">
           <h3 className="text-lg font-semibold mb-4">Payment Details</h3>
           {selectedMethod === 'card' && <CardPaymentForm onDataChange={setPaymentData} />}
           {selectedMethod === 'upi' && <UPIPaymentForm onDataChange={setPaymentData} />}
           {selectedMethod === 'netbanking' && <NetBankingForm onDataChange={setPaymentData} />}
           {selectedMethod === 'wallet' && <WalletPaymentForm onDataChange={setPaymentData} />}
+        </div>
+      )}
+
+      {/* Pay at Hospital Information */}
+      {selectedMethod === 'pay_at_hospital' && (
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold mb-4 text-blue-900">Pay at Hospital</h3>
+          <div className="space-y-3 text-blue-800">
+            <div className="flex items-start space-x-2">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+              <p>Your appointment will be confirmed immediately</p>
+            </div>
+            <div className="flex items-start space-x-2">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+              <p>Please pay ₹{total.toLocaleString()} at the hospital reception during your visit</p>
+            </div>
+            <div className="flex items-start space-x-2">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+              <p>Bring a valid ID proof for verification</p>
+            </div>
+            <div className="flex items-start space-x-2">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+              <p>Arrive 15 minutes before your appointment time</p>
+            </div>
+          </div>
         </div>
       )}
 
@@ -272,7 +316,7 @@ export default function PaymentInterface({ items, onSuccess, onCancel, patientIn
           disabled={!selectedMethod || loading}
           className="flex-1 bg-hospital-green text-white py-3 rounded-lg font-semibold hover:bg-hospital-green/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
-          Pay ₹{total.toLocaleString()}
+          {selectedMethod === 'pay_at_hospital' ? 'Confirm Appointment' : `Pay ₹${total.toLocaleString()}`}
         </button>
       </div>
     </div>
@@ -281,8 +325,15 @@ export default function PaymentInterface({ items, onSuccess, onCancel, patientIn
   const renderProcessingStep = () => (
     <div className="text-center py-12">
       <Loader2 className="w-12 h-12 text-hospital-green animate-spin mx-auto mb-4" />
-      <h3 className="text-xl font-semibold mb-2">Processing Payment</h3>
-      <p className="text-gray-600">Please wait while we process your payment...</p>
+      <h3 className="text-xl font-semibold mb-2">
+        {selectedMethod === 'pay_at_hospital' ? 'Confirming Appointment' : 'Processing Payment'}
+      </h3>
+      <p className="text-gray-600">
+        {selectedMethod === 'pay_at_hospital' 
+          ? 'Please wait while we confirm your appointment...'
+          : 'Please wait while we process your payment...'
+        }
+      </p>
       <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
         <p className="text-sm text-blue-700">
           <Lock className="w-4 h-4 inline mr-1" />
@@ -334,18 +385,27 @@ export default function PaymentInterface({ items, onSuccess, onCancel, patientIn
     return (
     <div className="text-center py-12">
       <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-      <h3 className="text-2xl font-semibold mb-2 text-green-700">Payment Successful!</h3>
-      <p className="text-gray-600 mb-6">Your transaction has been completed successfully.</p>
+      <h3 className="text-2xl font-semibold mb-2 text-green-700">
+        {selectedMethod === 'pay_at_hospital' ? 'Appointment Confirmed!' : 'Payment Successful!'}
+      </h3>
+      <p className="text-gray-600 mb-6">
+        {selectedMethod === 'pay_at_hospital' 
+          ? 'Your appointment has been confirmed. Please pay at the hospital during your visit.'
+          : 'Your transaction has been completed successfully.'
+        }
+      </p>
       
       <div className="bg-white border rounded-lg p-6 mb-6 text-left max-w-md mx-auto">
-        <h4 className="font-semibold mb-3">Transaction Details</h4>
+        <h4 className="font-semibold mb-3">
+          {selectedMethod === 'pay_at_hospital' ? 'Appointment Details' : 'Transaction Details'}
+        </h4>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span>Transaction ID:</span>
+            <span>{selectedMethod === 'pay_at_hospital' ? 'Booking ID:' : 'Transaction ID:'}</span>
             <span className="font-mono">{transactionId}</span>
           </div>
           <div className="flex justify-between">
-            <span>Amount Paid:</span>
+            <span>{selectedMethod === 'pay_at_hospital' ? 'Amount to Pay:' : 'Amount Paid:'}</span>
             <span>₹{total.toLocaleString()}</span>
           </div>
           <div className="flex justify-between">
@@ -356,6 +416,12 @@ export default function PaymentInterface({ items, onSuccess, onCancel, patientIn
             <span>Date & Time:</span>
             <span>{new Date().toLocaleString()}</span>
           </div>
+          {selectedMethod === 'pay_at_hospital' && (
+            <div className="flex justify-between">
+              <span>Status:</span>
+              <span className="text-orange-600 font-medium">Payment Pending</span>
+            </div>
+          )}
         </div>
       </div>
 

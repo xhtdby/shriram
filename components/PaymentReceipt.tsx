@@ -26,6 +26,7 @@ interface ReceiptProps {
     tax?: number;
     processingFee?: number;
     timestamp: string;
+    paymentStatus?: 'paid' | 'pending' | 'pay_at_hospital';
   };
 }
 
@@ -39,10 +40,12 @@ export default function PaymentReceipt({ transactionData }: ReceiptProps) {
     discount = 0,
     tax = 0,
     processingFee = 0,
-    timestamp
+    timestamp,
+    paymentStatus = 'paid'
   } = transactionData;
 
   const subtotal = items.reduce((sum, item) => sum + item.amount, 0);
+  const isPayAtHospital = paymentMethod === 'Pay at Hospital' || paymentStatus === 'pay_at_hospital';
 
   const handlePrint = () => {
     window.print();
@@ -63,35 +66,31 @@ export default function PaymentReceipt({ transactionData }: ReceiptProps) {
   };
 
   const generateReceiptText = () => {
-    return `
-${HOSPITAL_CONFIG.name}
+    return `${HOSPITAL_CONFIG.name}
 ${HOSPITAL_CONFIG.contact.address.fullAddress}
 Phone: ${HOSPITAL_CONFIG.contact.phone}
 Email: ${HOSPITAL_CONFIG.contact.email}
 
-PAYMENT RECEIPT
+${isPayAtHospital ? 'APPOINTMENT CONFIRMATION' : 'PAYMENT RECEIPT'}
 ===============================
 
-Transaction ID: ${transactionId}
+${isPayAtHospital ? 'Booking ID' : 'Transaction ID'}: ${transactionId}
 Date & Time: ${new Date(timestamp).toLocaleString()}
 Payment Method: ${paymentMethod}
+Status: ${isPayAtHospital ? 'Payment Pending' : 'Payment Completed'}
 
 PATIENT INFORMATION
 -------------------
-${patientInfo ? `
-Name: ${patientInfo.name}
+${patientInfo ? `Name: ${patientInfo.name}
 Email: ${patientInfo.email}
-Phone: ${patientInfo.phone}
-` : 'N/A'}
+Phone: ${patientInfo.phone}` : 'N/A'}
 
 SERVICES/ITEMS
 --------------
-${items.map(item => `
-${item.name} - ₹${item.amount.toLocaleString()}
+${items.map(item => `${item.name} - ₹${item.amount.toLocaleString()}
 ${item.description ? item.description : ''}
 ${item.doctor ? `Doctor: ${item.doctor}` : ''}
-${item.date && item.time ? `Date: ${item.date} at ${item.time}` : ''}
-`).join('\n')}
+${item.date && item.time ? `Date: ${item.date} at ${item.time}` : ''}`).join('\n\n')}
 
 PAYMENT SUMMARY
 ---------------
@@ -100,13 +99,14 @@ ${discount > 0 ? `Discount: -₹${discount.toLocaleString()}` : ''}
 ${tax > 0 ? `Tax (GST): ₹${tax.toLocaleString()}` : ''}
 ${processingFee > 0 ? `Processing Fee: ₹${processingFee.toLocaleString()}` : ''}
 ===============================
-Total Paid: ₹${amount.toLocaleString()}
+${isPayAtHospital ? 'Total Amount (to be paid at hospital)' : 'Total Paid'}: ₹${amount.toLocaleString()}
+
+${isPayAtHospital ? 'Please bring this confirmation and pay at the hospital reception.' : 'Thank you for your payment!'}
 
 Thank you for choosing ${HOSPITAL_CONFIG.name}!
 
 This is a computer-generated receipt.
-No signature required.
-    `.trim();
+No signature required.`;
   };
 
   return (
@@ -147,11 +147,26 @@ No signature required.
 
         {/* Receipt Header */}
         <div className="text-center mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-2">PAYMENT RECEIPT</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">
+            {isPayAtHospital ? 'APPOINTMENT CONFIRMATION' : 'PAYMENT RECEIPT'}
+          </h2>
+          <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium">
+            {isPayAtHospital ? (
+              <span className="bg-orange-100 text-orange-800">Payment Pending</span>
+            ) : (
+              <span className="bg-green-100 text-green-800">Payment Completed</span>
+            )}
+          </div>
+        </div>
+
+        {/* Transaction Details */}
+        <div className="mb-6">
           <div className="bg-gray-50 rounded-lg p-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="font-medium text-gray-700">Transaction ID:</span>
+                <span className="font-medium text-gray-700">
+                  {isPayAtHospital ? 'Booking ID:' : 'Transaction ID:'}
+                </span>
                 <p className="font-mono text-gray-900">{transactionId}</p>
               </div>
               <div>
@@ -164,8 +179,12 @@ No signature required.
               </div>
               <div>
                 <span className="font-medium text-gray-700">Status:</span>
-                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                  ✓ Completed
+                <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                  isPayAtHospital 
+                    ? 'bg-orange-100 text-orange-800' 
+                    : 'bg-green-100 text-green-800'
+                }`}>
+                  {isPayAtHospital ? '⏳ Payment Pending' : '✓ Completed'}
                 </span>
               </div>
             </div>
@@ -266,9 +285,20 @@ No signature required.
               )}
               <div className="border-t border-gray-300 pt-2 mt-2">
                 <div className="flex justify-between font-bold text-lg">
-                  <span className="text-gray-900">Total Paid:</span>
-                  <span className="text-hospital-green">₹{amount.toLocaleString()}</span>
+                  <span className="text-gray-900">
+                    {isPayAtHospital ? 'Total Amount (to be paid at hospital):' : 'Total Paid:'}
+                  </span>
+                  <span className={isPayAtHospital ? 'text-orange-600' : 'text-hospital-green'}>
+                    ₹{amount.toLocaleString()}
+                  </span>
                 </div>
+                {isPayAtHospital && (
+                  <div className="mt-2 p-3 bg-orange-50 border border-orange-200 rounded-lg">
+                    <p className="text-sm text-orange-800 font-medium">
+                      ⚠️ Payment Required: Please pay this amount at the hospital reception during your visit.
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

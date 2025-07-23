@@ -2,6 +2,7 @@ import '@/app/globals.css'
 import type { Metadata } from 'next'
 import EmergencyBanner from '@/components/EmergencyBanner'
 import Navbar from '@/components/Navbar'
+import StickyBookingButton from '@/components/StickyBookingButton'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
             <p>&copy; 2025 Shriram Hospital. All rights reserved.</p>
           </div>
         </footer>
+        <StickyBookingButton />
         <EmergencyBanner />
       </body>
     </html>

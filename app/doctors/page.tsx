@@ -57,7 +57,9 @@ export default function DoctorsPage() {
                 {/* Doctor Info */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-gray-800">
-                    Dr. {doctor.firstName} {doctor.lastName}
+                    <Link href={`/doctors/${doctor.slug}`} className="hover:text-hospital-green transition-colors">
+                      Dr. {doctor.firstName} {doctor.lastName}
+                    </Link>
                   </h3>
                   <p className="text-hospital-green font-semibold mb-1">{doctor.specialization}</p>
                   <p className="text-gray-600 text-sm mb-3">{doctor.departmentName}</p>

@@ -37,6 +37,15 @@ export const PAYMENT_CONFIG = {
       enabled: true,
       processingFee: 1.0,
       minAmount: 1
+    },
+    {
+      id: 'pay_at_hospital',
+      name: 'Pay at Hospital',
+      description: 'Pay when you visit the hospital',
+      icon: '🏥',
+      enabled: true,
+      processingFee: 0,
+      minAmount: 1
     }
   ],
 

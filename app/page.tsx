@@ -88,7 +88,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Carousel */}
-      <section className="relative">
+      <section className="relative" style={{ paddingTop: 0, paddingBottom: 0 }}>
         <HeroCarousel />
         
         {/* Enhanced floating info box */}

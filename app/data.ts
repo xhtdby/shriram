@@ -45,8 +45,10 @@ export interface Department {
 
 export interface Doctor {
   id: number;
+  slug: string;
   firstName: string;
   lastName: string;
+  fullName: string;
   specialization: string;
   departmentId: number;
   qualifications?: string;
@@ -101,8 +103,10 @@ export const departments: Department[] = DEPARTMENTS.map(dept => ({
   description: dept.description,
   doctors: DOCTORS.filter(doctor => dept.doctorIds?.includes(doctor.id)).map(doctor => ({
     id: doctor.id,
+    slug: doctor.slug,
     firstName: doctor.firstName,
     lastName: doctor.lastName,
+    fullName: doctor.fullName,
     specialization: doctor.specialization,
     departmentId: doctor.departmentId,
     qualifications: doctor.qualifications,
@@ -126,8 +130,10 @@ export const hospitalStats = {
 
 export const allDoctors = DOCTORS.map(doctor => ({
   id: doctor.id,
+  slug: doctor.slug,
   firstName: doctor.firstName,
   lastName: doctor.lastName,
+  fullName: doctor.fullName,
   specialization: doctor.specialization,
   departmentId: doctor.departmentId,
   qualifications: doctor.qualifications,
@@ -177,6 +183,10 @@ export const blogPosts: BlogPost[] = BLOG_POSTS.map(post => ({
 // Legacy function exports
 export function getDoctors() {
   return allDoctors;
+}
+
+export function getDoctorBySlug(slug: string) {
+  return allDoctors.find(doctor => doctor.slug === slug);
 }
 
 export function getDepartments() {

@@ -20,6 +20,7 @@ export const LEADERSHIP = {
 export const DOCTORS = [
     {
         id: 1,
+        slug: 'dr-rohit-dubey',
         firstName: 'Rohit',
         lastName: 'Dubey',
         fullName: 'Dr. Rohit Dubey',
@@ -41,6 +42,7 @@ export const DOCTORS = [
     },
     {
         id: 2,
+        slug: 'dr-sc-tripathi',
         firstName: 'S.C.',
         lastName: 'Tripathi',
         fullName: 'Dr. S.C. Tripathi',
@@ -62,6 +64,7 @@ export const DOCTORS = [
     },
     {
         id: 3,
+        slug: 'dr-sp-chaturvedi',
         firstName: 'S.P.',
         lastName: 'Chaturvedi',
         fullName: 'Dr. S.P. Chaturvedi',
@@ -69,7 +72,7 @@ export const DOCTORS = [
         departmentId: 6, // Obstetrics & Gynaecology
         qualifications: 'MD (Obstetrics & Gynaecology)',
         experience: '18+ years',
-        image: '/images/doctors/default.jpg',
+        image: '/images/doctors/placeholder-doctor.jpg',
         consultationDays: ['Monday', 'Wednesday', 'Friday'],
         consultationTime: '10:00 AM - 2:00 PM',
         consultationFee: 450,
@@ -83,6 +86,7 @@ export const DOCTORS = [
     },
     {
         id: 4,
+        slug: 'dr-geetika-shukla',
         firstName: 'Geetika',
         lastName: 'Shukla',
         fullName: 'Dr. Geetika Shukla',
@@ -90,7 +94,7 @@ export const DOCTORS = [
         departmentId: 6, // Obstetrics & Gynaecology
         qualifications: 'DGO, DNB',
         experience: '10+ years',
-        image: '/images/doctors/default.jpg',
+        image: '/images/doctors/placeholder-doctor.jpg',
         consultationDays: ['Tuesday', 'Thursday', 'Saturday'],
         consultationTime: '11:00 AM - 3:00 PM',
         consultationFee: 450,
@@ -104,6 +108,7 @@ export const DOCTORS = [
     },
     {
         id: 5,
+        slug: 'dr-amol-prabhakar-pandey',
         firstName: 'Amol Prabhakar',
         lastName: 'Pandey',
         fullName: 'Dr. Amol Prabhakar Pandey',
@@ -111,7 +116,7 @@ export const DOCTORS = [
         departmentId: 5, // Orthopedics
         qualifications: 'MS (Orthopedics)',
         experience: '12+ years',
-        image: '/images/doctors/default.jpg',
+        image: '/images/doctors/placeholder-doctor.jpg',
         consultationDays: ['Monday', 'Tuesday', 'Thursday', 'Friday'],
         consultationTime: '10:00 AM - 3:00 PM',
         consultationFee: 500,
@@ -125,6 +130,7 @@ export const DOCTORS = [
     },
     {
         id: 6,
+        slug: 'dr-tn-chaturvedi',
         firstName: 'T.N.',
         lastName: 'Chaturvedi',
         fullName: 'Dr. T.N. Chaturvedi',
@@ -132,7 +138,7 @@ export const DOCTORS = [
         departmentId: 13, // Pediatrics
         qualifications: 'MD (Pediatrics)',
         experience: '25+ years',
-        image: '/images/doctors/default.jpg',
+        image: '/images/doctors/placeholder-doctor.jpg',
         consultationDays: ['Monday', 'Wednesday', 'Friday', 'Saturday'],
         consultationTime: '9:00 AM - 1:00 PM',
         consultationFee: 400,
@@ -146,6 +152,7 @@ export const DOCTORS = [
     },
     {
         id: 7,
+        slug: 'dr-amit-kumar-verma',
         firstName: 'Amit Kumar',
         lastName: 'Verma',
         fullName: 'Dr. Amit Kumar Verma',
@@ -153,7 +160,7 @@ export const DOCTORS = [
         departmentId: 14, // General Medicine
         qualifications: 'MD (General Medicine)',
         experience: '10+ years',
-        image: '/images/doctors/default.jpg',
+        image: '/images/doctors/placeholder-doctor.jpg',
         consultationDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         consultationTime: '10:00 AM - 4:00 PM',
         consultationFee: 400,
@@ -167,6 +174,7 @@ export const DOCTORS = [
     },
     {
         id: 8,
+        slug: 'dr-amit-gaur',
         firstName: 'Amit',
         lastName: 'Gaur',
         fullName: 'Dr. Amit Gaur',
@@ -174,7 +182,7 @@ export const DOCTORS = [
         departmentId: 8, // Urology
         qualifications: 'MS, MCh (Urology)',
         experience: '15+ years',
-        image: '/images/doctors/default.jpg',
+        image: '/images/doctors/placeholder-doctor.jpg',
         consultationDays: ['By Appointment'],
         consultationTime: 'Visiting',
         consultationFee: 700,
@@ -188,6 +196,7 @@ export const DOCTORS = [
     },
     {
         id: 9,
+        slug: 'dr-aa-ansari',
         firstName: 'A.A.',
         lastName: 'Ansari',
         fullName: 'Dr. A.A. Ansari',
@@ -195,7 +204,7 @@ export const DOCTORS = [
         departmentId: 1, // Cardiology
         qualifications: 'DM (Cardiology)',
         experience: '20+ years',
-        image: '/images/doctors/default.jpg',
+        image: '/images/doctors/placeholder-doctor.jpg',
         consultationDays: ['By Appointment'],
         consultationTime: 'Visiting',
         consultationFee: 800,
@@ -209,6 +218,7 @@ export const DOCTORS = [
     },
     {
         id: 10,
+        slug: 'dr-siddharth-singh',
         firstName: 'Siddharth',
         lastName: 'Singh',
         fullName: 'Dr. Siddharth Singh',
@@ -216,7 +226,7 @@ export const DOCTORS = [
         departmentId: 16, // Maxillofacial Surgery
         qualifications: 'MDS (Maxillofacial Surgery)',
         experience: '8+ years',
-        image: '/images/doctors/default.jpg',
+        image: '/images/doctors/placeholder-doctor.jpg',
         consultationDays: ['Tuesday', 'Friday'],
         consultationTime: '2:00 PM - 5:00 PM',
         consultationFee: 500,
