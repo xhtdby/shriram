@@ -30,7 +30,7 @@ export default async function DepartmentPage({ params }: Props) {
                 src={doctor.image || '/images/doctors/placeholder-doctor.jpg'}
                 alt={`Dr. ${doctor.firstName} ${doctor.lastName}`}
                 fill
-                className="object-cover"
+                className="object-cover object-top"
               />
             </div>
             
