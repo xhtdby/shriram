@@ -2,44 +2,6 @@
 export const BLOG_POSTS = [
   {
     id: 1,
-    slug: 'monsoon-health-tips',
-    title: '5 Essential Health Tips for the Monsoon Season',
-    author: 'Dr. Amit Kumar Verma',
-    authorId: 4,
-    publishedDate: '2024-07-15',
-    lastUpdated: '2024-07-15',
-    excerpt: 'The monsoon brings relief from the heat, but also a host of health issues. Here are some essential tips to stay healthy during the rainy season.',
-    content: `The monsoon season, while beautiful, is also a time when infections are rampant. It is crucial to take extra precautions to safeguard your health.
-
-**1. Stay Hydrated with Safe Water**
-Ensure you drink only boiled or purified water to avoid water-borne diseases like typhoid and cholera. Avoid ice and drinks from unknown sources.
-
-**2. Boost Your Immunity**
-Include Vitamin C-rich foods in your diet such as citrus fruits, amla, and green leafy vegetables. Regular exercise and adequate sleep also help strengthen immunity.
-
-**3. Avoid Street Food**
-Street food may be contaminated during monsoon. Stick to home-cooked meals and ensure proper hygiene in food preparation.
-
-**4. Prevent Water Stagnation**
-Keep your surroundings clean and prevent water stagnation to avoid mosquito-borne illnesses like dengue and malaria.
-
-**5. Maintain Personal Hygiene**
-Wash your hands frequently, keep your feet dry, and wear clean, dry clothes to prevent fungal infections.
-
-Stay healthy and enjoy the monsoon season safely!`,
-    category: 'Health Tips',
-    tags: ['monsoon', 'health-tips', 'prevention', 'immunity'],
-    image: '/images/blog/monsoon-health.jpg',
-    readTime: 5,
-    isPublished: true,
-    isFeatured: true,
-    seoTitle: '5 Essential Monsoon Health Tips | Shriram Hospital Shahdol',
-    seoDescription: 'Stay healthy during monsoon season with these 5 essential health tips from medical experts at Shriram Hospital Shahdol.',
-    views: 1250,
-    likes: 89
-  },
-  {
-    id: 2,
     slug: 'understanding-cardiac-health',
     title: 'Understanding Cardiac Health: A Comprehensive Guide for All Ages',
     author: 'Dr. Amit Kumar',
@@ -93,7 +55,7 @@ Seek immediate medical attention for:
 Remember, prevention is always better than cure when it comes to heart health.`,
     category: 'Cardiology',
     tags: ['cardiology', 'heart-health', 'prevention', 'lifestyle'],
-    image: '/images/blog/cardiac-health.jpg',
+    image: '/images/blog/understanding-cardiac-health.png',
     readTime: 8,
     isPublished: true,
     isFeatured: true,
@@ -149,7 +111,7 @@ We invite you to visit our new facility and experience the difference in women's
 For appointments and more information, please contact us at 07652-248248.`,
     category: 'Hospital News',
     tags: ['hospital-news', 'gynecology', 'new-facility', 'womens-health'],
-    image: '/images/blog/gynecology-wing.jpg',
+    image: '/images/blog/gynecology-care.png',
     readTime: 6,
     isPublished: true,
     isFeatured: false,
@@ -157,6 +119,119 @@ For appointments and more information, please contact us at 07652-248248.`,
     seoDescription: 'Shriram Hospital Shahdol inaugurates new state-of-the-art gynecology wing with modern facilities and expert care.',
     views: 890,
     likes: 67
+  },
+  {
+    id: 4,
+    slug: 'family-nutrition-guide',
+    title: 'Complete Family Nutrition Guide: Building Healthy Eating Habits Together',
+    author: 'Dr. T.N. Chaturvedi',
+    authorId: 6,
+    publishedDate: '2024-07-20',
+    lastUpdated: '2024-07-20',
+    excerpt: 'Nutrition is the foundation of good health for the entire family. Learn how to create healthy eating habits that last a lifetime.',
+    content: `Good nutrition is essential for every member of the family. From growing children to aging adults, proper nutrition supports optimal health and development.
+
+**Building Healthy Family Habits**
+
+**1. Start with Breakfast**
+A nutritious breakfast sets the tone for the day. Include:
+- Whole grains for sustained energy
+- Protein for muscle development
+- Fruits for vitamins and minerals
+- Dairy for calcium and bone health
+
+**2. The Power of Family Meals**
+Eating together as a family has numerous benefits:
+- Improved communication and bonding
+- Better food choices and portion control
+- Reduced risk of eating disorders
+- Enhanced social skills in children
+
+**3. Age-Specific Nutrition Needs**
+
+**For Children (2-12 years):**
+- Focus on growth and development
+- Ensure adequate calcium for bone health
+- Include iron-rich foods for cognitive development
+- Limit sugary snacks and processed foods
+
+**For Teenagers (13-18 years):**
+- Support rapid growth spurts
+- Address increased energy needs
+- Promote healthy body image
+- Encourage active lifestyle choices
+
+**For Adults:**
+- Maintain healthy weight
+- Prevent chronic diseases
+- Support energy levels
+- Include antioxidant-rich foods
+
+**For Seniors:**
+- Focus on nutrient-dense foods
+- Ensure adequate hydration
+- Consider vitamin supplementation
+- Address decreased appetite
+
+**Practical Tips for Families**
+
+**Meal Planning:**
+- Plan weekly menus together
+- Include everyone's preferences
+- Prepare meals in advance
+- Keep healthy snacks available
+
+**Shopping Smart:**
+- Make grocery lists together
+- Read nutrition labels
+- Choose fresh, seasonal produce
+- Limit processed foods
+
+**Cooking Together:**
+- Involve children in meal preparation
+- Teach basic cooking skills
+- Make it fun and educational
+- Try new recipes regularly
+
+**Creating a Positive Food Environment:**
+- Avoid using food as reward or punishment
+- Model healthy eating behaviors
+- Respect hunger and fullness cues
+- Make mealtimes enjoyable
+
+**Common Nutrition Challenges**
+
+**Picky Eaters:**
+- Offer variety without pressure
+- Be patient with new foods
+- Make foods appealing
+- Set a good example
+
+**Busy Schedules:**
+- Prepare make-ahead meals
+- Keep healthy convenience foods
+- Pack nutritious snacks
+- Plan simple, quick recipes
+
+**Budget Constraints:**
+- Buy seasonal produce
+- Cook at home more often
+- Use dried beans and lentils
+- Minimize food waste
+
+Remember, small changes in family nutrition habits can lead to big improvements in overall health and well-being.
+
+For personalized nutrition advice, consult with our nutrition experts at Shriram Hospital.`,
+    category: 'Nutrition',
+    tags: ['nutrition', 'family-health', 'healthy-eating', 'lifestyle', 'pediatrics'],
+    image: '/images/blog/nutrition-family-health.png',
+    readTime: 10,
+    isPublished: true,
+    isFeatured: true,
+    seoTitle: 'Complete Family Nutrition Guide | Healthy Eating for All Ages',
+    seoDescription: 'Comprehensive family nutrition guide with age-specific tips and practical advice for building healthy eating habits that last a lifetime.',
+    views: 1650,
+    likes: 124
   }
 ];
 

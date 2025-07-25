@@ -153,7 +153,7 @@ export default function Home() {
           <div className="text-center mt-16">
             <Link 
               href="/departments" 
-              className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-hospital-green to-hospital-green-dark text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all transform hover:scale-105"
+              className="inline-flex items-center px-10 py-4 bg-primary-gradient text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all transform hover:scale-105"
             >
               Explore All Departments
               <ArrowRight className="w-5 h-5 ml-3" />
@@ -332,7 +332,7 @@ export default function Home() {
           <div className="text-center mt-16">
             <Link 
               href="/blog" 
-              className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-hospital-blue to-hospital-blue-dark text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all transform hover:scale-105"
+              className="inline-flex items-center px-10 py-4 bg-accent-gradient text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all transform hover:scale-105"
             >
               Explore Health Library
               <ArrowRight className="w-5 h-5 ml-3" />
@@ -405,7 +405,7 @@ export default function Home() {
                   <div className="space-y-3">
                     <button 
                       onClick={() => handleBookPackage(pkg)}
-                      className="block w-full text-center bg-gradient-to-r from-hospital-green to-hospital-green-dark text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105"
+                      className="block w-full text-center bg-primary-gradient text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105"
                     >
                       Book This Package
                     </button>
@@ -424,7 +424,7 @@ export default function Home() {
           <div className="text-center mt-12">
             <Link 
               href="/health-packages"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-hospital-blue to-hospital-blue-dark text-white rounded-full font-semibold hover:shadow-lg transition-all transform hover:scale-105 mb-8"
+              className="inline-flex items-center px-8 py-4 bg-accent-gradient text-white rounded-full font-semibold hover:shadow-lg transition-all transform hover:scale-105 mb-8"
             >
               Explore All Health Packages
               <ArrowRight className="w-5 h-5 ml-3" />
@@ -516,7 +516,7 @@ export default function Home() {
           <div className="text-center">
             <Link 
               href="/portal/tpas" 
-              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-hospital-blue to-hospital-blue-dark text-white rounded-full font-semibold hover:shadow-lg transition-all transform hover:scale-105"
+              className="inline-flex items-center px-8 py-3 bg-accent-gradient text-white rounded-full font-semibold hover:shadow-lg transition-all transform hover:scale-105"
             >
               View All Insurance Partners
               <ArrowRight className="w-4 h-4 ml-3" />

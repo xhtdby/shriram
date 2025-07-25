@@ -72,7 +72,7 @@ export const DOCTORS = [
         departmentId: 6, // Obstetrics & Gynaecology
         qualifications: 'MD (Obstetrics & Gynaecology)',
         experience: '18+ years',
-        image: '/images/doctors/placeholder-doctor.jpg',
+        image: '/images/doctors/dr-sp-chaturvedi.png',
         consultationDays: ['Monday', 'Wednesday', 'Friday'],
         consultationTime: '10:00 AM - 2:00 PM',
         consultationFee: 450,
@@ -94,7 +94,7 @@ export const DOCTORS = [
         departmentId: 6, // Obstetrics & Gynaecology
         qualifications: 'DGO, DNB',
         experience: '10+ years',
-        image: '/images/doctors/placeholder-doctor.jpg',
+        image: '/images/doctors/dr-geetika-shukla.jpeg',
         consultationDays: ['Tuesday', 'Thursday', 'Saturday'],
         consultationTime: '11:00 AM - 3:00 PM',
         consultationFee: 450,
@@ -116,7 +116,7 @@ export const DOCTORS = [
         departmentId: 5, // Orthopedics
         qualifications: 'MS (Orthopedics)',
         experience: '12+ years',
-        image: '/images/doctors/placeholder-doctor.jpg',
+        image: '/images/doctors/dr-amol-prabhakar-pandey.png',
         consultationDays: ['Monday', 'Tuesday', 'Thursday', 'Friday'],
         consultationTime: '10:00 AM - 3:00 PM',
         consultationFee: 500,
@@ -138,7 +138,7 @@ export const DOCTORS = [
         departmentId: 13, // Pediatrics
         qualifications: 'MD (Pediatrics)',
         experience: '25+ years',
-        image: '/images/doctors/placeholder-doctor.jpg',
+        image: '/images/doctors/dr-tn-chaturvedi.png',
         consultationDays: ['Monday', 'Wednesday', 'Friday', 'Saturday'],
         consultationTime: '9:00 AM - 1:00 PM',
         consultationFee: 400,
@@ -160,7 +160,7 @@ export const DOCTORS = [
         departmentId: 14, // General Medicine
         qualifications: 'MD (General Medicine)',
         experience: '10+ years',
-        image: '/images/doctors/placeholder-doctor.jpg',
+        image: '/images/doctors/dr-amit-kumar-verma.png',
         consultationDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         consultationTime: '10:00 AM - 4:00 PM',
         consultationFee: 400,

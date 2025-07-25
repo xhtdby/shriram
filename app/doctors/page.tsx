@@ -108,7 +108,7 @@ export default function DoctorsPage() {
 
                   {/* Appointment Button */}
                   <Link 
-                    href={`/book-appointment?doctor=${doctor.firstName}_${doctor.lastName}&department=${doctor.departmentName}`}
+                    href={`/doctors/${doctor.slug}`}
                     className="w-full bg-hospital-green text-white py-2 px-4 rounded-lg font-semibold hover:bg-hospital-green-dark transition-colors text-center inline-block"
                   >
                     Book Appointment
@@ -134,7 +134,7 @@ export default function DoctorsPage() {
               Call Emergency: 07652-248248
             </a>
             <Link 
-              href="/book-appointment" 
+              href="/make-appointment" 
               className="bg-gold-accent text-white px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors flex items-center justify-center"
             >
               <Calendar className="w-5 h-5 mr-2" />

@@ -235,7 +235,7 @@ export default function DoctorProfilePage({ params }: Props) {
             <div className="bg-white p-6 rounded-2xl shadow-md sticky top-8">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold">Hospital Visit</h2>
-                <p className="text-xl font-bold text-hospital-green">₹{doctor.consultationFee}</p>
+                <p className="text-xl font-bold text-hospital-green">{doctor.consultationFee}</p>
               </div>
 
               {/* Calendar */}

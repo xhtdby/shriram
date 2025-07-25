@@ -182,6 +182,115 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Hospital Facilities Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Our Facilities</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              State-of-the-art medical facilities designed to provide the best healthcare experience
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Hospital Overview */}
+            <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+              <div className="relative h-48">
+                <Image
+                  src="/images/hospital/hospital-overview.jpeg"
+                  alt="Shriram Hospital Overview"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Hospital Overview</h3>
+                <p className="text-gray-600">Modern healthcare facility with comprehensive medical services</p>
+              </div>
+            </div>
+
+            {/* Facility 1 */}
+            <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+              <div className="relative h-48">
+                <Image
+                  src="/images/hospital/facility-1.png"
+                  alt="Medical Equipment and Technology"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Advanced Equipment</h3>
+                <p className="text-gray-600">Latest medical technology for accurate diagnosis and treatment</p>
+              </div>
+            </div>
+
+            {/* Facility 2 */}
+            <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+              <div className="relative h-48">
+                <Image
+                  src="/images/hospital/facility-2.png"
+                  alt="Patient Care Areas"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Patient Care Areas</h3>
+                <p className="text-gray-600">Comfortable and hygienic patient care facilities</p>
+              </div>
+            </div>
+
+            {/* Existing Hospital Exterior */}
+            <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+              <div className="relative h-48">
+                <Image
+                  src="/images/hospital-exterior.jpg"
+                  alt="Hospital Exterior"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Hospital Exterior</h3>
+                <p className="text-gray-600">Easily accessible location in the heart of Shahdol</p>
+              </div>
+            </div>
+
+            {/* 24x7 Services */}
+            <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+              <div className="relative h-48">
+                <Image
+                  src="/images/services/24x7-service.jpg"
+                  alt="24x7 Emergency Services"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">24/7 Emergency</h3>
+                <p className="text-gray-600">Round-the-clock emergency services and ambulance facility</p>
+              </div>
+            </div>
+
+            {/* Logo showcase */}
+            <div className="bg-gradient-to-br from-hospital-green/10 to-hospital-blue/10 rounded-xl p-8 flex items-center justify-center shadow-lg">
+              <div className="text-center">
+                <Image
+                  src="/images/logos/logo-main.jpg"
+                  alt="Shriram Hospital Logo"
+                  width={120}
+                  height={80}
+                  className="object-contain mx-auto mb-4"
+                />
+                <h3 className="text-xl font-semibold text-hospital-green mb-2">Shriram Hospital</h3>
+                <p className="text-gray-600">Trusted healthcare since {hospitalInfo.yearEstablished}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Statistics */}
       <section className="py-16 bg-hospital-green text-white">
         <div className="container mx-auto px-4">

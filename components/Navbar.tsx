@@ -123,8 +123,15 @@ export default function Navbar() {
       {/* Main Navbar */}
       <nav className="bg-nav-gradient min-h-[4rem] flex items-center">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <Link href="/" onClick={closeMobileMenu}>
-            <Logo className="w-32 sm:w-36 md:w-40" />
+          <Link href="/" onClick={closeMobileMenu} className="flex items-center">
+            {/* Show image logo on larger screens */}
+            <div className="hidden lg:block">
+              <Logo variant="image" className="h-12 w-auto" />
+            </div>
+            {/* Show text logo on smaller screens */}
+            <div className="lg:hidden">
+              <Logo className="w-32 sm:w-36" />
+            </div>
           </Link>
 
           {/* Desktop Menu */}

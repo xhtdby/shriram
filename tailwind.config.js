@@ -14,8 +14,16 @@ module.exports = {
             light: '#4adb70',
             dark: '#117a44',
           },
-          blue: '#047c84',
-          gold: '#ffd05b',
+          blue: {
+            DEFAULT: '#047c84', 
+            light: '#4aa8b0',
+            dark: '#035a60',
+          },
+          gold: {
+            DEFAULT: '#ffd05b',
+            light: '#ffe088',
+            dark: '#e6bb52',
+          },
         },
         // Keep legacy names for backward compatibility
         'hospital-green': {
@@ -23,7 +31,16 @@ module.exports = {
           DEFAULT: '#29a063',
           dark: '#117a44',
         },
-        'hospital-blue': '#047c84',
+        'hospital-blue': {
+          light: '#4aa8b0',
+          DEFAULT: '#047c84',
+          dark: '#035a60',
+        },
+        'hospital-gold': {
+          light: '#ffe088',
+          DEFAULT: '#ffd05b',
+          dark: '#e6bb52',
+        },
         'gold-accent': '#ffd05b',
       },
       fontFamily: {
@@ -45,6 +62,10 @@ module.exports = {
       backgroundImage: {
         'nav-gradient': 'linear-gradient(to right, #047c84, #117a44)',
         'cta-gradient': 'linear-gradient(to right, #4adb70, #29a063)',
+        'primary-gradient': 'linear-gradient(to right, #29a063, #047c84)',
+        'primary-gradient-br': 'linear-gradient(to bottom right, #29a063, #047c84)',
+        'accent-gradient': 'linear-gradient(to right, #047c84, #29a063)',
+        'dark-gradient': 'linear-gradient(to right, #117a44, #035a60)',
       },
     },
   },
