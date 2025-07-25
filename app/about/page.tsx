@@ -104,7 +104,7 @@ export default function AboutPage() {
                       src={hospitalInfo.leadership.chiefImage}
                       alt={hospitalInfo.leadership.chiefDoctor}
                       fill
-                      className="object-cover rounded-full"
+                      className="object-cover object-top rounded-full"
                     />
                   </div>
                 </div>

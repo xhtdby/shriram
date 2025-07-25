@@ -45,7 +45,7 @@ export default function DoctorsPage() {
                     src={doctor.image || '/images/doctors/placeholder-doctor.jpg'}
                     alt={`Dr. ${doctor.firstName} ${doctor.lastName}`}
                     fill
-                    className="object-cover"
+                    className="object-cover object-top"
                   />
                   {doctor.isChief && (
                     <div className="absolute top-4 right-4 bg-gold-accent text-white p-2 rounded-full">

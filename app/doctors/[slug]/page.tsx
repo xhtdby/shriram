@@ -157,7 +157,7 @@ export default function DoctorProfilePage({ params }: Props) {
                   alt={doctor.fullName}
                   width={128}
                   height={128}
-                  className="rounded-full object-cover border-4 border-hospital-green/20"
+                  className="rounded-full object-cover object-top border-4 border-hospital-green/20"
                 />
               </div>
               <div className="flex-grow">
