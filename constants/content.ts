@@ -65,7 +65,7 @@ Remember, prevention is always better than cure when it comes to heart health.`,
     likes: 156
   },
   {
-    id: 3,
+    id: 2,
     slug: 'new-gynecology-wing',
     title: 'Shriram Hospital Inaugurates New State-of-the-Art Gynecology Wing',
     author: 'Hospital Administration',
@@ -121,7 +121,7 @@ For appointments and more information, please contact us at 07652-248248.`,
     likes: 67
   },
   {
-    id: 4,
+    id: 3,
     slug: 'family-nutrition-guide',
     title: 'Complete Family Nutrition Guide: Building Healthy Eating Habits Together',
     author: 'Dr. T.N. Chaturvedi',
