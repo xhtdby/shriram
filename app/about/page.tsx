@@ -186,105 +186,150 @@ export default function AboutPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Our Facilities</h2>
+            <h2 className="text-4xl font-bold mb-4">Our Facilities & Services</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              State-of-the-art medical facilities designed to provide the best healthcare experience
+              State-of-the-art medical facilities and comprehensive healthcare services designed to meet all your medical needs
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Hospital Overview */}
-            <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="relative h-48">
-                <Image
-                  src="/images/hospital/hospital-overview.jpeg"
-                  alt="Shriram Hospital Overview"
-                  fill
-                  className="object-cover"
-                />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {/* ICU & Critical Care */}
+            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center mb-4">
+                <div className="bg-red-500 text-white p-3 rounded-lg mr-4">
+                  <Heart className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800">ICU & Critical Care</h3>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Hospital Overview</h3>
-                <p className="text-gray-600">Modern healthcare facility with comprehensive medical services</p>
-              </div>
+              <ul className="space-y-2 text-gray-700">
+                <li>• 20-bed Intensive Care Unit</li>
+                <li>• Advanced life support systems</li>
+                <li>• 24/7 cardiac monitoring</li>
+                <li>• Ventilator support</li>
+                <li>• Trained critical care specialists</li>
+              </ul>
             </div>
 
-            {/* Facility 1 */}
-            <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="relative h-48">
-                <Image
-                  src="/images/hospital/facility-1.png"
-                  alt="Medical Equipment and Technology"
-                  fill
-                  className="object-cover"
-                />
+            {/* Emergency Services */}
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center mb-4">
+                <div className="bg-orange-500 text-white p-3 rounded-lg mr-4">
+                  <Clock className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800">24/7 Emergency</h3>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Advanced Equipment</h3>
-                <p className="text-gray-600">Latest medical technology for accurate diagnosis and treatment</p>
-              </div>
+              <ul className="space-y-2 text-gray-700">
+                <li>• Round-the-clock emergency care</li>
+                <li>• Trauma center with specialists</li>
+                <li>• Ambulance services</li>
+                <li>• Emergency surgery facilities</li>
+                <li>• Immediate medical attention</li>
+              </ul>
             </div>
 
-            {/* Facility 2 */}
-            <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="relative h-48">
-                <Image
-                  src="/images/hospital/facility-2.png"
-                  alt="Patient Care Areas"
-                  fill
-                  className="object-cover"
-                />
+            {/* Surgery & Operation Theater */}
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center mb-4">
+                <div className="bg-blue-500 text-white p-3 rounded-lg mr-4">
+                  <Stethoscope className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800">Advanced Surgery</h3>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Patient Care Areas</h3>
-                <p className="text-gray-600">Comfortable and hygienic patient care facilities</p>
-              </div>
+              <ul className="space-y-2 text-gray-700">
+                <li>• Modern operation theaters</li>
+                <li>• Laparoscopic surgery</li>
+                <li>• General & specialized surgery</li>
+                <li>• Sterile environment</li>
+                <li>• Latest surgical equipment</li>
+              </ul>
             </div>
 
-            {/* Existing Hospital Exterior */}
-            <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="relative h-48">
-                <Image
-                  src="/images/hospital-exterior.jpg"
-                  alt="Hospital Exterior"
-                  fill
-                  className="object-cover"
-                />
+            {/* Diagnostic Services */}
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center mb-4">
+                <div className="bg-green-500 text-white p-3 rounded-lg mr-4">
+                  <Award className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800">Diagnostic Services</h3>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Hospital Exterior</h3>
-                <p className="text-gray-600">Easily accessible location in the heart of Shahdol</p>
-              </div>
+              <ul className="space-y-2 text-gray-700">
+                <li>• NABL certified laboratory</li>
+                <li>• Digital X-ray & imaging</li>
+                <li>• ECG & cardiac testing</li>
+                <li>• Blood bank facilities</li>
+                <li>• Pathology services</li>
+              </ul>
             </div>
 
-            {/* 24x7 Services */}
-            <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="relative h-48">
-                <Image
-                  src="/images/services/24x7-service.jpg"
-                  alt="24x7 Emergency Services"
-                  fill
-                  className="object-cover"
-                />
+            {/* Maternity & Gynecology */}
+            <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center mb-4">
+                <div className="bg-pink-500 text-white p-3 rounded-lg mr-4">
+                  <Users className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800">Maternity Care</h3>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">24/7 Emergency</h3>
-                <p className="text-gray-600">Round-the-clock emergency services and ambulance facility</p>
-              </div>
+              <ul className="space-y-2 text-gray-700">
+                <li>• Modern delivery rooms</li>
+                <li>• Gynecology services</li>
+                <li>• Pre & post-natal care</li>
+                <li>• Pediatric care</li>
+                <li>• Family planning counseling</li>
+              </ul>
             </div>
 
-            {/* Logo showcase */}
-            <div className="bg-gradient-to-br from-hospital-green/10 to-hospital-blue/10 rounded-xl p-8 flex items-center justify-center shadow-lg">
+            {/* General Medicine */}
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center mb-4">
+                <div className="bg-purple-500 text-white p-3 rounded-lg mr-4">
+                  <Shield className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800">General Medicine</h3>
+              </div>
+              <ul className="space-y-2 text-gray-700">
+                <li>• OPD consultations</li>
+                <li>• Health checkup packages</li>
+                <li>• Chronic disease management</li>
+                <li>• Preventive healthcare</li>
+                <li>• Specialist consultations</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Hospital Infrastructure */}
+          <div className="bg-gray-50 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-center mb-8">Hospital Infrastructure</h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center">
-                <Image
-                  src="/images/logos/logo-main.jpg"
-                  alt="Shriram Hospital Logo"
-                  width={120}
-                  height={80}
-                  className="object-contain mx-auto mb-4"
-                />
-                <h3 className="text-xl font-semibold text-hospital-green mb-2">Shriram Hospital</h3>
-                <p className="text-gray-600">Trusted healthcare since {hospitalInfo.yearEstablished}</p>
+                <div className="bg-hospital-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl font-bold">{hospitalInfo.beds}</span>
+                </div>
+                <h4 className="font-semibold text-gray-800 mb-1">Hospital Beds</h4>
+                <p className="text-gray-600 text-sm">Comfortable patient accommodation</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="bg-hospital-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl font-bold">20</span>
+                </div>
+                <h4 className="font-semibold text-gray-800 mb-1">ICU Beds</h4>
+                <p className="text-gray-600 text-sm">Critical care facilities</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="bg-hospital-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl font-bold">3</span>
+                </div>
+                <h4 className="font-semibold text-gray-800 mb-1">Operation Theaters</h4>
+                <p className="text-gray-600 text-sm">Modern surgical facilities</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="bg-hospital-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl font-bold">24/7</span>
+                </div>
+                <h4 className="font-semibold text-gray-800 mb-1">Emergency Care</h4>
+                <p className="text-gray-600 text-sm">Round-the-clock services</p>
               </div>
             </div>
           </div>

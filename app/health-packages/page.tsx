@@ -1,15 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { Clock, Users, Package, Star, Phone, Calendar, CheckCircle, CreditCard, ArrowLeft } from 'lucide-react';
+import { Clock, Users, Package, Star, Phone, Calendar, CheckCircle, CreditCard, ArrowLeft, ShoppingCart } from 'lucide-react';
 import { HEALTH_PACKAGES } from '@/constants/health-packages';
 import PaymentInterface from '@/components/PaymentInterface';
+import { useBasket } from '@/contexts/BasketContext';
 
 export default function HealthPackagePage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
   const [showPayment, setShowPayment] = useState(false);
   const [paymentItems, setPaymentItems] = useState<any[]>([]);
+  const { addToBasket } = useBasket();
 
   const categories = [
     { id: 'all', name: 'All Packages', color: 'bg-gray-100 text-gray-800' },
@@ -35,6 +37,18 @@ export default function HealthPackagePage() {
     };
     setPaymentItems([paymentItem]);
     setShowPayment(true);
+  };
+
+  const handleAddToBasket = (pkg: any) => {
+    const basketItem = {
+      id: `pkg_${pkg.id}`,
+      name: pkg.name,
+      amount: pkg.price,
+      type: 'package' as const,
+      description: pkg.description
+    };
+    addToBasket(basketItem);
+    alert(`${pkg.name} has been added to your basket!`);
   };
 
   const handlePaymentSuccess = (transactionId: string) => {
@@ -176,19 +190,26 @@ export default function HealthPackagePage() {
                     </p>
                   </div>
 
-                  <div className="flex gap-3">
+                  <div className="flex gap-2">
                     <button
                       onClick={() => setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id)}
-                      className="flex-1 bg-hospital-green/10 text-hospital-green border border-hospital-green px-4 py-2 rounded-lg font-semibold hover:bg-hospital-green hover:text-white transition-colors"
+                      className="flex-1 bg-hospital-green/10 text-hospital-green border border-hospital-green px-3 py-2 rounded-lg font-semibold hover:bg-hospital-green hover:text-white transition-colors text-sm"
                     >
                       View Details
                     </button>
                     <button
+                      onClick={() => handleAddToBasket(pkg)}
+                      className="flex-1 bg-gray-100 text-hospital-green border border-gray-200 px-3 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center space-x-1 text-sm"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                      <span>Add to Basket</span>
+                    </button>
+                    <button
                       onClick={() => handleBookPackage(pkg)}
-                      className="flex-1 bg-hospital-green text-white px-4 py-2 rounded-lg font-semibold hover:bg-hospital-green/90 transition-colors flex items-center justify-center space-x-2"
+                      className="flex-1 bg-hospital-green text-white px-3 py-2 rounded-lg font-semibold hover:bg-hospital-green/90 transition-colors flex items-center justify-center space-x-1 text-sm"
                     >
                       <CreditCard className="w-4 h-4" />
-                      <span>Book & Pay</span>
+                      <span>Book Now</span>
                     </button>
                   </div>
                 </div>

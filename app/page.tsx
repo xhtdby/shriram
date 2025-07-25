@@ -2,10 +2,11 @@
 
 import { useState } from 'react'
 import { getDepartments, hospitalStats, healthPackages, testimonials, getBlogPosts, getTpaList, hospitalInfo, departmentNames } from '@/app/data'
-import { Calendar, Users, Stethoscope, Clock, Phone, Bed, HeartPulse, TestTube, Star, ArrowRight, Award, Shield, Heart, CheckCircle, Activity, MapPin, Smartphone, Mail, CheckCircle2, TrendingUp, ArrowLeft } from 'lucide-react'
+import { Calendar, Users, Stethoscope, Clock, Phone, Bed, HeartPulse, TestTube, Star, ArrowRight, Award, Shield, Heart, CheckCircle, Activity, MapPin, Smartphone, Mail, CheckCircle2, TrendingUp, ArrowLeft, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useBasket } from '@/contexts/BasketContext'
 import HeroCarousel from '@/components/HeroCarousel'
 import StatsCounter from '@/components/StatsCounter'
 import DepartmentCarousel from '@/components/DepartmentCarousel'
@@ -17,6 +18,7 @@ import PaymentInterface from '@/components/PaymentInterface'
 export default function Home() {
   const [showPayment, setShowPayment] = useState(false)
   const [paymentItems, setPaymentItems] = useState<any[]>([])
+  const { addToBasket } = useBasket()
   
   const departments = getDepartments()
   const blogPosts = getBlogPosts().slice(0, 3) // Featured blog posts
@@ -32,6 +34,18 @@ export default function Home() {
     }
     setPaymentItems([paymentItem])
     setShowPayment(true)
+  }
+
+  const handleAddToBasket = (pkg: any) => {
+    const basketItem = {
+      id: `pkg_${pkg.id}`,
+      name: pkg.name,
+      amount: parseFloat(pkg.price.replace(/[₹,]/g, '')),
+      type: 'package' as const,
+      description: 'Comprehensive health screening package'
+    }
+    addToBasket(basketItem)
+    alert(`${pkg.name} has been added to your basket!`)
   }
 
   const handlePaymentSuccess = (transactionId: string) => {
@@ -403,12 +417,21 @@ export default function Home() {
                   </div>
                   
                   <div className="space-y-3">
-                    <button 
-                      onClick={() => handleBookPackage(pkg)}
-                      className="block w-full text-center bg-primary-gradient text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105"
-                    >
-                      Book This Package
-                    </button>
+                    <div className="grid grid-cols-2 gap-3">
+                      <button 
+                        onClick={() => handleAddToBasket(pkg)}
+                        className="text-center bg-gray-100 text-hospital-green py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all transform hover:scale-105 flex items-center justify-center space-x-2"
+                      >
+                        <ShoppingCart className="w-4 h-4" />
+                        <span>Add to Basket</span>
+                      </button>
+                      <button 
+                        onClick={() => handleBookPackage(pkg)}
+                        className="text-center bg-primary-gradient text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105"
+                      >
+                        Book Now
+                      </button>
+                    </div>
                     <Link 
                       href="/health-packages"
                       className="block text-center w-full text-hospital-green font-medium py-2 hover:bg-hospital-green/5 rounded-lg transition-colors"

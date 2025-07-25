@@ -32,7 +32,7 @@ export default function DoctorsPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {sortedDoctors.map(doctor => (
-              <div key={doctor.id} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden ${doctor.isChief ? 'border-2 border-hospital-green' : ''}`}>
+              <div key={doctor.id} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden h-full flex flex-col ${doctor.isChief ? 'border-2 border-hospital-green' : ''}`}>
                 {doctor.isChief && (
                   <div className="bg-hospital-green text-white text-center py-2">
                     <span className="text-sm font-semibold">Chief Medical Officer</span>
@@ -40,7 +40,7 @@ export default function DoctorsPage() {
                 )}
                 
                 {/* Doctor Image */}
-                <div className="relative h-64 bg-gradient-to-br from-hospital-green/10 to-hospital-blue/10">
+                <div className="relative h-64 bg-gradient-to-br from-hospital-green/10 to-hospital-blue/10 flex-shrink-0">
                   <Image
                     src={doctor.image || '/images/doctors/placeholder-doctor.jpg'}
                     alt={`Dr. ${doctor.firstName} ${doctor.lastName}`}
@@ -55,7 +55,7 @@ export default function DoctorsPage() {
                 </div>
 
                 {/* Doctor Info */}
-                <div className="p-6">
+                <div className="p-6 flex-grow flex flex-col">
                   <h3 className="text-xl font-bold mb-2 text-gray-800">
                     <Link href={`/doctors/${doctor.slug}`} className="hover:text-hospital-green transition-colors">
                       Dr. {doctor.firstName} {doctor.lastName}
@@ -68,28 +68,30 @@ export default function DoctorsPage() {
                     <p className="text-gray-500 text-sm mb-3">{doctor.qualifications}</p>
                   )}
 
-                  {doctor.experience && (
-                    <div className="flex items-center text-gray-600 text-sm mb-2">
-                      <User className="w-4 h-4 mr-2" />
-                      <span>{doctor.experience} Experience</span>
-                    </div>
-                  )}
+                  <div className="space-y-2 mb-4">
+                    {doctor.experience && (
+                      <div className="flex items-center text-gray-600 text-sm">
+                        <User className="w-4 h-4 mr-2 flex-shrink-0" />
+                        <span>{doctor.experience} Experience</span>
+                      </div>
+                    )}
 
-                  {doctor.consultationTime && (
-                    <div className="flex items-center text-gray-600 text-sm mb-2">
-                      <Clock className="w-4 h-4 mr-2" />
-                      <span>{doctor.consultationTime}</span>
-                    </div>
-                  )}
+                    {doctor.consultationTime && (
+                      <div className="flex items-center text-gray-600 text-sm">
+                        <Clock className="w-4 h-4 mr-2 flex-shrink-0" />
+                        <span>{doctor.consultationTime}</span>
+                      </div>
+                    )}
 
-                  {doctor.consultationFee && (
-                    <div className="flex items-center text-gray-600 text-sm mb-4">
-                      <span className="font-semibold text-hospital-green">Consultation: {doctor.consultationFee}</span>
-                    </div>
-                  )}
+                    {doctor.consultationFee && (
+                      <div className="flex items-center text-gray-600 text-sm">
+                        <span className="font-semibold text-hospital-green">Consultation: {doctor.consultationFee}</span>
+                      </div>
+                    )}
+                  </div>
 
                   {doctor.bio && (
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">{doctor.bio}</p>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">{doctor.bio}</p>
                   )}
 
                   {/* Available Days */}
@@ -107,12 +109,14 @@ export default function DoctorsPage() {
                   )}
 
                   {/* Appointment Button */}
-                  <Link 
-                    href={`/doctors/${doctor.slug}`}
-                    className="w-full bg-hospital-green text-white py-2 px-4 rounded-lg font-semibold hover:bg-hospital-green-dark transition-colors text-center inline-block"
-                  >
-                    Book Appointment
-                  </Link>
+                  <div className="mt-auto">
+                    <Link 
+                      href={`/doctors/${doctor.slug}`}
+                      className="w-full bg-hospital-green text-white py-3 px-4 rounded-lg font-semibold hover:bg-hospital-green-dark transition-colors text-center inline-block"
+                    >
+                      Book Appointment
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
