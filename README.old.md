@@ -11,7 +11,7 @@
 
 **Built for Scale • Optimized for Performance • Designed for Users**
 
-[🚀 Live Demo](#) • [📖 Documentation](#-quick-start) • [🎯 Features](#-key-features)
+[🚀 Live Demo](#) • [📖 Documentation](#getting-started) • [🎯 Features](#-key-features)
 
 </div>
 
@@ -156,51 +156,59 @@
 
 ---
 
-## 🚀 Quick Start
+##  Getting Started
 
-```bash
-# Clone the repository
-git clone https://github.com/xhtdby/shriram.git
-cd shriram
+### Prerequisites
 
-# Install dependencies (uses pnpm for faster installs)
-pnpm install
+- **Node.js** 18.x or higher
+- **pnpm** 8.x or higher (recommended) or npm/yarn
 
-# Set up environment variables
-cp .env.example .env.local
+### Installation
 
-# Run development server
-pnpm dev
+1. **Clone the repository**
+   `ash
+   git clone https://github.com/xhtdby/shriram.git
+   cd shriram
+   `
 
-# Open http://localhost:3000
-```
+2. **Install dependencies**
+   `ash
+   pnpm install
+   # or
+   npm install
+   `
 
-### 📋 Prerequisites
+3. **Set up environment variables**
+   `ash
+   cp .env.example .env.local
+   `
+   
+   Configure the following variables:
+   `env
+   # Contact Information
+   NEXT_PUBLIC_HOSPITAL_PHONE=07652-248248
+   NEXT_PUBLIC_HOSPITAL_EMAIL=info@shriramhospital.com
+   
+   # Email Configuration (for appointment notifications)
+   NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+   `
 
-- Node.js 18.x or higher
-- pnpm 8.x or higher (recommended) or npm/yarn
+4. **Run the development server**
+   `ash
+   pnpm dev
+   # or
+   npm run dev
+   `
 
-### ⚙️ Environment Configuration
-
-Create a `.env.local` file in the root directory:
-
-```env
-# Hospital Contact Information
-NEXT_PUBLIC_HOSPITAL_PHONE=07652-248248
-NEXT_PUBLIC_HOSPITAL_EMAIL=info@shriramhospital.com
-
-# Email Service Configuration
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-
-# Payment Gateway (if using)
-NEXT_PUBLIC_PAYMENT_API_KEY=your_api_key
-```
+5. **Open your browser**
+   
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 shriram/
@@ -262,92 +270,113 @@ shriram/
 
 ---
 
-## 💻 Development Workflow
+##  Development
 
-### 🎯 Available Scripts
+### Available Scripts
 
-```bash
-# Development
-pnpm dev              # Start dev server with hot reload
-pnpm build            # Build optimized production bundle
-pnpm start            # Start production server
+`ash
+# Start development server
+pnpm dev
 
-# Code Quality
-pnpm lint             # Run ESLint checks
-pnpm lint:fix         # Auto-fix ESLint issues
-pnpm type-check       # Run TypeScript compiler checks
+# Build for production
+pnpm build
 
-# Pre-commit (recommended)
+# Start production server
+pnpm start
+
+# Run ESLint
+pnpm lint
+
+# Fix linting issues automatically
+pnpm lint:fix
+
+# Type checking
+pnpm type-check
+`
+
+### Code Quality
+
+This project enforces code quality through:
+
+- **TypeScript** - Static type checking
+- **ESLint** - Code linting with Next.js rules
+- **Prettier** - Code formatting (via ESLint integration)
+
+Run before committing:
+`ash
 pnpm lint:fix && pnpm type-check
-```
+`
 
-### 🔍 Code Quality Standards
+### Adding New Content
 
-| Tool | Purpose | Configuration |
-|------|---------|---------------|
-| **TypeScript** | Static type checking | `tsconfig.json` (strict mode) |
-| **ESLint** | Code linting | Next.js recommended rules |
-| **Prettier** | Code formatting | Integrated with ESLint |
+#### Add a New Doctor
 
-### 📊 Performance Metrics
+Edit constants/staff.ts:
+`	ypescript
+{
+  id: 14,
+  slug: 'dr-john-doe',
+  firstName: 'John',
+  lastName: 'Doe',
+  fullName: 'Dr. John Doe',
+  specialization: 'Cardiology',
+  departmentId: 1,
+  qualifications: 'MD, DM (Cardiology)',
+  experience: '10+ years',
+  consultationFee: 500,
+  consultationDays: ['Monday', 'Wednesday', 'Friday'],
+  consultationTime: '10:00 AM - 2:00 PM',
+  // ... other fields
+}
+`
 
-```plaintext
-Lighthouse Score
-Performance:  ████████████████████ 95/100
-Accessibility: ███████████████████ 94/100
-Best Practices: ████████████████████ 100/100
-SEO:          ████████████████████ 100/100
-```
+#### Add a New Department
+
+Edit constants/departments.ts:
+`	ypescript
+{
+  id: 14,
+  name: 'Neurology',
+  slug: 'neurology',
+  description: 'Expert neurological care...',
+  services: ['EEG', 'MRI', 'Stroke Care'],
+  doctorIds: [14],
+  isEmergency: true,
+  isActive: true
+}
+`
 
 ---
 
-## 🌐 Deployment
+##  Deployment
 
-### Vercel (Recommended)
+### Deploy to Vercel (Recommended)
 
-```bash
-# Install Vercel CLI
-npm i -g vercel
+1. **Push to GitHub**
+   `ash
+   git push origin main
+   `
 
-# Deploy to production
-vercel --prod
-```
+2. **Import to Vercel**
+   - Visit [vercel.com/new](https://vercel.com/new)
+   - Import your GitHub repository
+   - Configure environment variables
+   - Deploy
 
-**Or use Vercel Dashboard:**
-1. Import repository from GitHub
-2. Configure environment variables
-3. Deploy with one click
-
-### Docker Deployment
-
-```dockerfile
-# Build production image
-docker build -t shriram-hospital .
-
-# Run container
-docker run -p 3000:3000 shriram-hospital
-```
+3. **Configure Domain**
+   - Add your custom domain in Vercel dashboard
+   - Update DNS records as instructed
 
 ### Environment Variables (Production)
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `NEXT_PUBLIC_HOSPITAL_PHONE` | Hospital contact number | ✅ Yes |
-| `NEXT_PUBLIC_HOSPITAL_EMAIL` | Hospital email address | ✅ Yes |
-| `NEXT_PUBLIC_EMAILJS_SERVICE_ID` | EmailJS service ID | ✅ Yes |
-| `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` | Email template ID | ✅ Yes |
-| `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` | EmailJS public key | ✅ Yes |
-
-### 🎯 Deployment Checklist
-
-- [x] Environment variables configured
-- [x] Build passes without errors
-- [x] All tests passing
-- [x] Lighthouse score > 90
-- [x] Security headers configured
-- [x] Analytics integrated
-- [x] Error monitoring setup
-- [x] SSL certificate active
+Set these in your Vercel dashboard:
+`
+NEXT_PUBLIC_HOSPITAL_PHONE=07652-248248
+NEXT_PUBLIC_HOSPITAL_EMAIL=info@shriramhospital.com
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=***
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=***
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=***
+`
 
 ---
 

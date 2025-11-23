@@ -4,7 +4,7 @@ import { getDepartments, hospitalInfo, getDoctorBySlug } from '@/app/data'
 import { useState, FormEvent, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { Calendar, Clock, User, Phone, Mail, MapPin, FileText, AlertCircle, CheckCircle, ShoppingCart, ArrowLeft } from 'lucide-react'
+import { Calendar, Clock, User, Phone, Mail, MapPin, FileText, AlertCircle, CheckCircle, ShoppingCart, ArrowLeft, Shield, Lock } from 'lucide-react'
 import PaymentInterface from '@/components/PaymentInterface'
 import { useBasket } from '@/contexts/BasketContext'
 
@@ -44,6 +44,9 @@ function BookingFormComponent() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [paymentItems, setPaymentItems] = useState<any[]>([])
   const [transactionId, setTransactionId] = useState('')
+  const [privacyConsent, setPrivacyConsent] = useState(false)
+  const [termsConsent, setTermsConsent] = useState(false)
+  const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'validating' | 'processing' | 'confirmed'>('idle')
 
   // Available time slots
   const timeSlots = [
@@ -98,6 +101,10 @@ function BookingFormComponent() {
     if (!formData.preferredTime) newErrors.preferredTime = 'Preferred time is required'
     if (!formData.reason.trim()) newErrors.reason = 'Reason for visit is required'
     
+    // Consent validation
+    if (!privacyConsent) newErrors.privacyConsent = 'Privacy consent is required'
+    if (!termsConsent) newErrors.termsConsent = 'Terms acceptance is required'
+    
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (formData.email && !emailRegex.test(formData.email)) {
@@ -117,9 +124,18 @@ function BookingFormComponent() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     
+    // Step 1: Validate
+    setSubmissionStatus('validating')
+    await new Promise(resolve => setTimeout(resolve, 800)) // Show validation state
+    
     if (!validateForm()) {
+      setSubmissionStatus('idle')
       return
     }
+
+    // Step 2: Process
+    setSubmissionStatus('processing')
+    await new Promise(resolve => setTimeout(resolve, 1200)) // Simulate processing
 
     // Calculate consultation fee based on urgency and doctor
     const selectedDoctor = availableDoctors.find(d => `${d.firstName} ${d.lastName}` === formData.doctor)
@@ -145,8 +161,13 @@ function BookingFormComponent() {
       }
     }
 
+    // Step 3: Confirm
+    setSubmissionStatus('confirmed')
+    await new Promise(resolve => setTimeout(resolve, 500))
+    
     setPaymentItems([paymentItem])
     setCurrentStep('payment')
+    setSubmissionStatus('idle')
   }
 
   const handleAddToBasket = () => {
@@ -648,18 +669,79 @@ function BookingFormComponent() {
                 </div>
               </div>
 
+              {/* Privacy & Terms Consent */}
+              <div className="mb-8 space-y-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h3 className="font-semibold text-blue-900 mb-4 flex items-center">
+                    <Shield className="w-5 h-5 mr-2" />
+                    Privacy & Consent
+                  </h3>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-start">
+                      <input
+                        type="checkbox"
+                        id="privacyConsent"
+                        checked={privacyConsent}
+                        onChange={(e) => {
+                          setPrivacyConsent(e.target.checked)
+                          if (errors.privacyConsent) {
+                            setErrors(prev => ({ ...prev, privacyConsent: '' }))
+                          }
+                        }}
+                        className="w-5 h-5 text-hospital-green bg-gray-100 border-gray-300 rounded focus:ring-hospital-green focus:ring-2 mt-0.5"
+                      />
+                      <label htmlFor="privacyConsent" className="ml-3 text-sm text-blue-900">
+                        <span className="font-semibold">I consent to data processing</span> - I understand that my personal and medical information will be stored securely and used only for appointment scheduling, medical care, and communication purposes in compliance with applicable privacy regulations (GDPR/Data Protection Act).
+                      </label>
+                    </div>
+                    {errors.privacyConsent && <p className="text-red-500 text-sm ml-8">{errors.privacyConsent}</p>}
+                    
+                    <div className="flex items-start">
+                      <input
+                        type="checkbox"
+                        id="termsConsent"
+                        checked={termsConsent}
+                        onChange={(e) => {
+                          setTermsConsent(e.target.checked)
+                          if (errors.termsConsent) {
+                            setErrors(prev => ({ ...prev, termsConsent: '' }))
+                          }
+                        }}
+                        className="w-5 h-5 text-hospital-green bg-gray-100 border-gray-300 rounded focus:ring-hospital-green focus:ring-2 mt-0.5"
+                      />
+                      <label htmlFor="termsConsent" className="ml-3 text-sm text-blue-900">
+                        <span className="font-semibold">I accept the terms</span> - I agree to the hospital&apos;s{' '}
+                        <Link href="/patient-rights" className="text-hospital-green underline hover:text-hospital-green/80">
+                          patient rights & responsibilities
+                        </Link>
+                        , cancellation policy (24-hour notice required), and understand that appointment confirmation is subject to doctor availability.
+                      </label>
+                    </div>
+                    {errors.termsConsent && <p className="text-red-500 text-sm ml-8">{errors.termsConsent}</p>}
+                  </div>
+                  
+                  <div className="mt-4 pt-4 border-t border-blue-200">
+                    <p className="text-xs text-blue-700">
+                      <Lock className="w-3 h-3 inline mr-1" />
+                      Your data is encrypted and protected. We never share your information with third parties without your explicit consent.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               {/* Submit Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   type="button"
                   onClick={handleAddToBasket}
-                  disabled={isSubmitting}
+                  disabled={submissionStatus !== 'idle'}
                   className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
                 >
-                  {isSubmitting ? (
+                  {submissionStatus !== 'idle' ? (
                     <>
                       <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                      Adding to Basket...
+                      Processing...
                     </>
                   ) : (
                     <>
@@ -671,15 +753,28 @@ function BookingFormComponent() {
                 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={submissionStatus !== 'idle'}
                   className="bg-hospital-green text-white px-8 py-4 rounded-lg font-semibold hover:bg-hospital-green-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
                 >
-                  {isSubmitting ? (
+                  {submissionStatus === 'validating' && (
                     <>
                       <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                      Booking Now...
+                      Validating Information...
                     </>
-                  ) : (
+                  )}
+                  {submissionStatus === 'processing' && (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      Processing Request...
+                    </>
+                  )}
+                  {submissionStatus === 'confirmed' && (
+                    <>
+                      <CheckCircle className="w-5 h-5 mr-2" />
+                      Confirmed! Proceeding...
+                    </>
+                  )}
+                  {submissionStatus === 'idle' && (
                     <>
                       <Calendar className="w-5 h-5 mr-2" />
                       Book Now

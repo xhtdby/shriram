@@ -52,6 +52,26 @@ export default function PaymentInterface({ items, onSuccess, onCancel, patientIn
   const [showReceipt, setShowReceipt] = useState(false);
   const [showEmailNotification, setShowEmailNotification] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isInIndia, setIsInIndia] = useState<boolean | null>(null);
+  const [checkingLocation, setCheckingLocation] = useState(true);
+
+  // Check user location on mount
+  useEffect(() => {
+    checkUserLocation();
+  }, []);
+
+  const checkUserLocation = async () => {
+    try {
+      const response = await fetch('https://ipapi.co/json/');
+      const data = await response.json();
+      setIsInIndia(data.country_code === 'IN');
+    } catch (error) {
+      // Default to India if geolocation fails
+      setIsInIndia(true);
+    } finally {
+      setCheckingLocation(false);
+    }
+  };
 
   // Calculate totals
   const subtotal = items.reduce((sum, item) => sum + item.amount, 0);
@@ -233,7 +253,56 @@ export default function PaymentInterface({ items, onSuccess, onCancel, patientIn
     </div>
   );
 
-  const renderPaymentStep = () => (
+  const renderPaymentStep = () => {
+    // Show location checking message
+    if (checkingLocation) {
+      return (
+        <div className="text-center py-12">
+          <Loader2 className="w-8 h-8 text-hospital-green animate-spin mx-auto mb-4" />
+          <p className="text-gray-600">Verifying payment availability...</p>
+        </div>
+      );
+    }
+
+    // Show message for international users
+    if (!isInIndia) {
+      return (
+        <div className="space-y-6">
+          <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-8 text-center">
+            <AlertCircle className="w-16 h-16 text-yellow-600 mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold text-yellow-900 mb-3">Online Payments Not Available</h3>
+            <p className="text-yellow-800 mb-4">
+              We detected that you&apos;re accessing from outside India. Online payment processing is currently only available for users within India.
+            </p>
+            <div className="bg-white rounded-lg p-6 mb-4">
+              <h4 className="font-semibold text-gray-900 mb-3">Payment Options for International Users:</h4>
+              <ul className="text-left space-y-2 text-gray-700">
+                <li className="flex items-start">
+                  <div className="w-2 h-2 bg-hospital-green rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                  <span>Select &quot;Pay at Hospital&quot; and complete payment during your visit</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="w-2 h-2 bg-hospital-green rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                  <span>International wire transfer (contact us for details)</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="w-2 h-2 bg-hospital-green rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                  <span>Email us at info@shriramhospital.com for assistance</span>
+                </li>
+              </ul>
+            </div>
+            <button
+              onClick={() => setCurrentStep('summary')}
+              className="bg-hospital-green text-white px-6 py-3 rounded-lg hover:bg-hospital-green/90 transition-colors"
+            >
+              Go Back
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    return (
     <div className="space-y-6">
       {/* Payment Methods */}
       <div className="bg-white rounded-lg border p-6">
@@ -329,7 +398,8 @@ export default function PaymentInterface({ items, onSuccess, onCancel, patientIn
         </button>
       </div>
     </div>
-  );
+    );
+  };
 
   const renderProcessingStep = () => (
     <div className="text-center py-12">
@@ -594,27 +664,75 @@ function CardPaymentForm({ onDataChange }: { onDataChange: (data: any) => void }
 
 function UPIPaymentForm({ onDataChange }: { onDataChange: (data: any) => void }) {
   const [upiId, setUpiId] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState<'qr' | 'id'>('qr');
+  const hospitalUPI = 'shriramhospital@paytm'; // Hospital's UPI ID
 
   useEffect(() => {
-    onDataChange({ upiId });
-  }, [upiId, onDataChange]);
+    onDataChange({ upiId, method: paymentMethod });
+  }, [upiId, paymentMethod, onDataChange]);
 
   return (
     <div className="space-y-4">
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">UPI ID</label>
-        <input
-          type="text"
-          placeholder="yourname@paytm"
-          value={upiId}
-          onChange={(e) => setUpiId(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-hospital-green focus:border-transparent"
-        />
+      <div className="flex gap-2 mb-4">
+        <button
+          type="button"
+          onClick={() => setPaymentMethod('qr')}
+          className={`flex-1 py-2 px-4 rounded-lg border-2 transition-all ${
+            paymentMethod === 'qr'
+              ? 'border-hospital-green bg-hospital-green/5 text-hospital-green'
+              : 'border-gray-300 hover:border-gray-400'
+          }`}
+        >
+          Scan QR Code
+        </button>
+        <button
+          type="button"
+          onClick={() => setPaymentMethod('id')}
+          className={`flex-1 py-2 px-4 rounded-lg border-2 transition-all ${
+            paymentMethod === 'id'
+              ? 'border-hospital-green bg-hospital-green/5 text-hospital-green'
+              : 'border-gray-300 hover:border-gray-400'
+          }`}
+        >
+          Enter UPI ID
+        </button>
       </div>
+
+      {paymentMethod === 'qr' ? (
+        <div className="text-center">
+          <div className="bg-white border-2 border-gray-300 rounded-lg p-6 mb-3 inline-block">
+            <div className="w-48 h-48 bg-gray-100 rounded flex items-center justify-center">
+              <p className="text-sm text-gray-500">QR Code</p>
+              {/* In production, generate actual UPI QR code */}
+            </div>
+          </div>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+            <p className="text-sm text-blue-700 font-medium mb-1">
+              Scan with any UPI app
+            </p>
+            <p className="text-xs text-blue-600">
+              Google Pay • PhonePe • Paytm • BHIM • Amazon Pay
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Your UPI ID</label>
+          <input
+            type="text"
+            placeholder="yourname@paytm"
+            value={upiId}
+            onChange={(e) => setUpiId(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-hospital-green focus:border-transparent"
+          />
+          <p className="text-xs text-gray-500 mt-1">Or pay directly to: <span className="font-mono text-hospital-green">{hospitalUPI}</span></p>
+        </div>
+      )}
+
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <p className="text-sm text-blue-700">
           <Smartphone className="w-4 h-4 inline mr-1" />
-          You will receive a payment request on your UPI app
+          Payment will be verified automatically
         </p>
       </div>
     </div>
@@ -672,6 +790,7 @@ function WalletPaymentForm({ onDataChange }: { onDataChange: (data: any) => void
           {wallets.map((wallet) => (
             <button
               key={wallet}
+              type="button"
               onClick={() => setWalletType(wallet)}
               className={`p-3 border rounded-lg text-center transition-all ${
                 walletType === wallet
