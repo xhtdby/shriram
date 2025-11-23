@@ -181,18 +181,18 @@ export default function HeroCarousel() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1.2 }}
                 >
-                  <a
+                  <Link
                     href={currentSlideData.cta.href}
                     className="inline-block bg-gradient-to-r from-hospital-blue to-hospital-blue-dark hover:from-hospital-blue-dark hover:to-hospital-blue text-white px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
                   >
                     {currentSlideData.cta.text}
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/departments"
                     className="inline-block bg-white hover:bg-gray-100 text-hospital-blue px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
                   >
                     View Departments
-                  </a>
+                  </Link>
                 </motion.div>
               </motion.div>
             </AnimatePresence>

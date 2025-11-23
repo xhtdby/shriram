@@ -135,7 +135,7 @@ export default function AboutPage() {
                   <p className="text-gray-700 leading-relaxed">
                     Mr. Vijay Dubey is known for his exceptional management skills and the transformative social work 
                     he has done in the region. His strategic vision and deep commitment to community welfare have been 
-                    crucial in expanding Shriram Hospital's reach and impact in Shahdol and surrounding areas. Through 
+                    crucial in expanding Shriram Hospital&apos;s reach and impact in Shahdol and surrounding areas. Through 
                     his dedication to social causes, he has made healthcare accessible to underserved communities while 
                     maintaining the highest standards of medical excellence.
                   </p>
