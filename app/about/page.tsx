@@ -160,7 +160,7 @@ export default function AboutPage() {
                     With 15 years of practice in Gynae-obstetric care and thousands of deliveries and C-sections, 
                     Dr. Pooja Dubey is a renowned figure in Shahdol and the surrounding area. She is also known for her 
                     compassionate yet professional care approach, ensuring every patient receives personalized attention 
-                    and expert medical treatment. Her dedication to women's healthcare has made her a trusted name in 
+                    and expert medical treatment. Her dedication to women&apos;s healthcare has made her a trusted name in 
                     the community.
                   </p>
                 </div>
