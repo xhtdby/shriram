@@ -1,15 +1,65 @@
-# Shriram Hospital Management System
+# Shriram Hospital - Production Website
 
-A **dramatically simplified** hospital management system built with a single Next.js application.
+> **World-Class Care, Local Accessibility**  
+> A modern, content-rich hospital management system built with Next.js 14, TypeScript, and Tailwind CSS.
 
-## ✨ What Changed?
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.11-ff0055)](https://www.framer.com/motion/)
 
-This project was **completely rebuilt** from a complex monorepo with multiple apps, packages, and a separate backend into a **single, clean Next.js application**. 
+---
 
-**Before:** 50+ files across separate frontend/backend/packages  
-**After:** ~10 core files in one simple app
+## 🏥 About Shriram Hospital
+
+Shriram Hospital is a premier multi-specialty healthcare institution located in Shahdol, Madhya Pradesh, serving the region since 2004. As the **first 100-bedded private multispecialty hospital** in the area, we have been pioneers in bringing cutting-edge medical technology and expertise to Central India.
+
+### 🏆 Key Milestones
+
+- **2011** - First CT Scan in the city
+- **2012** - First 100-bedded private multispecialty hospital
+- **2012** - First ICU & Ventilator care in Shahdol
+- **2017** - First Dialysis unit in the region
+- **2020** - First Oxygen plant during COVID pandemic
+- **2024** - First MRI facility in the city
+
+---
+
+## ✨ Features
+
+### 🎨 **Modern User Experience**
+- **Responsive Design** - Optimized for mobile, tablet, and desktop
+- **Interactive Carousels** - Hero slides, department showcase, testimonials
+- **Smooth Animations** - Powered by Framer Motion for delightful interactions
+- **Accessibility First** - WCAG compliant with keyboard navigation support
+
+### 🩺 **Core Functionality**
+- **Doctor Profiles** - Detailed information with booking capabilities
+- **Department Showcase** - 13+ specialized medical departments
+- **Health Packages** - Comprehensive checkup packages with online booking
+- **Appointment Booking** - Calendar-based appointment scheduling system
+- **Payment Integration** - Support for Card, UPI, Net Banking, and Cash
+- **Insurance Partners** - 14+ TPA partners including Ayushman Bharat
+- **Video Consultation** - Telemedicine capabilities
+- **Patient Portal** - Secure login for patient records and history
+
+### 📱 **Patient Services**
+- 24/7 Emergency contact with floating emergency button
+- Online health package booking with basket system
+- Estimate request for procedures
+- Feedback and rating system
+- Patient rights and responsibilities
+- Digital payment receipts
+
+---
 
 ## 🚀 Quick Start
+
+### Prerequisites
+
+- **Node.js** 18.0 or higher
+- **npm** or **pnpm** (recommended)
+- **Git**
 
 ### Option 1: Automated Setup (Recommended)
 
