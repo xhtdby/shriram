@@ -22,9 +22,9 @@ const heroSlides: HeroSlide[] = [
   {
     id: 1,
     image: '/images/hero-care.jpg',
-    title: 'Compassionate Healthcare',
+    title: 'World-Class Care, Local Accessibility',
     subtitle: 'Excellence in Medical Care',
-    description: 'Providing world-class healthcare services with compassion, integrity, and cutting-edge medical technology.',
+    description: 'Providing exceptional healthcare services with compassion, integrity, and cutting-edge medical technology right here in Shahdol.',
     cta: {
       text: 'Book Appointment',
       href: '/book-appointment'
@@ -37,19 +37,19 @@ const heroSlides: HeroSlide[] = [
     subtitle: 'Always Here When You Need Us',
     description: 'Round-the-clock emergency care with our expert medical team and state-of-the-art facilities.',
     cta: {
-      text: 'Emergency Contact',
-      href: '/contact#emergency'
+      text: 'Book Appointment',
+      href: '/book-appointment'
     }
   },
   {
     id: 3,
     image: '/images/hero-tech.jpg',
     title: 'Advanced Medical Technology',
-    subtitle: 'Modern Healthcare Solutions',
-    description: 'Equipped with the latest medical equipment and technology to ensure the best possible patient outcomes.',
+    subtitle: 'First in Shahdol Region',
+    description: 'Pioneers in bringing CT Scan (2011), Dialysis (2017), Oxygen Plant (2020), and MRI (2024) to the city.',
     cta: {
-      text: 'Our Services',
-      href: '/departments'
+      text: 'Book Appointment',
+      href: '/book-appointment'
     }
   }
 ];
@@ -175,15 +175,22 @@ export default function HeroCarousel() {
                 </motion.p>
                 
                 <motion.div
+                  className="flex flex-col sm:flex-row gap-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1.2 }}
                 >
                   <a
                     href={currentSlideData.cta.href}
-                    className="inline-block bg-hospital-green hover:bg-hospital-green-dark text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 focus-visible:ring-2 focus-visible:ring-hospital-gold focus-visible:ring-opacity-70"
+                    className="inline-block bg-gradient-to-r from-hospital-blue to-hospital-blue-dark hover:from-hospital-blue-dark hover:to-hospital-blue text-white px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
                   >
                     {currentSlideData.cta.text}
+                  </a>
+                  <a
+                    href="/departments"
+                    className="inline-block bg-white hover:bg-gray-100 text-hospital-blue px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
+                  >
+                    View Departments
                   </a>
                 </motion.div>
               </motion.div>

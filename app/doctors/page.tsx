@@ -1,7 +1,7 @@
 import { getDoctors } from '@/app/data'
-import { Calendar, Clock, MapPin, Phone, Star, User } from 'lucide-react'
+import { Calendar, Phone, Stethoscope } from 'lucide-react'
 import Link from 'next/link'
-import Image from 'next/image'
+import DoctorCard from '@/components/DoctorCard'
 
 export default function DoctorsPage() {
   const allDoctors = getDoctors()
@@ -19,10 +19,17 @@ export default function DoctorsPage() {
       <section className="bg-gradient-to-r from-hospital-green to-hospital-blue text-white py-16">
         <div className="container mx-auto px-4">
           <div className="text-center">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <Stethoscope className="w-4 h-4 mr-2" />
+              Expert Medical Professionals
+            </div>
             <h1 className="text-5xl font-bold mb-4">Our Medical Team</h1>
             <p className="text-xl text-hospital-green-light max-w-2xl mx-auto">
               Meet our dedicated team of experienced medical professionals committed to providing exceptional healthcare
             </p>
+            <div className="mt-6">
+              <p className="text-lg font-semibold">Global OPD Fee: ₹300</p>
+            </div>
           </div>
         </div>
       </section>
@@ -32,93 +39,21 @@ export default function DoctorsPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {sortedDoctors.map(doctor => (
-              <div key={doctor.id} className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden h-full flex flex-col ${doctor.isChief ? 'border-2 border-hospital-green' : ''}`}>
-                {doctor.isChief && (
-                  <div className="bg-hospital-green text-white text-center py-2">
-                    <span className="text-sm font-semibold">Chief Medical Officer</span>
-                  </div>
-                )}
-                
-                {/* Doctor Image */}
-                <div className="relative h-64 bg-gradient-to-br from-hospital-green/10 to-hospital-blue/10 flex-shrink-0">
-                  <Image
-                    src={doctor.image || '/images/doctors/placeholder-doctor.jpg'}
-                    alt={`Dr. ${doctor.firstName} ${doctor.lastName}`}
-                    fill
-                    className="object-cover object-top"
-                  />
-                  {doctor.isChief && (
-                    <div className="absolute top-4 right-4 bg-gold-accent text-white p-2 rounded-full">
-                      <Star className="w-4 h-4 fill-current" />
-                    </div>
-                  )}
-                </div>
-
-                {/* Doctor Info */}
-                <div className="p-6 flex-grow flex flex-col">
-                  <h3 className="text-xl font-bold mb-2 text-gray-800">
-                    <Link href={`/doctors/${doctor.slug}`} className="hover:text-hospital-green transition-colors">
-                      Dr. {doctor.firstName} {doctor.lastName}
-                    </Link>
-                  </h3>
-                  <p className="text-hospital-green font-semibold mb-1">{doctor.specialization}</p>
-                  <p className="text-gray-600 text-sm mb-3">{doctor.departmentName}</p>
-                  
-                  {doctor.qualifications && (
-                    <p className="text-gray-500 text-sm mb-3">{doctor.qualifications}</p>
-                  )}
-
-                  <div className="space-y-2 mb-4">
-                    {doctor.experience && (
-                      <div className="flex items-center text-gray-600 text-sm">
-                        <User className="w-4 h-4 mr-2 flex-shrink-0" />
-                        <span>{doctor.experience} Experience</span>
-                      </div>
-                    )}
-
-                    {doctor.consultationTime && (
-                      <div className="flex items-center text-gray-600 text-sm">
-                        <Clock className="w-4 h-4 mr-2 flex-shrink-0" />
-                        <span>{doctor.consultationTime}</span>
-                      </div>
-                    )}
-
-                    {doctor.consultationFee && (
-                      <div className="flex items-center text-gray-600 text-sm">
-                        <span className="font-semibold text-hospital-green">Consultation: {doctor.consultationFee}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {doctor.bio && (
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">{doctor.bio}</p>
-                  )}
-
-                  {/* Available Days */}
-                  {doctor.availableDays && (
-                    <div className="mb-4">
-                      <p className="text-sm font-semibold text-gray-700 mb-2">Available Days:</p>
-                      <div className="flex flex-wrap gap-1">
-                        {doctor.availableDays.map((day) => (
-                          <span key={day} className="text-xs bg-hospital-green/10 text-hospital-green px-2 py-1 rounded">
-                            {day.substring(0, 3)}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Appointment Button */}
-                  <div className="mt-auto">
-                    <Link 
-                      href={`/doctors/${doctor.slug}`}
-                      className="w-full bg-hospital-green text-white py-3 px-4 rounded-lg font-semibold hover:bg-hospital-green-dark transition-colors text-center inline-block"
-                    >
-                      Book Appointment
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <DoctorCard
+                key={doctor.id}
+                id={doctor.id}
+                slug={doctor.slug}
+                fullName={doctor.fullName}
+                specialization={doctor.specialization}
+                qualifications={doctor.qualifications}
+                image={doctor.image}
+                experience={doctor.experience}
+                consultationTime={doctor.consultationTime}
+                consultationFee={doctor.consultationFee}
+                isChief={doctor.isChief}
+                departmentName={doctor.departmentName}
+                availableDays={doctor.availableDays}
+              />
             ))}
           </div>
         </div>
@@ -138,7 +73,7 @@ export default function DoctorsPage() {
               Call Emergency: 07652-248248
             </a>
             <Link 
-              href="/make-appointment" 
+              href="/book-appointment" 
               className="bg-gold-accent text-white px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors flex items-center justify-center"
             >
               <Calendar className="w-5 h-5 mr-2" />

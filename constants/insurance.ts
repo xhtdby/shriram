@@ -87,6 +87,72 @@ export const TPA_PARTNERS = [
     contactNumber: '1800-200-7710',
     website: 'www.nationalinsuranceindia.nic.co.in',
     services: ['Cashless Treatment', 'Reimbursement', 'Pre-authorization']
+  },
+  {
+    id: 9,
+    name: 'Ayushman Bharat (आयुष्मान भारत)',
+    shortName: 'Ayushman Bharat',
+    logo: '/images/tpa/ayushman-bharat.png',
+    category: 'Government Scheme',
+    cashlessAvailable: true,
+    contactNumber: '14555',
+    website: 'pmjay.gov.in',
+    services: ['Cashless Treatment', 'Pre-authorization', 'Free Healthcare']
+  },
+  {
+    id: 10,
+    name: 'Railways Medical Services',
+    shortName: 'Railways',
+    logo: '/images/tpa/railways.png',
+    category: 'Government',
+    cashlessAvailable: true,
+    contactNumber: '139',
+    website: 'indianrailways.gov.in',
+    services: ['Cashless Treatment', 'Railway Employee Coverage']
+  },
+  {
+    id: 11,
+    name: 'BSNL Medical Services',
+    shortName: 'BSNL',
+    logo: '/images/tpa/bsnl.png',
+    category: 'PSU',
+    cashlessAvailable: true,
+    contactNumber: '1800-180-1503',
+    website: 'bsnl.co.in',
+    services: ['Cashless Treatment', 'BSNL Employee Coverage']
+  },
+  {
+    id: 12,
+    name: 'SECC (State Employee Cashless Care)',
+    shortName: 'SECC',
+    logo: '/images/tpa/secc.png',
+    category: 'Government',
+    cashlessAvailable: true,
+    contactNumber: 'N/A',
+    website: 'N/A',
+    services: ['Cashless Treatment', 'State Employee Coverage']
+  },
+  {
+    id: 13,
+    name: 'OPM (Office of Personnel Management)',
+    shortName: 'OPM',
+    logo: '/images/tpa/opm.png',
+    category: 'Government',
+    cashlessAvailable: true,
+    contactNumber: 'N/A',
+    website: 'N/A',
+    services: ['Cashless Treatment', 'Government Employee Coverage']
+  },
+  {
+    id: 14,
+    name: 'ONGC Medical Services',
+    shortName: 'ONGC',
+    logo: '/images/tpa/ongc.png',
+    category: 'PSU',
+    cashlessAvailable: true,
+    contactNumber: '1800-103-5050',
+    website: 'ongcindia.com',
+    services: ['Cashless Treatment', 'ONGC Employee Coverage']
   }
 ];
 

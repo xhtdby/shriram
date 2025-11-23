@@ -1,17 +1,9 @@
 import { hospitalInfo } from '@/app/data'
 import { Award, Users, Stethoscope, Heart, Shield, Clock, MapPin, Phone, Mail } from 'lucide-react'
 import Image from 'next/image'
+import JourneyTimeline from '@/components/JourneyTimeline'
 
 export default function AboutPage() {
-  const milestones = [
-    { year: '2004', event: 'Shriram Hospital established in Shahdol' },
-    { year: '2010', event: 'Expanded to 105 beds with ICU facilities' },
-    { year: '2010', event: 'Introduced advanced surgical equipment' },
-    { year: '2015', event: 'Added 20-bed ICU and cardiac care unit' },
-    { year: '2020', event: 'Implemented digital healthcare systems' },
-    { year: '2024', event: 'Served over 120,000 patients successfully' }
-  ]
-
   const values = [
     {
       icon: <Heart className="w-12 h-12 text-hospital-green" />,
@@ -32,6 +24,11 @@ export default function AboutPage() {
       icon: <Users className="w-12 h-12 text-hospital-green" />,
       title: 'Team Work',
       description: 'Our multidisciplinary team works collaboratively to provide comprehensive and coordinated care for every patient.'
+    },
+    {
+      icon: <Stethoscope className="w-12 h-12 text-hospital-green" />,
+      title: 'Affordability',
+      description: 'With minimum fee for medical and surgical care and tie-up with Ayushman Yojana along with other tie-ups, we are able to provide best of care with affordable prices.'
     }
   ]
 
@@ -91,33 +88,80 @@ export default function AboutPage() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Our Leadership</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Led by experienced medical professionals dedicated to advancing healthcare excellence
+              Led by experienced medical professionals and visionary leaders dedicated to advancing healthcare excellence
             </p>
           </div>
           
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <div className="max-w-6xl mx-auto space-y-8">
+            {/* Dr. Rohit Dubey - Director & Senior Intensivist/Anaesthesiologist */}
+            <div className="bg-white rounded-xl shadow-lg p-8">
               <div className="grid md:grid-cols-3 gap-8 items-center">
                 <div className="text-center">
                   <div className="relative w-48 h-48 mx-auto mb-4">
                     <Image
-                      src={hospitalInfo.leadership.chiefImage}
-                      alt={hospitalInfo.leadership.chiefDoctor}
+                      src="/images/doctors/dr-rohit-dubey.jpg"
+                      alt="Dr. Rohit Dubey"
                       fill
                       className="object-cover object-top rounded-full"
                     />
                   </div>
                 </div>
                 <div className="md:col-span-2">
-                  <h3 className="text-3xl font-bold text-gray-800 mb-2">{hospitalInfo.leadership.chiefDoctor}</h3>
-                  <p className="text-hospital-green text-xl font-semibold mb-3">{hospitalInfo.leadership.chiefTitle}</p>
-                  <p className="text-gray-600 mb-3">{hospitalInfo.leadership.chiefQualifications}</p>
-                  <p className="text-gray-600 mb-4">Experience: {hospitalInfo.leadership.chiefExperience}</p>
+                  <h3 className="text-3xl font-bold text-gray-800 mb-2">Dr. Rohit Dubey</h3>
+                  <p className="text-hospital-green text-xl font-semibold mb-3">Director & Senior Intensivist/Anaesthesiologist</p>
+                  <p className="text-gray-600 mb-3">MD (Anesthesia), FIPM</p>
+                  <p className="text-gray-600 mb-4">15+ Years Experience</p>
                   <p className="text-gray-700 leading-relaxed">
                     Dr. Rohit Dubey leads our medical team with a vision of providing exceptional healthcare services. 
-                    With extensive experience in anesthesiology and hospital administration, he ensures that every patient 
+                    With extensive experience in anesthesiology and intensive care medicine, he ensures that every patient 
                     receives the highest standard of care. His leadership has been instrumental in establishing Shriram Hospital 
-                    as a trusted healthcare provider in the region.
+                    as a trusted healthcare provider in the region, bringing cutting-edge medical technology and expertise to Central India.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Mr. Vijay Dubey - Director (Social Work/Management) */}
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <div className="grid md:grid-cols-3 gap-8 items-center">
+                <div className="text-center">
+                  <div className="relative w-48 h-48 mx-auto mb-4 bg-gradient-to-br from-hospital-green/20 to-hospital-blue/20 rounded-full flex items-center justify-center">
+                    <Users className="w-24 h-24 text-hospital-green" />
+                  </div>
+                </div>
+                <div className="md:col-span-2">
+                  <h3 className="text-3xl font-bold text-gray-800 mb-2">Mr. Vijay Dubey</h3>
+                  <p className="text-hospital-green text-xl font-semibold mb-3">Director - Social Work & Management</p>
+                  <p className="text-gray-700 leading-relaxed">
+                    Mr. Vijay Dubey is known for his exceptional management skills and the transformative social work 
+                    he has done in the region. His strategic vision and deep commitment to community welfare have been 
+                    crucial in expanding Shriram Hospital's reach and impact in Shahdol and surrounding areas. Through 
+                    his dedication to social causes, he has made healthcare accessible to underserved communities while 
+                    maintaining the highest standards of medical excellence.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Dr. Pooja Dubey - Medical Superintendent */}
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <div className="grid md:grid-cols-3 gap-8 items-center">
+                <div className="text-center">
+                  <div className="relative w-48 h-48 mx-auto mb-4 bg-gradient-to-br from-pink-100 to-purple-100 rounded-full flex items-center justify-center">
+                    <Heart className="w-24 h-24 text-pink-500" />
+                  </div>
+                </div>
+                <div className="md:col-span-2">
+                  <h3 className="text-3xl font-bold text-gray-800 mb-2">Dr. Pooja Dubey</h3>
+                  <p className="text-hospital-green text-xl font-semibold mb-3">Medical Superintendent</p>
+                  <p className="text-gray-600 mb-3">MBBS, EMOC (Gynae–Obs)</p>
+                  <p className="text-gray-600 mb-4">15+ Years Experience</p>
+                  <p className="text-gray-700 leading-relaxed">
+                    With 15 years of practice in Gynae-obstetric care and thousands of deliveries and C-sections, 
+                    Dr. Pooja Dubey is a renowned figure in Shahdol and the surrounding area. She is also known for her 
+                    compassionate yet professional care approach, ensuring every patient receives personalized attention 
+                    and expert medical treatment. Her dedication to women's healthcare has made her a trusted name in 
+                    the community.
                   </p>
                 </div>
               </div>
@@ -136,7 +180,7 @@ export default function AboutPage() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
             {values.map((value, index) => (
               <div key={index} className="text-center group">
                 <div className="bg-hospital-green/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-hospital-green/20 transition-colors">
@@ -160,25 +204,7 @@ export default function AboutPage() {
             </p>
           </div>
           
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-hospital-green hidden md:block"></div>
-              
-              <div className="space-y-8">
-                {milestones.map((milestone, index) => (
-                  <div key={index} className="relative flex items-center">
-                    <div className="bg-hospital-green text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm z-10 shadow-lg">
-                      {milestone.year}
-                    </div>
-                    <div className="ml-8 bg-white p-6 rounded-lg shadow-lg flex-1">
-                      <p className="text-gray-800 font-medium">{milestone.event}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <JourneyTimeline />
         </div>
       </section>
 
@@ -254,6 +280,11 @@ export default function AboutPage() {
               </div>
               <ul className="space-y-2 text-gray-700">
                 <li>• NABL certified laboratory</li>
+                <li>• CT Scan (First in city - 2011)</li>
+                <li>• MRI (First in city - 2024)</li>
+                <li>• Echo Cardiography</li>
+                <li>• TMT (Treadmill Test)</li>
+                <li>• Spirometry</li>
                 <li>• Digital X-ray & imaging</li>
                 <li>• ECG & cardiac testing</li>
                 <li>• Blood bank facilities</li>
@@ -294,12 +325,63 @@ export default function AboutPage() {
                 <li>• Specialist consultations</li>
               </ul>
             </div>
+
+            {/* Orthopaedic Care */}
+            <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center mb-4">
+                <div className="bg-indigo-500 text-white p-3 rounded-lg mr-4">
+                  <Users className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800">Orthopaedic Care</h3>
+              </div>
+              <ul className="space-y-2 text-gray-700">
+                <li>• C-Arm guided minimally invasive surgeries</li>
+                <li>• Advanced surgical technology</li>
+                <li>• Joint replacements</li>
+                <li>• Spine surgery</li>
+                <li>• Trauma surgery</li>
+              </ul>
+            </div>
+
+            {/* Uro Surgery */}
+            <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center mb-4">
+                <div className="bg-teal-500 text-white p-3 rounded-lg mr-4">
+                  <Stethoscope className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800">Uro Surgery</h3>
+              </div>
+              <ul className="space-y-2 text-gray-700">
+                <li>• All endoscopic procedures</li>
+                <li>• Minimally invasive technology</li>
+                <li>• Prostate treatment</li>
+                <li>• Kidney stone treatment</li>
+                <li>• Specialized urosurgeon</li>
+              </ul>
+            </div>
+
+            {/* Paediatrics */}
+            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="flex items-center mb-4">
+                <div className="bg-yellow-500 text-white p-3 rounded-lg mr-4">
+                  <Heart className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800">Paediatrics</h3>
+              </div>
+              <ul className="space-y-2 text-gray-700">
+                <li>• OPD services</li>
+                <li>• NICU (24×7)</li>
+                <li>• PICU services (24×7)</li>
+                <li>• Child healthcare</li>
+                <li>• Specialized pediatric care</li>
+              </ul>
+            </div>
           </div>
 
           {/* Hospital Infrastructure */}
           <div className="bg-gray-50 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-center mb-8">Hospital Infrastructure</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
               <div className="text-center">
                 <div className="bg-hospital-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
                   <span className="text-2xl font-bold">{hospitalInfo.beds}</span>
@@ -322,6 +404,14 @@ export default function AboutPage() {
                 </div>
                 <h4 className="font-semibold text-gray-800 mb-1">Operation Theaters</h4>
                 <p className="text-gray-600 text-sm">Modern surgical facilities</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="bg-hospital-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                  <span className="text-lg font-bold">1st</span>
+                </div>
+                <h4 className="font-semibold text-gray-800 mb-1">Dialysis Unit</h4>
+                <p className="text-gray-600 text-sm">First in region (2017)</p>
               </div>
               
               <div className="text-center">
